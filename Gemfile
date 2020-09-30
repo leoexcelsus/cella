@@ -33,6 +33,17 @@ gem 'devise'
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass'
 gem 'simple_form'
+
+# suplementa a conexão do Rails com o Postgresql para trabalhar com dados GIS
+gem 'activerecord-postgis-adapter'
+
+# permite ao Rails entender e manipular dados GIS
+gem 'rgeo'
+
+# extende a capacidade da gema 'rgeo' para lidar com geojson
+gem 'rgeo-geojson'
+
+
 group :development, :test do  gem 'pry-byebug'
   gem 'pry-rails'
   gem 'dotenv-rails'
