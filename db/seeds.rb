@@ -72,11 +72,39 @@ user2.save!
 
 # puts "...Users saved to database."
 
-# puts "Creating 10 Rules..."
-# rule = Rule.new(jurisdiction: '', issuer: '', category: '', number: '', pub_date: , ed_date: , long_title: '', hyperlink: '', source: '')
-# rule.user = user
-# puts "...saving rules to database..."
+# puts "Creating 5 Industries..."
+industry1 = Industry.new(name: 'ferrovia')
+industry2 = Industry.new(name: 'rodovia')
+industry3 = Industry.new(name: 'mineração')
+industry4 = Industry.new(name: 'linha de transmissão')
+industry5 = Industry.new(name: 'geração de energia hidrelétrica')
 
+# puts "...saving Industries to database..."
+industry1.save!
+industry2.save!
+industry3.save!
+industry4.save!
+industry5.save!
+
+# puts "...Industries saved to database."
+
+
+# puts "Creating 10 Rules..."
+# rule1 = Rule.new(
+#   jurisdiction: 'Federal',
+#   issuer: 'Congresso Nacional',
+#   category: 'Constituição Federal',
+#   number: 'n/a',
+#   pub_date: Date.strptime('05/10/1988', '%d/%m/%Y'),
+#   ed_date: Date.strptime('05/10/1988', '%d/%m/%Y'),
+#   long_title: 'sem ementa',
+#   hyperlink: 'http://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm',
+#   source: 'Página eletrônica, conforme endereço eltrônico exibido no hyperlink')
+# rule1.user = user1
+# rule1.polygons = [polygon1]
+# rule1.industries = [industry1, industry2, industry3, industry4, industry5]
+# # puts "...saving rules to database..."
+# rule1.save!
 
 # puts "...rules saved to database."
 
