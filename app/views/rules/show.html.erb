@@ -19,11 +19,6 @@
               <strong>Órgão(s) emissor(es):</strong>
               <%= @rule.issuer %>
             </p>
-            <p>
-              <strong>Jurisdição:</strong>
-              <%= @rule.jurisdiction %>
-            </p>
-
             <% if @rule.user != User.first %>
               <p>
                 <strong>Cadastrado pelo usuário:</strong>
@@ -40,16 +35,26 @@
                 </ul>
               </div>
             </p>
+
             <div class="br-divider"></div>
-            <p>
-              <%= link_to @rule.hyperlink, @rule.hyperlink, :target => "_blank" %>
-            </p>
+    
+            <h4 class="text-right">
+              <%= link_to @rule.hyperlink, :target => "_blank" do %>
+                <i class="fas fa-link"></i>
+              <% end %>
+              <% if @rule.jurisdiction == "Federal" %>
+                <span class="badge badge-danger"><%= @rule.jurisdiction %></span>
+              <% elsif @rule.jurisdiction == "Estadual"%>
+                <span class="badge badge-warning"><%= @rule.jurisdiction %></span>
+              <% else%>
+                <span class="badge badge-primary"><%= @rule.jurisdiction %></span>
+              <% end %>
+            </h4>
           </div>
         </div>
       </div>
     </div>
-    </div>
     <div class="col-4">
-      
+    </div> 
   </div>
 </div>
