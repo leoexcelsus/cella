@@ -5,6 +5,19 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+puts "Deleting all records from tables: users, polygons, industries, rules spatial domains and industry rules..."
+puts "...if an error occur try 'rails db:drop db:create db:migrate db:seed...'"
+
+User.delete_all
+Polygon.delete_all
+Industry.delete_all
+Rule.delete_all
+SpatialDomain.delete_all
+IndustryRule.delete_all
+
+puts "Deletion complete."
+
 puts "Reading stringfied GeoJSONs..."
 
 brasil = '{"type": "FeatureCollection","name": "brasilTerreste","crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },"features": [{ "type": "Feature", "properties": { "name": "Brasil" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -59.835771554789254, 4.475461790825205 ], [ -67.375071356197068, 1.335695899192501 ], [ -73.180421708868352, -6.808707248563253 ], [ -69.289191622104823, -11.36732001315918 ], [ -61.729422508193004, -13.80635078518846 ], [ -56.71808623802351, -19.070285831802746 ], [ -54.678275562720074, -25.083301084408678 ], [ -56.87121646175494, -30.650255032871666 ], [ -52.689619500223266, -33.324666379938826 ], [ -48.416768262804347, -28.505740986401705 ], [ -47.584256981311619, -25.582702593186884 ], [ -41.691599321254927, -22.550997861711203 ], [ -38.628829185160598, -15.794226137224134 ], [ -37.90829946609184, -11.56336769785071 ], [ -34.321925919884663, -8.139160486264295 ], [ -34.561966486016424, -4.517657044266191 ], [ -42.286943731279521, -2.463159328246623 ], [ -49.384904235592565, 0.092672481534292 ], [ -50.746234725990917, 3.826359622442677 ], [ -54.077093710938186, 2.208808114729568 ], [ -57.060362747471466, 2.009107017773609 ], [ -59.161159042951013, 1.121713381376584 ], [ -59.835771554789254, 4.475461790825205 ] ] ] ] } }]}';
@@ -59,37 +72,37 @@ polygon10.save!
 
 puts "...polygons saved to database."
 
-# puts "Creating 2 Users..."
+puts "Creating 2 Users..."
 user1 = User.new(email:'admin@admin.com', first_name: 'admin', last_name: 'istrator', company: 'Economy Ministry')
 user1.password = '123456'
 
 user2 = User.new(email:'ze@ze.com', first_name: 'Zé', last_name: 'das Bananas', company: 'Bananal do Seu Zé')
 user2.password = '123456'
 
-# puts "...saving Users to database..."
+puts "...saving Users to database..."
 user1.save!
 user2.save!
 
-# puts "...Users saved to database."
+puts "...Users saved to database."
 
-# puts "Creating 5 Industries..."
+puts "Creating 5 Industries..."
 industry1 = Industry.new(name: 'ferrovia')
 industry2 = Industry.new(name: 'rodovia')
 industry3 = Industry.new(name: 'mineração')
 industry4 = Industry.new(name: 'linha de transmissão')
 industry5 = Industry.new(name: 'geração de energia hidrelétrica')
 
-# puts "...saving Industries to database..."
+puts "...saving Industries to database..."
 industry1.save!
 industry2.save!
 industry3.save!
 industry4.save!
 industry5.save!
 
-# puts "...Industries saved to database."
+puts "...Industries saved to database."
 
 
-# puts "Creating 10 Rules..."
+puts "Creating 10 Rules..."
 rule1 = Rule.new(
   jurisdiction: 'Federal',
   issuer: 'Congresso Nacional',
@@ -137,7 +150,7 @@ rule4 = Rule.new(
   issuer: 'Assembléia Legislativa',
   category: 'Decreto',
   number: '1745',
-  pub_date: Date.strptime('', '%d/%m/%Y'),
+  pub_date: Date.strptime('06/12/1979', '%d/%m/%Y'),
   ed_date: Date.strptime('06/12/1979', '%d/%m/%Y'),
   long_title: 'Aprova o Regulamento da Lei nº8544, de 17 de outubro de 1978, que dispõe sobre a prevenção e o controle da poluição do meio ambiente.',
   hyperlink: 'http://www.mp.go.gov.br/nat_sucroalcooleiro/Documentos/legislacao/especifica/03.pdf',
@@ -151,9 +164,9 @@ rule5 = Rule.new(
   issuer: 'Ministério do Meio Ambiente, Ministério da Cultura, Ministério da Saúde, Ministério da Justiça',
   category: 'Portaria Interministerial',
   number: '60',
-  pub_date: Date.strptime('', '%d/%m/%Y'),
+  pub_date: Date.strptime('24/03/2015', '%d/%m/%Y'),
   ed_date: Date.strptime('24/03/2015', '%d/%m/%Y'),
-  long_title: '',
+  long_title: 'Estabelece procedimentos administrativos que disciplinam a atuação dos órgãos e entidades da administração pública federal em processos de licenciamento ambiental de competência do Instituto Brasileiro do Meio Ambiente e dos Recursos Naturais Renováveis-IBAMA.',
   hyperlink: 'http://www.funai.gov.br/arquivos/conteudo/cglic/pdf/PORTARIA%20INTERMINISTERIAL%20No%2060.pdf',
   source: 'Sítio eletrônico oficial da Funai')
 rule5.user = user1
@@ -165,7 +178,7 @@ rule6 = Rule.new(
   issuer: 'Assembleia Legislativa',
   category: 'Lei',
   number: '3789',
-  pub_date: Date.strptime('', '%d/%m/%Y'),
+  pub_date: Date.strptime('27/07/2012', '%d/%m/%Y'),
   ed_date: Date.strptime('27/07/2012', '%d/%m/%Y'),
   long_title: 'Dispõe sobre a reposição florestal no estado do Amazonas e dá outras providências.',
   hyperlink: 'https://sapl.al.am.leg.br/media/sapl/public/normajuridica/2012/8244/8244_texto_integral.pdf',
@@ -179,7 +192,7 @@ rule7 = Rule.new(
   issuer: 'Secretaria de Estado de Meio Ambiente',
   category: 'Resolução',
   number: '70',
-  pub_date: Date.strptime('', '%d/%m/%Y'),
+  pub_date: Date.strptime('11/06/2018', '%d/%m/%Y'),
   ed_date: Date.strptime('11/06/2018', '%d/%m/%Y'),
   long_title: 'Dispõe sobre o licenciamento ambiental de intervenções destinadas à conservação e melhorias de rodovias, e sobre o Programa de Gerenciamento de Risco - PGR e o Plano de Ação de Emergência - PAE para transporte de produtos perigosos em rodovias.',
   hyperlink: 'http://www.mpsp.mp.br/portal/page/portal/cao_urbanismo_e_meio_ambiente/legislacao/leg_estadual/leg_est_resolucoes/Resol-SMA-070-2018_licenciamento-ambiental-em-faixa-de-dominio-de-rodovias.pdf',
@@ -207,7 +220,7 @@ rule9 = Rule.new(
   issuer: 'Ministério do Meio Ambiente',
   category: 'Portaria',
   number: '421',
-  pub_date: Date.strptime('', '%d/%m/%Y'),
+  pub_date: Date.strptime('26/10/2011', '%d/%m/%Y'),
   ed_date: Date.strptime('26/10/2011', '%d/%m/%Y'),
   long_title: 'Dispõe sobre o licenciamento e a regularização ambiental federal de sistemas de transmissão de energia elétrica e dá outras providências.',
   hyperlink: 'http://oads.org.br/leis/3542.pdf',
@@ -230,7 +243,7 @@ rule10.user = user1
 rule10.polygons = [polygon1]
 rule10.industries = [industry1]
 
-# puts "...saving rules to database..."
+puts "...saving rules to database..."
 rule1.save!
 rule2.save!
 rule3.save!
@@ -242,4 +255,10 @@ rule8.save!
 rule9.save!
 rule10.save!
 
-# puts "...rules saved to database."
+puts "...rules saved to database."
+
+puts "..."
+puts "..."
+puts "..."
+puts "..."
+puts "Seeding is finished! Good Luck!"
