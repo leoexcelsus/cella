@@ -1,5 +1,5 @@
 class RulesController < ApplicationController
-  before_action :set_product, only: [:show]
+  before_action :set_rule, only: [:show]
 
   def show
   end
