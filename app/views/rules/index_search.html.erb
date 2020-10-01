@@ -12,6 +12,7 @@
           <th scope="col">Data de Edição</th>
           <th scope="col">Ementa</th>
           <th scope="col">Fonte</th>
+          <th scope="col">Origem da Norma</th>
         </tr>
       </thead>
       <tbody>
@@ -25,6 +26,7 @@
           <td><%= rule.ed_date %></td>
           <td><%= rule.long_title.truncate_words(10) %></td>
           <td><%= rule.source %></td>
+          <td><%= rule.user.first_name %></td>
         </tr>
       <% end %>
       <% else %>
@@ -33,3 +35,27 @@
       </tbody>
   </table>
 </div>
+
+<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+
+<script>
+$(document).ready(function(){
+    $('.table').DataTable({
+        "language": {
+              "lengthMenu": "Mostrando _MENU_ registros por página",
+              "zeroRecords": "Nada encontrado",
+              "info": "Mostrando página _PAGE_ de _PAGES_",
+              "infoEmpty": "Nenhum registro disponível",
+              "infoFiltered": "(filtrado de _MAX_ registros no total)",
+              "sSearch" : "Filtrar",
+              "oPaginate": {
+                      "sFirst":    "Primeira",
+                      "sPrevious": "Anterior",
+                      "sNext":     "Próxima",
+                      "sLast":     "Última"
+                    }
+          }
+      });
+});
+</script>
