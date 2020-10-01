@@ -79,7 +79,8 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
-  database: cella_production
-  username: cella
-  password: <%= ENV['CELLA_DATABASE_PASSWORD'] %>
+  # <<: *default
+  # database: cella_production
+  # username: cella
+  # password: <%= ENV['CELLA_DATABASE_PASSWORD'] %>
+   url: <%= ENV.fetch("DATABASE_URL", "").gsub(/postgres/, 'postgis') %>
