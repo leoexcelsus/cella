@@ -11,7 +11,11 @@
   width: 40px;
 }
 
-.menu a {
-  font-size: 23px;
+.menu p {
+  font-size: 22px;
   color: black;
+}
+
+.menu p:hover {
+  color: #0c326f;
 }
