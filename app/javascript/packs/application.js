@@ -29,6 +29,8 @@ import "bootstrap";
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 
+require( 'datatables.net-dt' )();
+
 require ("../../../vendor/assets/dist/js/dsgov")
 
 document.addEventListener('turbolinks:load', () => {
