@@ -90,28 +90,156 @@ industry5.save!
 
 
 # puts "Creating 10 Rules..."
-# rule1 = Rule.new(
-#   jurisdiction: 'Federal',
-#   issuer: 'Congresso Nacional',
-#   category: 'Constituição Federal',
-#   number: 'n/a',
-#   pub_date: Date.strptime('05/10/1988', '%d/%m/%Y'),
-#   ed_date: Date.strptime('05/10/1988', '%d/%m/%Y'),
-#   long_title: 'sem ementa',
-#   hyperlink: 'http://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm',
-#   source: 'Página eletrônica, conforme endereço eltrônico exibido no hyperlink')
-# rule1.user = user1
-# rule1.polygons = [polygon1]
-# rule1.industries = [industry1, industry2, industry3, industry4, industry5]
-# # puts "...saving rules to database..."
-# rule1.save!
+rule1 = Rule.new(
+  jurisdiction: 'Federal',
+  issuer: 'Congresso Nacional',
+  category: 'Constituição Federal',
+  number: 'n/a',
+  pub_date: Date.strptime('05/10/1988', '%d/%m/%Y'),
+  ed_date: Date.strptime('05/10/1988', '%d/%m/%Y'),
+  long_title: 'sem ementa',
+  hyperlink: 'http://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm',
+  source: 'Página eletrônica, conforme endereço eltrônico exibido no hyperlink')
+rule1.user = user1
+rule1.polygons = [polygon1]
+rule1.industries = [industry1, industry2, industry3, industry4, industry5]
+
+rule2 = Rule.new(
+  jurisdiction: 'Federal',
+  issuer: 'Congresso Nacional',
+  category: 'Lei Complementar',
+  number: '140',
+  pub_date: Date.strptime('09/12/2011', '%d/%m/%Y'),
+  ed_date: Date.strptime('08/12/2011', '%d/%m/%Y'),
+  long_title: 'Fixa normas, nos termos dos incisos III, VI e VII do caput e do parágrafo único do art. 23 da Constituição Federal, para a cooperação entre a União, os Estados, o Distrito Federal e os Municípios nas ações administrativas decorrentes do exercício da competência comum relativas à proteção das paisagens naturais notáveis, à proteção do meio ambiente, ao combate à poluição em qualquer de suas formas e à preservação das florestas, da fauna e da flora; e altera a Lei no 6.938, de 31 de agosto de 1981.',
+  hyperlink: 'http://www.planalto.gov.br/ccivil_03/LEIS/LCP/Lcp140.htm',
+  source: 'Página eletrônica, conforme endereço eltrônico exibido no hyperlink')
+rule2.user = user1
+rule2.polygons = [polygon1]
+rule2.industries = [industry1, industry2, industry3, industry4, industry5]
+
+rule3 = Rule.new(
+  jurisdiction: 'Federal',
+  issuer: 'Congresso Nacional',
+  category: 'Lei',
+  number: '11428',
+  pub_date: Date.strptime('26/12/2009', '%d/%m/%Y'),
+  ed_date: Date.strptime('22/12/2006', '%d/%m/%Y'),
+  long_title: 'Dispõe sobre a utilização e proteção da vegetação nativa do Bioma Mata Atlântica, e dá outras providências.',
+  hyperlink: 'http://www.planalto.gov.br/ccivil_03/LEIS/LCP/Lcp140.htm',
+  source: 'Página eletrônica, conforme endereço eltrônico exibido no hyperlink')
+rule3.user = user1
+rule3.polygons = [polygon2]
+rule3.industries = [industry1, industry2, industry3, industry4, industry5]
+
+rule4 = Rule.new(
+  jurisdiction: 'Estado',
+  issuer: 'Assembléia Legislativa',
+  category: 'Decreto',
+  number: '1745',
+  pub_date: Date.strptime('', '%d/%m/%Y'),
+  ed_date: Date.strptime('06/12/1979', '%d/%m/%Y'),
+  long_title: 'Aprova o Regulamento da Lei nº8544, de 17 de outubro de 1978, que dispõe sobre a prevenção e o controle da poluição do meio ambiente.',
+  hyperlink: 'http://www.mp.go.gov.br/nat_sucroalcooleiro/Documentos/legislacao/especifica/03.pdf',
+  source: 'Sítio eletrônico oficial do Ministério Público de Goiás')
+rule4.user = user2
+rule4.polygons = [polygon3]
+rule4.industries = [industry1, industry2, industry3, industry4, industry5]
+
+rule5 = Rule.new(
+  jurisdiction: 'Federal',
+  issuer: 'Ministério do Meio Ambiente, Ministério da Cultura, Ministério da Saúde, Ministério da Justiça',
+  category: 'Portaria Interministerial',
+  number: '60',
+  pub_date: Date.strptime('', '%d/%m/%Y'),
+  ed_date: Date.strptime('24/03/2015', '%d/%m/%Y'),
+  long_title: '',
+  hyperlink: 'http://www.funai.gov.br/arquivos/conteudo/cglic/pdf/PORTARIA%20INTERMINISTERIAL%20No%2060.pdf',
+  source: 'Sítio eletrônico oficial da Funai')
+rule5.user = user1
+rule5.polygons = [polygon4, polygon5, polygon6, polygon8, polygon10]
+rule5.industries = [industry1, industry2, industry3, industry4, industry5]
+
+rule6 = Rule.new(
+  jurisdiction: 'Estado',
+  issuer: 'Assembleia Legislativa',
+  category: 'Lei',
+  number: '3789',
+  pub_date: Date.strptime('', '%d/%m/%Y'),
+  ed_date: Date.strptime('27/07/2012', '%d/%m/%Y'),
+  long_title: 'Dispõe sobre a reposição florestal no estado do Amazonas e dá outras providências.',
+  hyperlink: 'https://sapl.al.am.leg.br/media/sapl/public/normajuridica/2012/8244/8244_texto_integral.pdf',
+  source: 'Sítio eletrônico oficial da Assembleia Legislativa')
+rule6.user = user1
+rule6.polygons = [polygon7]
+rule6.industries = [industry1, industry2, industry3, industry4, industry5]
+
+rule7 = Rule.new(
+  jurisdiction: 'Estado',
+  issuer: 'Secretaria de Estado de Meio Ambiente',
+  category: 'Resolução',
+  number: '70',
+  pub_date: Date.strptime('', '%d/%m/%Y'),
+  ed_date: Date.strptime('11/06/2018', '%d/%m/%Y'),
+  long_title: 'Dispõe sobre o licenciamento ambiental de intervenções destinadas à conservação e melhorias de rodovias, e sobre o Programa de Gerenciamento de Risco - PGR e o Plano de Ação de Emergência - PAE para transporte de produtos perigosos em rodovias.',
+  hyperlink: 'http://www.mpsp.mp.br/portal/page/portal/cao_urbanismo_e_meio_ambiente/legislacao/leg_estadual/leg_est_resolucoes/Resol-SMA-070-2018_licenciamento-ambiental-em-faixa-de-dominio-de-rodovias.pdf',
+  source: 'Sítio eletrônico oficial do Ministério Público de São Paulo')
+rule7.user = user1
+rule7.polygons = [polygon9]
+rule7.industries = [industry2]
+
+rule8 = Rule.new(
+  jurisdiction: 'Federal',
+  issuer: 'Conselho Nacional de Meio Ambiente',
+  category: 'Resolução',
+  number: '347',
+  pub_date: Date.strptime('13/09/2004', '%d/%m/%Y'),
+  ed_date: Date.strptime('10/09/2004', '%d/%m/%Y'),
+  long_title: 'Dispõe sobre a proteção do patrimônio espeleológico.',
+  hyperlink: 'https://www.icmbio.gov.br/cecav/images/stories/downloads/Legislacao/Res_CONAMA_347_2004.pdf',
+  source: 'Sítio eletrônico oficial do ICMBio')
+rule8.user = user2
+rule8.polygons = [polygon8]
+rule8.industries = [industry1, industry2, industry3, industry4, industry5]
+
+rule9 = Rule.new(
+  jurisdiction: 'Federal',
+  issuer: 'Ministério do Meio Ambiente',
+  category: 'Portaria',
+  number: '421',
+  pub_date: Date.strptime('', '%d/%m/%Y'),
+  ed_date: Date.strptime('26/10/2011', '%d/%m/%Y'),
+  long_title: 'Dispõe sobre o licenciamento e a regularização ambiental federal de sistemas de transmissão de energia elétrica e dá outras providências.',
+  hyperlink: 'http://oads.org.br/leis/3542.pdf',
+  source: 'Sítio eletrônico da Organização Ambiental para o Desenvolvimento Sustentável')
+rule9.user = user1
+rule9.polygons = [polygon1]
+rule9.industries = [industry4]
+
+rule10 = Rule.new(
+  jurisdiction: 'Federal',
+  issuer: 'Conselho Nacional do Meio Ambiente',
+  category: 'Resolução',
+  number: '479',
+  pub_date: Date.strptime('27/04/2017', '%d/%m/%Y'),
+  ed_date: Date.strptime('15/03/2017', '%d/%m/%Y'),
+  long_title: 'Dispõe sobre o licenciamento ambiental de empreendimentos ferroviários de baixo potencialde impacto ambiental e a regularizaçãodos empreendimentos em operação.',
+  hyperlink: 'https://www.in.gov.br/materia/-/asset_publisher/Kujrw0TZC2Mb/content/id/20183398/do1-2017-04-27-resolucao-n-479-de-15-de-marco-de-2017-20183239#:~:text=Disp%C3%B5e%20sobre%20o%20licenciamento%20ambiental,que%20lhe%20s%C3%A3o%20conferidaspelo%20art.',
+  source: 'Sítio eletrônico da Imprensa Nacional')
+rule10.user = user1
+rule10.polygons = [polygon1]
+rule10.industries = [industry1]
+
+# puts "...saving rules to database..."
+rule1.save!
+rule2.save!
+rule3.save!
+rule4.save!
+rule5.save!
+rule6.save!
+rule7.save!
+rule8.save!
+rule9.save!
+rule10.save!
 
 # puts "...rules saved to database."
-
-# puts "Creating 5 ProjectTypes..."
-
-
-# puts "...saving project types to database..."
-
-
-# puts "...project types saved to database."
