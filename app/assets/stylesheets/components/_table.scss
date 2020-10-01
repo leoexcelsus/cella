@@ -10,3 +10,15 @@
   font-weight: bold;
   margin-bottom: 20px;
 }
+
+.table-container {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto;
+
+}
+
+.item-a {
+  margin-top: 30px;
+  grid-row-end: 8;
+}
