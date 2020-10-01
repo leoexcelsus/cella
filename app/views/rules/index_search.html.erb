@@ -18,15 +18,15 @@
       <tbody>
       <% @rules.each do |rule| %>
         <tr>
-          <td><%= rule.jurisdiction %></td>
-          <td><%= rule.issuer %></td>
-          <td><%= rule.category %></td>
-          <td><%= rule.number %></td>
-          <td><%= rule.pub_date %></td>
-          <td><%= rule.ed_date %></td>
-          <td><%= rule.long_title.truncate_words(10) %></td>
-          <td><%= rule.source %></td>
-          <td><%= rule.user.first_name %></td>
+          <td><%= link_to rule.jurisdiction, rule_path(rule) %></td>
+          <td><%= link_to rule.issuer, rule_path(rule) %></td>
+          <td><%= link_to rule.category, rule_path(rule) %></td>
+          <td><%= link_to rule.number, rule_path(rule) %></td>
+          <td><%= link_to rule.pub_date, rule_path(rule) %></td>
+          <td><%= link_to rule.ed_date, rule_path(rule) %></td>
+          <td><%= link_to rule.long_title.truncate_words(10), rule_path(rule) %></td>
+          <td><%= link_to rule.source, rule_path(rule) %></td>
+          <td><%= link_to rule.user.first_name, rule_path(rule) %></td>
         </tr>
       <% end %>
       <% else %>
@@ -58,4 +58,9 @@ $(document).ready(function(){
           }
       });
 });
+
+$("tr[data-link]").click(function() {
+  window.location = $(this).data("link")
+})
+
 </script>

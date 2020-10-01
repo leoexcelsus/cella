@@ -7,4 +7,7 @@ skip_before_action :authenticate_user!, only: [:index, :show, :index_search]
     @rules = @rules.sample(3)
   end
 
+  def show
+  end
+
 end
