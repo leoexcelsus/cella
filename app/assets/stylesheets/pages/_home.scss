@@ -1,2 +1,12 @@
 // Specific CSS for your home-page
 
+#page-container {
+  position: relative;
+  min-height: 100vh;
+  background-color: white;
+}
+
+#content-wrap {
+  padding-bottom: 0.5rem;    /* Footer height */
+  position: relative;
+}
