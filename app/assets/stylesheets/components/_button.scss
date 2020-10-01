@@ -1,11 +1,16 @@
-.btn {
-  color: white;
-  border-radius: 5px;
+.btn-ghost {
+  color: #0c326f;
+  background-color: white;
+  border: 3px solid #0c326f;
+  padding: 5px 25px;
+  margin: 3px;
+  border-radius: 50px;
   font-weight: bold;
-  background: linear-gradient(#335d2d, #7ea04d);
+  font-size: 15px;
+  transition: opacity 0.3s ease;
 }
 
-.btn:hover {
-  background: linear-gradient(#335d2d, #7ea04d);
+.btn-ghost:hover {
+  background-color: #1351b4;
   color: black;
 }
