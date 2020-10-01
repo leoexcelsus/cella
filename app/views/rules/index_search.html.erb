@@ -1,44 +1,46 @@
 <div class="container">
   <div class="table-container">
     <div class="results"><%= @rules.size %> normas encontradas</div>
-    <table class="table">
-      <thead class="thead-dark">
-        <% if @rules.size.positive? %>
-          <tr>
-            <th scope="col">Jurisdição</th>
-            <th scope="col">Emissor</th>
-            <th scope="col">Categoria</th>
-            <th scope="col">Número</th>
-            <th scope="col">Data de Publicação</th>
-            <th scope="col">Data de Edição</th>
-            <th scope="col">Ementa</th>
-            <th scope="col">Fonte</th>
-            <th scope="col">Origem da Norma</th>
-            <th scope="col">Detalhar</th>
-          </tr>
-        </thead>
-        <tbody>
-        <% @rules.each do |rule| %>
-          <tr>
-            <td><%= rule.jurisdiction %></td>
-            <td><%= rule.issuer %></td>
-            <td><%= rule.category %></td>
-            <td><%= rule.number %></td>
-            <td><%= rule.pub_date %></td>
-            <td><%= rule.ed_date %></td>
-            <td><%= rule.long_title.truncate_words(10) %></td>
-            <td><%= rule.source %></td>
-            <td><%= rule.user.first_name %></td>
-            <td><%= link_to "Detalhar", rule_path(rule) %></td>
-          </tr>
-        <% end %>
-        <% else %>
-          <p class="title">Não foram encontrados resultados para essa busca</p>
-        <% end %>
-        </tbody>
-    </table>
+      <div id="data">
+        <table class="table">
+          <thead class="thead-dark">
+            <% if @rules.size.positive? %>
+              <tr>
+                <th scope="col">Jurisdição</th>
+                <th scope="col">Emissor</th>
+                <th scope="col">Categoria</th>
+                <th scope="col">Número</th>
+                <th scope="col">Data de Publicação</th>
+                <th scope="col">Data de Edição</th>
+                <th scope="col">Ementa</th>
+                <th scope="col">Fonte</th>
+                <th scope="col">Origem da Norma</th>
+                <th scope="col">Detalhar</th>
+              </tr>
+            </thead>
+            <tbody>
+            <% @rules.each do |rule| %>
+              <tr>
+                <td><%= rule.jurisdiction %></td>
+                <td><%= rule.issuer %></td>
+                <td><%= rule.category %></td>
+                <td><%= rule.number %></td>
+                <td><%= rule.pub_date %></td>
+                <td><%= rule.ed_date %></td>
+                <td><%= rule.long_title.truncate_words(10) %></td>
+                <td><%= rule.source %></td>
+                <td><%= rule.user.first_name %></td>
+                <td><%= link_to "Detalhar", rule_path(rule) %></td>
+              </tr>
+            <% end %>
+            <% else %>
+              <p class="title">Não foram encontrados resultados para essa busca</p>
+            <% end %>
+            </tbody>
+        </table>
+      </div>
     <div class="item-a">
-      <%= link_to 'Baixar arquivo', root_path, class: "btn-ghost" %>
+      <button class="btn-ghost" onclick="exportDataToExcel('data')">Baixar arquivo</button>
     </div>
   </div>
 </div>
@@ -65,4 +67,31 @@ $(document).ready(function(){
           }
       });
 });
+</script>
+
+<script>
+      function exportDataToExcel(data, filename = '')
+       {
+          var downloadurl;
+          var fileType = 'application/vnd.ms-excel';
+          var tableSelect = document.getElementById(data);
+          var dataHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+          filename = filename?filename+'.xls':'user_details.xls';
+          downloadurl = document.createElement("a");
+          document.body.appendChild(downloadurl);
+         if(navigator.msSaveOrOpenBlob)
+           {
+              var blob = new Blob(['\ufeff', dataHTML],
+               {
+                  type:  fileType
+              });
+             navigator.msSaveOrOpenBlob( blob, filename);
+           }
+        else
+          {
+           downloadurl.href = 'data:' + fileType + ', ' + dataHTML;
+           downloadurl.download = filename;
+          downloadurl.click();
+       }
+    }
 </script>
