@@ -79,7 +79,12 @@
 
     <%= render 'shared/flashes' %>
 
-    <%= yield %>
+    <div id="page-container">
+      <div id="content-wrap">
+       <%= yield %>
+      </div>
+    </div>
+
 
 
     <div class="br-footer inverted">
@@ -97,5 +102,6 @@
     </div>
 
     <script src="../js/dsgov.js"></script>
+
   </body>
 </html>
