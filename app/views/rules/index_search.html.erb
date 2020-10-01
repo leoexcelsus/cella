@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="results"><%= @rules.size %> normas encontradas</div>
+  <table class="table">
+    <thead class="thead-dark">
+      <% if @rules.size.positive? %>
+        <tr>
+          <th scope="col">Jurisdição</th>
+          <th scope="col">Emissor</th>
+          <th scope="col">Categoria</th>
+          <th scope="col">Número</th>
+          <th scope="col">Data de Publicação</th>
+          <th scope="col">Data de Edição</th>
+          <th scope="col">Ementa</th>
+          <th scope="col">Fonte</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @rules.each do |rule| %>
+        <tr>
+          <td><%= rule.jurisdiction %></td>
+          <td><%= rule.issuer %></td>
+          <td><%= rule.category %></td>
+          <td><%= rule.number %></td>
+          <td><%= rule.pub_date %></td>
+          <td><%= rule.ed_date %></td>
+          <td><%= rule.long_title.truncate_words(10) %></td>
+          <td><%= rule.source %></td>
+        </tr>
+      <% end %>
+      <% else %>
+        <p class="title">Não foram encontrados resultados para essa busca</p>
+      <% end %>
+      </tbody>
+  </table>
+</div>
