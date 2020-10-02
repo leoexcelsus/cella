@@ -15,7 +15,7 @@
             <li class="title">Acesso Rápido</li>
             <li><a href="javascript:void(0);">Legislação</a></li>
             <li><a href="javascript:void(0);">Conheça</a></li>
-            <li><a href="javascript:void(0);">Cadastre-se</a></li>
+            <li><%= link_to "Cadastre-se", new_user_registration_path %></li>
             <li><a href="javascript:void(0);">Minhas normas</a></li>
           </ul>
         </div>
@@ -23,9 +23,12 @@
           <button class="br-button" type="button" circle mini><i class="fas fa-search"></i>
           </button>
         </div>
+
         <div class="login">
+          <%= link_to new_user_session_path do %>
           <button class="br-button" type="button" mini><i class="fas fa-user"></i><span class="ml-1">Entrar</span>
           </button>
+          <% end %>
         </div>
         <div class="avatar">
           <div class="br-badge" danger>
