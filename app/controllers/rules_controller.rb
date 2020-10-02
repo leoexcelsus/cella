@@ -2,7 +2,7 @@ require 'csv'
 
 class RulesController < ApplicationController
 
-skip_before_action :authenticate_user!, only: [:index, :show, :index_search]
+skip_before_action :authenticate_user!, only: [:index, :show, :index_search, :spatial_search]
 
   def index_search
     @rules = Rule.all
@@ -10,6 +10,9 @@ skip_before_action :authenticate_user!, only: [:index, :show, :index_search]
   end
 
   def show
+  end
+
+  def spatial_search
   end
 
 end
