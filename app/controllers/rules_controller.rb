@@ -2,7 +2,9 @@ require 'csv'
 
 class RulesController < ApplicationController
 
-skip_before_action :authenticate_user!, only: [:index, :show, :index_search, :spatial_search]
+  before_action :set_rule, only: [:show]
+
+  skip_before_action :authenticate_user!, only: [:index, :show, :index_search, :spatial_search]
 
   def index_search
     @rules = Rule.all
@@ -10,6 +12,13 @@ skip_before_action :authenticate_user!, only: [:index, :show, :index_search, :sp
   end
 
   def show
+  end
+
+
+  private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_rule
+    @rule = Rule.find(params[:id])
   end
 
   def spatial_search
