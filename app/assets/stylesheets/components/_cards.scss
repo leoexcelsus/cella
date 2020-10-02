@@ -4,12 +4,13 @@
   grid-gap: 16px;
   margin-top: 30px;
   margin-left: 100px;
+  justify-items: center;
 }
 
 .card-trip {
   overflow: hidden;
-  height: 260px;
-  width: 270px;
+  height: 270px;
+  width: 300px;
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   margin-bottom: 30px;
@@ -23,25 +24,39 @@
 }
 
 .card-trip h2 {
-  color: black;
+  color: #0c326f;
   font-size: 18px;
   font-weight: bold;
-  margin: 0 0 2 0;
+  margin: 6px;
+  padding: 5px;
+  text-justify: center
+}
+
+.card-trip h2:hover {
+  text-decoration: none;
+  color: #1351b4;
+}
+
+.card-trip p:hover {
+  text-decoration: none;
+  color: #1351b4;
 }
 
 .card-trip p {
-  color: black;
-  font-size: 13px;
-  opacity: .7;
-  margin: 0 0 2 0;
+  color: #0c326f;
+  font-weight: bold;
+  font-size: 16px;
+  margin-top: 10px;
+  padding: 5px;
 }
 
 a:hover {
   text-decoration: none;
+  color: #427597;
 }
 
 .card-trip .card-trip-infos h2:hover {
-  color: #335d2d
+  color: #427597;
 }
 
 .card-trip .card-trip-infos {
@@ -50,6 +65,7 @@ a:hover {
   justify-content: space-between;
   align-items: flex-end;
   position: relative;
+  margin-top: -25px;
 }
 
 

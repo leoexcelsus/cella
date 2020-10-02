@@ -9,18 +9,23 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
+
+
+    <link href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet">
+
   </head>
 
   <body>
-    <%= render 'shared/navbar' %>
-    <%= render 'shared/flashes' %>
 
+    <%= render 'shared/navbar' %>
     <div id="page-container">
       <div id="content-wrap">
-       <%= yield %>
+        <%= render 'shared/flashes' %>
+        <%= yield %>
       </div>
     </div>
-    
     <%= render 'shared/footer' %>
+
+    <script src="../js/dsgov.js"></script>
   </body>
 </html>
