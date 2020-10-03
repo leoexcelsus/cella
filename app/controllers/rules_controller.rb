@@ -19,13 +19,26 @@ class RulesController < ApplicationController
   end
 
   def spatial_query
-    @searched_polygon = "POLYGON((-52.11614218435184 -6.411085727796378,-59.58442484383378 -10.843968821105001,-53.43407441837804 -19.40872775103672,-46.05365390783119 -11.96456032658079,-52.11614218435184 -6.411085727796378))"
-    @searched_industry = "rodovia"
-    @sql1 = "SELECT * FROM polygons WHERE ST_Intersects('#{@searched_polygon}', polygons.geography)"
-    @array_polygons = ActiveRecord::Base.connection.execute(sql1)
-    @filter1 = @array_polygons.rules
+    raise
+    if (params1 && params2)
+      @searched_polygon =
+      @searched_industry =
+      @sql1 = "Select r.id "\
+              "From polygons p FULL OUTER JOIN spatial_domains s ON p.id = s.polygon_id "\
+              "FULL OUTER JOIN rules r ON s.rule_id = r.id FULL OUTER JOIN industry_rules "\
+              "ir ON r.id = ir.rule_id FULL OUTER JOIN industries i ON i.id = ir.industry_id "\
+              "WHERE ST_Intersects('#{@searched_polygon}', p.geography) AND "\
+              "i.name = '#{@searched_industry}';"
 
-    @results
+      @rules_id_pg_array = ActiveRecord::Base.connection.execute(@sql1)
+      @rules_id = []
+      @rules_id_array.each do |r| @rules_id << r['id'] end
+      @rules = Rule.find(@rules_id)
+
+      redirect_to index_search_path(@rules)
+    else
+      redirect_to :spatial_search
+    end
   end
 
   private
