@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
 
   get "rules/spatial_search/", to: "rules#spatial_search", as: :spatial_search
-
+  post "rules/spatial_search", to: "rules#spatial_query", as: :spatial_query
   resources :rules, only: [ :show ]
 
   root to: 'pages#home'
