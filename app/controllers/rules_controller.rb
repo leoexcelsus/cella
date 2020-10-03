@@ -4,6 +4,9 @@ class RulesController < ApplicationController
 
   skip_before_action :authenticate_user!, only: [:index, :show, :index_search, :spatial_search]
 
+  def index
+  end
+
   def index_search
     @rules = Rule.all
     @rules = @rules.sample(3)
@@ -20,7 +23,7 @@ class RulesController < ApplicationController
   end
 
   def create
-    @rule = Product.new(rule_params)
+    @rule = Rule.new(rule_params)
     @rule.user = current_user
 
     if @rule.save
