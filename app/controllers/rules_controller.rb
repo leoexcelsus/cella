@@ -1,5 +1,3 @@
-require 'csv'
-
 class RulesController < ApplicationController
 
   before_action :set_rule, only: [:show]
@@ -15,7 +13,6 @@ class RulesController < ApplicationController
   end
 
   def spatial_search
-
   end
 
   def spatial_query
@@ -46,6 +43,4 @@ class RulesController < ApplicationController
   def set_rule
     @rule = Rule.find(params[:id])
   end
-
-
 end
