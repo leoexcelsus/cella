@@ -1,0 +1,99 @@
+<div class="container">
+  <div class="table-container">
+    <div class="results"><%= @rules.size %> normas encontradas</div>
+      <div id="data">
+        <table class="table">
+          <thead class="thead-dark">
+            <% if @rules.size.positive? %>
+              <tr>
+                <th scope="col">Jurisdição</th>
+                <th scope="col">Emissor</th>
+                <th scope="col">Categoria</th>
+                <th scope="col">Número</th>
+                <th scope="col">Data de Publicação</th>
+                <th scope="col">Data de Edição</th>
+                <th scope="col">Ementa</th>
+                <th scope="col">Fonte</th>
+                <th scope="col">Origem da Norma</th>
+                <th scope="col">Detalhar</th>
+                <th scope="col">Ação</th>
+              </tr>
+            </thead>
+            <tbody>
+            <% @rules.each do |rule| %>
+              <tr>
+                <td><%= rule.jurisdiction %></td>
+                <td><%= rule.issuer %></td>
+                <td><%= rule.category %></td>
+                <td><%= rule.number %></td>
+                <td><%= rule.pub_date %></td>
+                <td><%= rule.ed_date %></td>
+                <td><%= rule.long_title.truncate_words(10) %></td>
+                <td><%= rule.source %></td>
+                <td><%= rule.user.first_name %></td>
+                <td><%= link_to "Detalhar", rule_path(rule) %></td>
+                <td class="fa fa-pencil-square-o"><%= link_to 'Editar', edit_rule_path(@rule) %></td>
+              </tr>
+            <% end %>
+            <% else %>
+              <p class="title">Não foram encontrados resultados para essa busca</p>
+            <% end %>
+            </tbody>
+        </table>
+      </div>
+    <div class="item-a">
+      <button class="btn-ghost" onclick="exportDataToExcel('data')">Baixar arquivo</button>
+    </div>
+  </div>
+</div>
+
+<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+
+<script>
+$(document).ready(function(){
+    $('.table').DataTable({
+        "language": {
+              "lengthMenu": "Mostrando _MENU_ registros por página",
+              "zeroRecords": "Nada encontrado",
+              "info": "Mostrando página _PAGE_ de _PAGES_",
+              "infoEmpty": "Nenhum registro disponível",
+              "infoFiltered": "(filtrado de _MAX_ registros no total)",
+              "sSearch" : "Filtrar",
+              "oPaginate": {
+                      "sFirst":    "Primeira",
+                      "sPrevious": "Anterior",
+                      "sNext":     "Próxima",
+                      "sLast":     "Última"
+                    }
+          }
+      });
+});
+</script>
+
+<script>
+      function exportDataToExcel(data, filename = '')
+       {
+          var downloadurl;
+          var fileType = 'application/vnd.ms-excel';
+          var tableSelect = document.getElementById(data);
+          var dataHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+          filename = filename?filename+'.xls':'user_details.xls';
+          downloadurl = document.createElement("a");
+          document.body.appendChild(downloadurl);
+         if(navigator.msSaveOrOpenBlob)
+           {
+              var blob = new Blob(['\ufeff', dataHTML],
+               {
+                  type:  fileType
+              });
+             navigator.msSaveOrOpenBlob( blob, filename);
+           }
+        else
+          {
+           downloadurl.href = 'data:' + fileType + ', ' + dataHTML;
+           downloadurl.download = filename;
+          downloadurl.click();
+       }
+    }
+</script>
