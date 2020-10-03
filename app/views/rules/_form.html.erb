@@ -1,0 +1,23 @@
+<%= simple_form_for(@rule) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.input :jurisdiction, label: "Jurisdição", :as => :select do
+      f.select :jurisdiction, [['Federal', 'option_value_1', {"class" => "class_name_1"}], ['Estadual', 'option_value_2', {"class" => "class_name_2"}], ['Municipal', 'option_value_2', {"class" => "class_name_2"}]]
+      end %>
+    <%= f.input :issuer, label: "Emissor" %>
+    <%= f.input :category, label: "Categoria" %>
+    <%= f.input :number, label: "Número" %>
+    <div class="d-flex">
+    <%= f.input :pub_date, label: "Data de Publicação", as: :date, html5: true %>
+    <%= f.input :ed_date, label: "Data de Edição", as: :date, html5: true %>
+    </div>
+    <%= f.input :long_title, label: "Ementa" %>
+    <%= f.input :source, label: "Fonte" %>
+  </div>
+
+  <div class="form-actions mb-2">
+    <%= f.button :submit, value: "Criar nova norma", class: "btn-ghost" %>
+  </div>
+<% end %>
