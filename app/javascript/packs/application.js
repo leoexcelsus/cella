@@ -25,9 +25,16 @@ require("channels")
 // External imports
 import "bootstrap";
 
+import "leaflet";
+require("leaflet/dist/leaflet.css");
+import "leaflet-draw";
+require("leaflet-draw/dist/leaflet.draw.css");
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
+
+import { map_draw_init } from '../plugins/map_draw_init';
+
 
 require( 'datatables.net-dt' )();
 
@@ -36,4 +43,5 @@ require ("../../../vendor/assets/dist/js/dsgov")
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
+
 });
