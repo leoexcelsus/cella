@@ -41,8 +41,9 @@
   </div>
 
   <div class="form-div-over col-sm-3 mr-2" id="search-form" style="float: right; position: absolute, margin: 20px;">
-    <form action="index_search" method="get">
 
+    <%= simple_form_for :search, url: index_search_path do |f| %>
+      <%= f.error_notification %>
       <div>
         <label for="industry">Escolha um setor:</label>
         <select id="industries" class="mb-2" name="industry" required>
@@ -54,7 +55,6 @@
           <option value="geração hidrelétrica">Geração Hidrelétrica</option>
         </select>
       </div>
-
       <div>
         <label for="geom-input-option">Escolha uma forma de apresentar a área</label>
         <select id="geom-input-option" class="mb-2" name="geom-input-option" required>
@@ -76,16 +76,12 @@
       <div id='form-4th-row'>
         <input type="file">
       </div>
+      <input type="hidden" name="geography" id='wkt-hidden-input' value= null required>
 
-      <input type="hidden" name="geography" id='wkt-hidden-input'>
+      <%= f.button :submit, class: "btn-primary" %>
+      <%= f.button :button, "Cancel", type: "reset", class: "btn-outline-secondary" %>
+    <% end %>
 
-      <div>
-        <button class="btn-ghost mt-5">
-          <%= link_to 'Pesquisar', index_search_path  %>
-        </button>
-      </div>
-
-    </form>
   </div>
 </div>
 
