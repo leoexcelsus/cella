@@ -40,35 +40,26 @@ if (mapElement) {
    });
 
 
-  // hide form fields before user's decisions
-  window.addEventListener("load", (event) => {
-    document.getElementById('form-3th-row').hidden = true;
-    document.getElementById('form-4th-row').hidden = true;
-  });
-
-
   // changes form according to user's decision
-  const formGeoInputOption = document.getElementById('geom-input-option');
+  const formGeoInputOption = document.getElementById('search_geom_input_option');
   formGeoInputOption.addEventListener('input', (event) => {
     console.log("Geometry input option is set");
-    const form3thRow = document.getElementById('form-3th-row');
-    const form4thRow = document.getElementById('form-4th-row');
+    const drawingToolSelector = document.getElementById('form-3th-row');
+    const upLoadButton = document.getElementById('form-4th-row');
     if (formGeoInputOption.value == "draw") {
-      form3thRow.hidden = false;
-      form4thRow.hidden = true;
+      drawingToolSelector.hidden = false;
+      upLoadButton.hidden = true;
     } else if (formGeoInputOption.value == "upload") {
-      form3thRow.hidden = true;
-      form4thRow.hidden = false;
-      drawControl.remove(map);
+      drawingToolSelector.hidden = true;
+      upLoadButton.hidden = false;
     } else {
-      form3thRow.hidden = true;
-      form4thRow.hidden = true;
-      drawControl.remove(map);
+      drawingToolSelector.hidden = true;
+      upLoadButton.hidden = true;
     };
   });
 
   // Enables drawing tool according to input given by the user in the Form
-  const formShapeOption = document.getElementById('shape-option');
+  const formShapeOption = document.querySelector("#search_shape_option");
   formShapeOption.addEventListener('input', (event) => {
     console.log("Geomerty type was selected");
     if (formShapeOption.value == "polygon") {
@@ -88,7 +79,6 @@ if (mapElement) {
       }
 
     } else {
-      drawControl.remove(map);
     };
   });
 
@@ -111,6 +101,11 @@ if (mapElement) {
       formShapeOption.value = ""
       const wktContainer = document.getElementById('wkt-hidden-input');
       wktContainer.value = toWKT(layer);
+      window.alert("Desenho georreferenciado adicionado ao formulário.");
+      geometryReady = true;
+      if (industry.value !==  "") {
+        buttonDiv.hidden = false
+      };
       console.log(`Form input keeps only this geometry:\n${wktContainer.value}`);
     } else {
       window.alert("Vocês está tentando acrescentar um novo polígono ou uma nova "
@@ -276,6 +271,30 @@ L.drawLocal = {
   }
 };
 
-
+// Controls submit button availability
+let industryReady = false
+let geometryReady = false
+const industry = document.querySelector("#search_industry");
+const geometry = document.querySelector("#wkt-hidden-input");
+const buttonDiv = document.getElementById('spatial-search-form-button');
+industry.addEventListener("change", (event) => {
+  console.log(`an industry event has taken place: Before: industryReady = ${industryReady}`);
+  if (industry.value !==  "" && geometryReady == true) {
+    buttonDiv.hidden = false
+  } else if (industry.value !==  "" && geometryReady == false) {
+    industryReady = true
+  } else {
+    industryReady = false;
+    buttonDiv.hidden = true;
+  }
+  console.log(`an industry event has taken place: Afterwards: industryReady = ${industryReady}`);
+});
+map.on('draw:deleted', function (e) {
+  console.log("A layer has been removed");
+  console.log(`a geometry event has taken place: Before: geometryReady = ${geometryReady}`);
+  geometryReady = false;
+  buttonDiv.hidden = true;
+  console.log(`a geometry event has taken place: Afterwards: geometryReady = ${geometryReady}`);
+});
 
 export { mapDrawInit };
