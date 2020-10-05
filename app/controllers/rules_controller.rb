@@ -20,8 +20,6 @@ class RulesController < ApplicationController
       @rules_id = []
       @rules_id_pg_array.each do |r| @rules_id << r['id'] end
       @rules = Rule.find(@rules_id)
-      # session[:searched_polygon] = @searched_polygon
-      # session[:searched_industry] = @searched_industry
     else
       redirect_to :spatial_search
     end
