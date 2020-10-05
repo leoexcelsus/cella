@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-8">
-      <div class="br-card mt-3">
+      <div class="br-card mt-3 border">
         <div class="front">
           <div class="header text-center">
             <p class="h5 text-primary-default mb-0">
@@ -40,7 +40,7 @@
     
             <h4 class="text-right">
               <%= link_to @rule.hyperlink, :target => "_blank" do %>
-                <i class="fas fa-link"></i>
+                <i class="fas fa-external-link-alt mr-3"></i>
               <% end %>
               <% if @rule.jurisdiction == "Federal" %>
                 <span class="badge badge-danger"><%= @rule.jurisdiction %></span>
@@ -53,6 +53,7 @@
           </div>
         </div>
       </div>
+      <%= link_to 'Voltar', :back, class: "br-button secondary" %>
     </div>
     <div class="col-4">
     </div> 

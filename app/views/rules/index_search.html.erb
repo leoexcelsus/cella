@@ -3,7 +3,7 @@
     <div class="results"><%= @rules.size %> normas encontradas</div>
       <div id="data">
         <table class="table">
-          <thead class="thead-dark">
+          <thead class="thead-light">
             <% if @rules.size.positive? %>
               <tr>
                 <th scope="col">Jurisdição</th>
@@ -25,12 +25,12 @@
                 <td><%= rule.issuer %></td>
                 <td><%= rule.category %></td>
                 <td><%= rule.number %></td>
-                <td><%= rule.pub_date %></td>
-                <td><%= rule.ed_date %></td>
+                <td><%= format_date(rule.pub_date) %></td>
+                <td><%= format_date(rule.ed_date) %></td>
                 <td><%= rule.long_title.truncate_words(10) %></td>
                 <td><%= rule.source %></td>
                 <td><%= rule.user.first_name %></td>
-                <td><%= link_to "Detalhar", rule_path(rule) %></td>
+                <td><%= link_to "Detalhar", rule_path(rule), class: "font-weight-bold" %></td>
               </tr>
             <% end %>
             <% else %>
@@ -40,10 +40,13 @@
         </table>
       </div>
     <div class="item-a">
-      <button class="btn-ghost" onclick="exportDataToExcel('data')">Baixar arquivo</button>
+      <button class="br-button primary" onclick="exportDataToExcel('data')">Baixar arquivo</button>
+      <%= link_to 'Voltar', :back, class: "br-button secondary ml-1" %>
     </div>
   </div>
+  
 </div>
+
 
 <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>

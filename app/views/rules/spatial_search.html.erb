@@ -1,5 +1,5 @@
 <div class="container d-flex">
-  <div id="map" class="col-sm-9 mr-3" style="width: 100vw; height: 100vh; margin: 0 auto;">
+  <div id="map" class="rounded col-sm-9 mr-3" style="width: 100vw; height: 100vh; margin: 0 auto;">
   </div>
 
   <div class="form-div-over col-sm-3 mr-2" id="search-form" style="float: right; position: absolute, margin: 20px;">
@@ -39,10 +39,11 @@
         <input type="file">
       </div>
       <input type="hidden" name="geography" id='wkt-hidden-input' value= null required>
-
-      <%= f.button :submit, class: "btn-primary" %>
-      <%= f.button :button, "Cancel", type: "reset", class: "btn-outline-secondary" %>
+      <p><%= f.button :submit, "Avançar",class: "br-button primary mt-1" %></p>   
+      <p><%= f.button :button, "Cancelar", type: "reset", class: "br-button secondary" %></p>
     <% end %>
+    <div class="br-divider mt-5"></div>
+    <%= link_to 'Voltar', root_path, class: "br-button secondary" %>
 
   </div>
 </div>
