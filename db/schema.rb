@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 2020_09_30_205646) do
   end
 
 # Could not dump table "polygons" because of following StandardError
-#   Unknown type 'geography(MultiPolygon,4326)' for column 'geography'
+# Unknown type 'geography(MultiPolygon,4326)' for column 'geography'
 
   create_table "rules", force: :cascade do |t|
     t.string "jurisdiction"
