@@ -4,7 +4,7 @@
 
   <div class="form-div-over col-sm-3 mr-2" id="search-form" style="float: right; position: absolute, margin: 20px;">
 
-    <%= simple_form_for :search, url: index_search_path do |f| %>
+    <%= simple_form_for :search, url: index_search_path, method: :get do |f| %>
       <%= f.error_notification %>
       <div>
         <label for="industry">Escolha um setor:</label>

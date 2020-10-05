@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   # As noted above, this route was changed from a GET to a POST route.
-  post "search_mine/", to: "rules#index_search", as: :index_search
+  get "search_mine/", to: "rules#index_search", as: :index_search
 
 
 end
