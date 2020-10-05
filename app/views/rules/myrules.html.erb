@@ -14,7 +14,6 @@
                 <th scope="col">Data de Edição</th>
                 <th scope="col">Ementa</th>
                 <th scope="col">Fonte</th>
-                <th scope="col">Origem da Norma</th>
                 <th scope="col">Detalhar</th>
                 <th scope="col">Ação</th>
               </tr>
@@ -30,9 +29,11 @@
                 <td><%= rule.ed_date %></td>
                 <td><%= rule.long_title.truncate_words(10) %></td>
                 <td><%= rule.source %></td>
-                <td><%= rule.user.first_name %></td>
                 <td><%= link_to "Detalhar", rule_path(rule) %></td>
-                <td class="fa fa-pencil-square-o"><%= link_to 'Editar', edit_rule_path(@rule) %></td>
+                <td>
+                  <%= link_to 'Editar', edit_rule_path(rule), class: "fas fa-edit" %>
+                  <%= link_to 'Remover', delete_rules_path(rule), class: "far fa-trash-alt", method: :delete, data: {confirm: "Você realmente deseja remover a norma?"} %>
+                </td>
               </tr>
             <% end %>
             <% else %>
@@ -43,6 +44,7 @@
       </div>
     <div class="item-a">
       <button class="btn-ghost" onclick="exportDataToExcel('data')">Baixar arquivo</button>
+      <button class="btn-ghost">Cadastrar nova norma</button>
     </div>
   </div>
 </div>

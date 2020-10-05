@@ -1,6 +1,6 @@
 class RulesController < ApplicationController
 
-  before_action :set_rule, only: [:show]
+  before_action :set_rule, only: [:show, :edit, :update, :destroy]
 
   skip_before_action :authenticate_user!, only: [:index, :show, :index_search, :spatial_search]
 
@@ -45,10 +45,10 @@ class RulesController < ApplicationController
 
   def destroy
     @rule.destroy
-    redirect_to rules_path, notice: 'A norma foi removida'
+    redirect_to myrules_path(current_user), notice: 'A norma foi removida.'
   end
 
-  def show_rules
+  def myrules
     @rules = Rule.where(user_id: current_user)
   end
 
