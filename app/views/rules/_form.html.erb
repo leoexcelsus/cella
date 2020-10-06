@@ -5,18 +5,22 @@
   <div class="form-inputs">
     <%= f.input :jurisdiction, label: "Jurisdição", collection: [['Federal', 'option_value_1', {"class" => "class_name_1"}], ['Estadual', 'option_value_2', {"class" => "class_name_2"}], ['Municipal', 'option_value_2', {"class" => "class_name_2"}]] %>
     <%= f.input :issuer, label: "Emissor" %>
-    <%= f.input :category, label: "Categoria" %>
+    <%= f.input :category, label: "Tipo de Norma", collection: [['Lei', 'option_value_1', {"class" => "class_name_1"}], ['Decreto', 'option_value_2', {"class" => "class_name_2"}], ['Portaria', 'option_value_2', {"class" => "class_name_2"}], ['Instrução Normativa', 'option_value_2', {"class" => "class_name_2"}], ['Decreto Legislativo', 'option_value_2', {"class" => "class_name_2"}], ['Medida Provisória', 'option_value_2', {"class" => "class_name_2"}]] %>
     <%= f.input :number, label: "Número" %>
+    <div class="d-flex">
     <%= f.input :pub_date, label: "Data de Publicação", as: :date, html5: true %>
     <%= f.input :ed_date, label: "Data de Edição", as: :date, html5: true %>
+    </div>
     <%= f.input :long_title, label: "Ementa" %>
     <%= f.input :source, label: "Fonte" %>
+    <%= f.input :source, label: "Indústria", as: :check_boxes, collection: ['Rodovia', 'Ferrovia', 'Mineração', 'Linha de Transmissão', 'Geração Hidrelétrica'], wrapper: :vertical_collection_inline %>
     <%= f.input :hyperlink, label: "Link da Norma" %>
-    <%= f.input :jurisdiction, label: "Incluir polígono", collection: [['Federal', 'option_value_1', {"class" => "class_name_1"}], ['Estadual', 'option_value_2', {"class" => "class_name_2"}], ['Municipal', 'option_value_2', {"class" => "class_name_2"}]] %>
+    <%= f.input :jurisdiction, label: "Selecionar Polígono", collection: [['Federal', 'option_value_1', {"class" => "class_name_1"}], ['Estadual', 'option_value_2', {"class" => "class_name_2"}], ['Municipal', 'option_value_2', {"class" => "class_name_2"}]] %>
+    <%= f.input :jurisdiction, label: "Upload de Polígono", as: :file %>
   </div>
 
   <div class="form-actions mb-2">
     <%= f.button :submit, value: "Criar nova norma", class: "btn-ghost" %>
-    <%= f.button :button, "Cancelar", type: "reset", class: "btn-outline-secondary" %>
+    <%= f.button :button, "Cancelar", type: "reset", class: "btn-cancel" %>
   </div>
 <% end %>

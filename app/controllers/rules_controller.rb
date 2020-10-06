@@ -23,7 +23,7 @@ class RulesController < ApplicationController
   end
 
   def create
-    @rule = Rule.new(rule_params)
+    @rule = Rule.new(rule_params, polygon_params, industry_params)
     @rule.user = current_user
 
     if @rule.save
@@ -41,6 +41,14 @@ class RulesController < ApplicationController
 
   def rule_params
     params.require(:rule).permit(:jurisdiction, :issuer, :category, :number, :pub_date, :ed_date, :long_title, :hyperlink, :source)
+  end
+
+  def polygon_params
+    params.require(:polygon).permit(:name)
+  end
+
+  def industry_params
+    params.require(:industry).permit(:name)
   end
 
 end
