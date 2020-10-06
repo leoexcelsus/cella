@@ -17,9 +17,10 @@
             <li><a href="javascript:void(0);">Conheça</a></li>
             <% if @user =! current_user %>
             <li><%= link_to "Cadastre-se", new_user_registration_path %></li>
+
             <% else %>
             <li><%= link_to "Inclua uma norma", new_rule_path %></li>
-            <li><%= link_to "Minhas normas", myrules_path(current_user) %></li>
+            <li><%= link_to "Minhas normas", myrules_path(current_user) if !current_user.nil? %></li>          
             <% end %>
           </ul>
         </div>
