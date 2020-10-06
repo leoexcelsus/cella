@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root to: 'pages#home'
 
+  get "pages/about", to: "pages#about", as: :about
+
   get "rules/spatial_search/", to: "rules#spatial_search", as: :spatial_search
 
   # Leandro comments: the route below is now commented and seems to make no sense due to difficulties
