@@ -6,41 +6,42 @@
 
     <%= simple_form_for :search, url: index_search_path, method: :get do |f| %>
       <%= f.error_notification %>
-      <div>
-        <label for="industry">Escolha um setor:</label>
-        <select id="industries" class="mb-2" name="industry" required>
-          <option default></option>
-          <option value="rodovia">Rodovia</option>
-          <option value="ferrovia">Ferrovia</option>
-          <option value="mineração">Mineração</option>
-          <option value="linha de transmissão">Linha de Transmissão</option>
-          <option value="geração hidrelétrica">Geração Hidrelétrica</option>
-        </select>
-      </div>
-      <div>
-        <label for="geom-input-option">Escolha uma forma de apresentar a área</label>
-        <select id="geom-input-option" class="mb-2" name="geom-input-option" required>
-          <option default></option>
-          <option value="upload">Carregar arquivo shapefile compactado</option>
-          <option value="draw">Desenhar sobre o mapa</option>
-        </select>
+
+      <% ind_select = [] %>
+      <% Industry.select(:name).distinct.each do |ind| ind_select << ind.name end %>
+      <%= f.input :industry, label: "Escolha um setor:", collection: ind_select %>
+
+      <%= f.input :geom_input_option,
+        label: "Escolha uma forma de apresentar a área:",
+        collection: [["Desenhar sobre o mapa", "draw"],
+          ["Carregar arquivo shapefile compactado", "upload"]]
+      %>
+
+      <div id='form-3th-row' hidden>
+      <%= f.input :shape_option,
+        label: "Tipo de geometria para o desenho:",
+        collection: [["Polígono", "polygon"], ["Linha", "polyline"]]
+      %>
       </div>
 
-      <div id='form-3th-row'>
-        <label for="shape-option">Tipo de geometria para o desenho</label>
-        <select placeholrder="Escolha" id="shape-option" name="shape-option">
-          <option default></option>
-          <option value="polygon">Polígono</option>
-          <option value="polyline">Linha</option>
-        </select>
+      <div id='form-4th-row' hidden>
+      <%= f.input :shapefile, as: :file%>
       </div>
 
-      <div id='form-4th-row'>
-        <input type="file">
+
+        <%= f.input :geography, :as => :hidden,
+        :input_html => {
+        :value => '',
+        :id => "wkt-hidden-input"
+      } %>
+
+
+
+      <div id="spatial-search-form-button" hidden>
+        <%= f.button :submit, "Pesquisar", class: "btn-primary" %>
       </div>
-      <input type="hidden" name="geography" id='wkt-hidden-input' value= null required>
-      <p><%= f.button :submit, "Avançar",class: "br-button primary mt-1" %></p>   
-      <p><%= f.button :button, "Cancelar", type: "reset", class: "br-button secondary" %></p>
+
+
     <% end %>
     <div class="br-divider mt-5"></div>
     <%= link_to 'Voltar', root_path, class: "br-button secondary" %>

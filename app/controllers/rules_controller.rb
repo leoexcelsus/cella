@@ -6,8 +6,8 @@ class RulesController < ApplicationController
 
   def index_search
     if (s_query_params_i && s_query_params_g)
-      @searched_polygon = s_query_params_g
-      @searched_industry = s_query_params_i
+      @searched_polygon = s_query_params_g[:geography]
+      @searched_industry = s_query_params_i[:industry]
       # TO DO: refactor this code so as to prevent SQL injection.
       @sql1 = "Select r.id "\
               "From polygons p FULL OUTER JOIN spatial_domains s ON p.id = s.polygon_id "\
@@ -59,10 +59,12 @@ class RulesController < ApplicationController
   end
 
   def s_query_params_i
-    params.require(:industry)
+    # raise
+    params.require(:search).permit(:industry)
   end
 
   def s_query_params_g
-    params.require(:geography)
+    # raise
+    params.require(:search).permit(:geography)
   end
 end
