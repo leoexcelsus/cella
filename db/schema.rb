@@ -31,8 +31,13 @@ ActiveRecord::Schema.define(version: 2020_09_30_205646) do
     t.index ["rule_id"], name: "index_industry_rules_on_rule_id"
   end
 
-# Could not dump table "polygons" because of following StandardError
-# Unknown type 'geography(MultiPolygon,4326)' for column 'geography'
+  create_table "polygons", force: :cascade do |t|
+    t.string "name"
+    t.string "source"
+    t.geography "geography", limit: {:srid=>4326, :type=>"multi_polygon", :geographic=>true}
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "rules", force: :cascade do |t|
     t.string "jurisdiction"
