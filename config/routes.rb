@@ -8,7 +8,10 @@ Rails.application.routes.draw do
   # a GET route. 'search_mine', therefore, is now changed to a POST route.
   # post "rules/spatial_search", to: "rules#spatial_query", as: :spatial_query
 
-  devise_for :users
+  devise_for :users, :path => "accounts", :controllers => { registrations: "registrations" }
+  devise_scope :user do
+    get '/signout', to: 'devise/sessions#destroy', as: :signout
+  end
 
   get "rules/users/:user_id", to: "rules#myrules", as: :myrules
 
