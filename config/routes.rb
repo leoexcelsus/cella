@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   get "rules/users/:user_id", to: "rules#myrules", as: :myrules
 
-  resources :rules, only: [ :show, :index, :new, :create ]
+  resources :rules, only: [ :show, :index, :edit, :new, :create ]
 
   get "rules/:id/delete", to: "rules#destroy", as: :delete_rules
 
