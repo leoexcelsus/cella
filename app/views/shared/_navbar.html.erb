@@ -15,8 +15,13 @@
             <li class="title">Acesso Rápido</li>
             <li><a href="javascript:void(0);">Legislação</a></li>
             <li><a href="javascript:void(0);">Conheça</a></li>
+            <% if @user =! current_user %>
             <li><%= link_to "Cadastre-se", new_user_registration_path %></li>
-            <li><%= link_to "Minhas normas", myrules_path(current_user) if !current_user.nil? %></li>
+
+            <% else %>
+            <li><%= link_to "Inclua uma norma", new_rule_path %></li>
+            <li><%= link_to "Minhas normas", myrules_path(current_user) if !current_user.nil? %></li>          
+            <% end %>
           </ul>
         </div>
         <div class="search-btn">
@@ -24,24 +29,27 @@
           </button>
         </div>
 
+        <% if @user =! current_user%>
         <div class="login">
           <%= link_to new_user_session_path do %>
           <button class="br-button" type="button" mini><i class="fas fa-user"></i><span class="ml-1">Entrar</span>
           </button>
-          <% end %>
         </div>
+        <% end %>
+        <% else %>
         <div class="avatar">
           <div class="br-badge" danger>
             <div class="icon">5</div>
             <div class="content">
               <div class="br-avatar">
                 <div class="image"><img src="https://picsum.photos/id/823/400" alt="Avatar"></div>
+                <%= link_to "Sair", destroy_user_session_path, method: :delete %>
               </div>
             </div>
           </div>
-          <button class="br-button" type="button" mini circle><i class="fas fa-angle-down"></i>
-          </button>
         </div>
+        <% end %>
+
       </div>
       <div class="menu">
         <button class="br-button" type="button" circle mini><i class="fas fa-bars"></i>

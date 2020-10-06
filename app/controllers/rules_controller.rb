@@ -4,6 +4,9 @@ class RulesController < ApplicationController
 
   skip_before_action :authenticate_user!, only: [:index, :show, :index_search, :spatial_search]
 
+  def index
+  end
+
   def index_search
     if (s_query_params_i && s_query_params_g)
       @searched_polygon = s_query_params_g[:geography]
@@ -29,6 +32,27 @@ class RulesController < ApplicationController
   end
   # TO DO: rename to 'spatial_search_form'. Watch out for existing cross-references.
   def spatial_search
+  end
+
+  def new
+    @rule = Rule.new
+    @rule.polygons.build
+    @rule.industries.build
+  end
+
+  def create
+    @rule = Rule.new(rule_params)
+    @polygons = Polygon.find(params[:rule][:polygon_ids])
+    @rule.polygons = @polygons
+    @industries = Industry.find(params[:rule][:industry_ids])
+    @rule.industries = @industries
+    @rule.user = current_user
+
+    if @rule.save
+      redirect_to @rule, notice: 'Norma cadastrada.'
+    else
+      render :new
+    end
   end
 
   def edit
@@ -61,6 +85,12 @@ class RulesController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_rule
     @rule = Rule.find(params[:id])
+  end
+
+  def rule_params
+    params.require(:rule).permit(:jurisdiction, :issuer,
+      :category, :number, :pub_date, :ed_date,
+      :long_title, :hyperlink, :polygon_ids, :industry_ids)
   end
 
   def s_query_params_i
