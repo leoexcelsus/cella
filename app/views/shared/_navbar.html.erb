@@ -16,7 +16,7 @@
             <li><a href="javascript:void(0);">Legislação</a></li>
             <li><a href="javascript:void(0);">Conheça</a></li>
             <li><%= link_to "Cadastre-se", new_user_registration_path %></li>
-            <li><%= link_to "Minhas normas", myrules_path(current_user) %></li>
+            <li><%= link_to "Minhas normas", myrules_path(current_user) if !current_user.nil? %></li>
           </ul>
         </div>
         <div class="search-btn">
