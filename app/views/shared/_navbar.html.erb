@@ -42,7 +42,7 @@
             <div class="content">
               <div class="br-avatar">
                 <div class="image"><img src="https://picsum.photos/id/823/400" alt="Avatar"></div>
-                <%= link_to "Sair", destroy_user_session_path, method: :delete %>
+                <%= link_to "Sair", destroy_user_session_path, :method => :delete, data: { confirm: "Are you sure?" } %>
               </div>
             </div>
           </div>
