@@ -20,10 +20,16 @@ class RulesController < ApplicationController
 
   def new
     @rule = Rule.new
+    @rule.polygons.build
+    @rule.industries.build
   end
 
   def create
-    @rule = Rule.new(rule_params, polygon_params, industry_params)
+    @rule = Rule.new(rule_params)
+    @polygons = Polygon.find(params[:rule][:polygon_ids])
+    @rule.polygons = @polygons
+    @industries = Industry.find(params[:rule][:industry_ids])
+    @rule.industries = @industries
     @rule.user = current_user
 
     if @rule.save
@@ -40,15 +46,9 @@ class RulesController < ApplicationController
   end
 
   def rule_params
-    params.require(:rule).permit(:jurisdiction, :issuer, :category, :number, :pub_date, :ed_date, :long_title, :hyperlink, :source)
-  end
-
-  def polygon_params
-    params.require(:polygon).permit(:name)
-  end
-
-  def industry_params
-    params.require(:industry).permit(:name)
+    params.require(:rule).permit(:jurisdiction, :issuer,
+      :category, :number, :pub_date, :ed_date,
+      :long_title, :hyperlink, :polygon_ids, :industry_ids)
   end
 
 end

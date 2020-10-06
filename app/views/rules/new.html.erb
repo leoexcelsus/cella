@@ -36,11 +36,13 @@
 
 </head>
 
-
+<div class="container">
+  <h2 class="mb-0">Cadastrar uma nova norma</h2>
+</div>
 <div class="container d-flex">
   <div class="form-container col-sm-5 mb-5">
 
-    <h3>Cadastrar nova norma</h3>
+    <h3>Dados Gerais</h3>
 
     <%= simple_form_for(@rule) do |f| %>
       <%= f.error_notification %>
@@ -51,21 +53,21 @@
         <%= f.input :issuer, label: "Emissor" %>
         <div class="d-flex">
           <div class="mr-4">
-          <%= f.input :category, label: "Tipo de Norma", collection: ['Lei', 'Decreto', 'Portaria', 'Instrução Normativa', 'Decreto Legislativo', 'Medida Provisória'] %>
+            <%= f.input :category, label: "Tipo de Norma", collection: ['Decreto', 'Decreto Legislativo', 'Emenda Constitucional', 'Instrução Normativa', 'Instrução Operacional', 'Lei', 'Lei Complementar', 'Medida Provisória', 'Portaria', 'Resolução'] %>
           </div>
           <div>
-          <%= f.input :number, label: "Número" %>
+            <%= f.input :number, label: "Número" %>
           </div>
         </div>
         <div class="d-flex">
-        <%= f.input :pub_date, label: "Data de Publicação", as: :date, html5: true %>
-        <%= f.input :ed_date, label: "Data de Edição", as: :date, html5: true %>
+          <%= f.input :ed_date, label: "Data de Edição", as: :date, html5: true %>
+          <%= f.input :pub_date, label: "Data de Publicação", as: :date, html5: true %>
         </div>
         <%= f.input :long_title, label: "Ementa" %>
         <%= f.input :source, label: "Fonte" %>
         <%= f.input :hyperlink, label: "Link da Norma", type: "url" %>
-        <%= f.association :industries, label: "Setor", input_html: { multiple: true } %>
-     </div>
+        <%= f.association :industries, label: "Setor", input_html: { multiple: true }, collection: Industry.order('name ASC'), include_hidden: false %>
+      </div>
 
       <div class="form-actions mb-2">
         <%= f.button :submit, value: "Criar nova norma", class: "btn-ghost" %>
@@ -89,17 +91,15 @@
           <option value="upload">Carregar arquivo shapefile compactado</option>
         </select>
 
-        <div id='form-4th-row'>
+        <div id='form-4th-row' class="mb-3">
           <input type="file">
         </div>
 
         <div id='form-5th-row'>
-          <%= f.association :polygons, label: "Polígonos cadastrados" %>
+          <%= f.association :polygons, label: "Polígonos cadastrados", collection: Polygon.order('name ASC'), input_html: { multiple: true }, include_hidden: false %>
         </div>
         <% end %>
-
       </div>
-
     </div>
 
     <div>
@@ -114,7 +114,7 @@
 </div>
 
 
-<script type="text/javascript">
+  <script type="text/javascript">
     window.addEventListener("load", (event) => {
       document.getElementById('form-4th-row').hidden = true;
       document.getElementById('form-5th-row').hidden = true;
@@ -137,7 +137,6 @@
         drawControl.remove(map);
       };
     });
-
   </script>
 
 
