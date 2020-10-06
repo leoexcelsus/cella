@@ -5,6 +5,8 @@ class Rule < ApplicationRecord
   has_many :spatial_domains, dependent: :destroy
   has_many :polygons, through: :spatial_domains
 
+  accepts_nested_attributes_for :polygons, :industries
+
   validates :jurisdiction, presence: true
   validates :issuer, presence: true
   validates :category, presence: true
@@ -19,7 +21,7 @@ class Rule < ApplicationRecord
   validates_associated :industries
   validates_presence_of :polygons
   validates_associated :polygons
- 
+
 
   validate :pub_date_must_be_greater_than_ed_date
   def pub_date_must_be_greater_than_ed_date
