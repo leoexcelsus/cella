@@ -1,8 +1,8 @@
 class Rule < ApplicationRecord
   belongs_to :user
-  has_many :industry_rules
+  has_many :industry_rules, dependent: :destroy
   has_many :industries, through: :industry_rules
-  has_many :spatial_domains
+  has_many :spatial_domains, dependent: :destroy
   has_many :polygons, through: :spatial_domains
 
   validates :jurisdiction, presence: true
