@@ -1,6 +1,6 @@
 class RulesController < ApplicationController
 
-  before_action :set_rule, only: [:show]
+  before_action :set_rule, only: [:show, :edit, :update, :destroy]
 
   skip_before_action :authenticate_user!, only: [:index, :show, :index_search, :spatial_search]
 
@@ -29,6 +29,27 @@ class RulesController < ApplicationController
   end
   # TO DO: rename to 'spatial_search_form'. Watch out for existing cross-references.
   def spatial_search
+  end
+
+  def edit
+  end
+
+  def update
+    if @rule.update(rule_params)
+      @rule.save
+      redirect_to @rule, notice: 'As informações foram atualizadas.'
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @rule.destroy
+    redirect_to myrules_path(current_user), notice: 'A norma foi removida.'
+  end
+
+  def myrules
+    @rules = Rule.where(user_id: current_user)
   end
 
   private

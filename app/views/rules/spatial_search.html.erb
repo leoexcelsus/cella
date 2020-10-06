@@ -1,8 +1,9 @@
 <div class="container d-flex">
-  <div id="map" class="col-sm-9 mr-3" style="width: 100vw; height: 100vh; margin: 0 auto;">
+  <div id="map" class="rounded col-sm-9 mr-3" style="width: 100vw; height: 100vh; margin: 0 auto;">
   </div>
 
   <div class="form-div-over col-sm-3 mr-2" id="search-form" style="float: right; position: absolute, margin: 20px;">
+
     <%= simple_form_for :search, url: index_search_path, method: :get do |f| %>
       <%= f.error_notification %>
 
@@ -34,15 +35,16 @@
         :id => "wkt-hidden-input"
       } %>
 
-      <% if false %>
-      <input type="hidden" name="geography" id='wkt-hidden-input' value= null required>
-      <% end %>
+
 
       <div id="spatial-search-form-button" hidden>
         <%= f.button :submit, "Pesquisar", class: "btn-primary" %>
       </div>
 
+
     <% end %>
+    <div class="br-divider mt-5"></div>
+    <%= link_to 'Voltar', root_path, class: "br-button secondary" %>
 
   </div>
 </div>
