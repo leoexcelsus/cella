@@ -5,4 +5,8 @@ class Polygon < ApplicationRecord
   validates :name, presence: true
   validates :source, presence: true
   validates :geography, presence: true
+
+  def banana!
+    self.banana = 123
+  end
 end

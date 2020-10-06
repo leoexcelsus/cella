@@ -30,10 +30,8 @@
                 <td><%= rule.long_title.truncate_words(10) %></td>
                 <td><%= rule.source %></td>
                 <td><%= link_to "Detalhar", rule_path(rule) %></td>
-                <td class="button-myrules">
-                  <%= link_to "", edit_rule_path(rule), class: "fas fa-edit" %>
-                  <%= link_to "", delete_rules_path(rule), class: "far fa-trash-alt", method: :delete, data: {confirm: "Você realmente deseja remover a norma?"} %>
-                </td>
+                <td class="button-myrules"><%= link_to "", edit_rule_path(rule), class: "fas fa-edit" %>
+                  <%= link_to "", delete_rules_path(rule), class: "far fa-trash-alt", method: :delete, data: {confirm: "Você realmente deseja remover a norma?"} %></td>
               </tr>
             <% end %>
             <% else %>

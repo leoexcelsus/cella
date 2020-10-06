@@ -1,3 +1,40 @@
+<head>
+  <link rel="stylesheet" href="https://leaflet.github.io/Leaflet.draw/docs/examples/libs/leaflet.css">
+  <link rel="stylesheet" href="https://leaflet.github.io/Leaflet.draw/src/leaflet.draw.css">
+
+  <script src="https://leaflet.github.io/Leaflet.draw/docs/examples/libs/leaflet-src.js"></script>
+  <script src="https://leaflet.github.io/Leaflet.draw/src/Leaflet.draw.js"></script>
+  <script src="https://leaflet.github.io/Leaflet.draw/src/Leaflet.Draw.Event.js"></script>
+
+  <script src="https://leaflet.github.io/Leaflet.draw/src/Toolbar.js"></script>
+  <script src="https://leaflet.github.io/Leaflet.draw/src/Tooltip.js"></script>
+  <script src="https://leaflet.github.io/Leaflet.draw/src/ext/GeometryUtil.js"></script>
+  <script src="https://leaflet.github.io/Leaflet.draw/src/ext/LatLngUtil.js"></script>
+  <script src="https://leaflet.github.io/Leaflet.draw/src/ext/LineUtil.Intersect.js"></script>
+  <script src="https://leaflet.github.io/Leaflet.draw/src/ext/Polygon.Intersect.js"></script>
+  <script src="https://leaflet.github.io/Leaflet.draw/src/ext/Polyline.Intersect.js"></script>
+  <script src="https://leaflet.github.io/Leaflet.draw/src/ext/TouchEvents.js"></script>
+  <script src="https://leaflet.github.io/Leaflet.draw/src/draw/DrawToolbar.js"></script>
+  <script src="https://leaflet.github.io/Leaflet.draw/src/draw/handler/Draw.Feature.js"></script>
+  <script src="https://leaflet.github.io/Leaflet.draw/src/draw/handler/Draw.SimpleShape.js"></script>
+  <script src="https://leaflet.github.io/Leaflet.draw/src/draw/handler/Draw.Polyline.js"></script>
+  <script src="https://leaflet.github.io/Leaflet.draw/src/draw/handler/Draw.Marker.js"></script>
+  <script src="https://leaflet.github.io/Leaflet.draw/src/draw/handler/Draw.Circle.js"></script>
+  <script src="https://leaflet.github.io/Leaflet.draw/src/draw/handler/Draw.CircleMarker.js"></script>
+  <script src="https://leaflet.github.io/Leaflet.draw/src/draw/handler/Draw.Polygon.js"></script>
+  <script src="https://leaflet.github.io/Leaflet.draw/src/draw/handler/Draw.Rectangle.js"></script>
+  <script src="https://leaflet.github.io/Leaflet.draw/src/edit/EditToolbar.js"></script>
+  <script src="https://leaflet.github.io/Leaflet.draw/src/edit/handler/EditToolbar.Edit.js"></script>
+  <script src="https://leaflet.github.io/Leaflet.draw/src/edit/handler/EditToolbar.Delete.js"></script>
+  <script src="https://leaflet.github.io/Leaflet.draw/src/Control.Draw.js"></script>
+  <script src="https://leaflet.github.io/Leaflet.draw/src/edit/handler/Edit.Poly.js"></script>
+  <script src="https://leaflet.github.io/Leaflet.draw/src/edit/handler/Edit.SimpleShape.js"></script>
+  <script src="https://leaflet.github.io/Leaflet.draw/src/edit/handler/Edit.Rectangle.js"></script>
+  <script src="https://leaflet.github.io/Leaflet.draw/src/edit/handler/Edit.Marker.js"></script>
+  <script src="https://leaflet.github.io/Leaflet.draw/src/edit/handler/Edit.CircleMarker.js"></script>
+  <script src="https://leaflet.github.io/Leaflet.draw/src/edit/handler/Edit.Circle.js"></script>
+</head>
+
 <div class="container">
   <h2 class="mb-0">Cadastrar uma nova norma</h2>
 </div>
@@ -99,5 +136,49 @@
       drawControl.remove(map);
     };
   });
+</script>
+
+
+<script>
+  const mapElement = document.getElementById('map');
+
+  if (mapElement) {
+    var map = L.map(mapElement).setView([-15.5, -48], 5);
+
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+      maxZoom: 18,
+      id: 'mapbox/streets-v11',
+      tileSize: 512,
+      zoomOffset: -1,
+      accessToken: 'pk.eyJ1IjoibGVvZXhjZWxzdXMiLCJhIjoiY2tleWNxcnB2MGFzejJwcXQwdGIwMmR2byJ9.CbC1R_EI0AICNAxaZSvyeg'
+    }).addTo(map);
+
+  const selectPolygon = document.getElementById('rule_polygon_ids');
+  selectPolygon.addEventListener('change', (event) => {
+    console.log('Value changed');
+    // Apagar/remover layers do leaflet;
+    const drawnItems = new L.FeatureGroup();
+    // const multipleSelection = [];
+    // const multipleSelection.push(selectPolygon.value);
+    // Fetch para buscar os polígonos pelos seus IDs;
+    fetch(`/polygons/${selectPolygon.value}`)
+    .then(response => response.json())
+    .then((data) => {
+      console.log(data);
+      // data é um JSON com uma chave coordinates;
+      // dentro dessa chave coordinates, temos um array de arrays com as coordenadas;
+      // precisamos enviar esses dados para o mapa e atualizá-lo;
+      L.polygon(data).addTo(map);
+      });
+    // Recebe um hash ou um array de coordenadas (armazenadas em uma enumerable);
+    // // Iterar sobre esse resultado para criar camadas do leaflet para visualização no mapa;
+    // data.forEach((result) => {
+    // });
+    // });
+    // função/módulo do leaflet => L.Polygon(array de pares de coordenadas).addTo(nome da variável que contém o mapa);
+    // const polygonSearched = L.geoJSON(data).addTo(map);
+  });
+}
 </script>
 
