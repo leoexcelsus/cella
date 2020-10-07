@@ -344,6 +344,12 @@ function convertToLayer(buffer){
   var layersKeys = Object.keys(layer._layers);
   var layerType = layer._layers[layersKeys[0]].feature.geometry.type.toUpperCase();
   console.log(layerType);
+  // to do: test this code against various multipolygon and multilinestring.
+  // Currently, the correct generation of 'wktText' works only when the
+  // multifeature is last in the queue.
+  // to do: test this code against a shapefile containing many features. I
+  // suspect the GET action of the form is somehow limited, for the GET url gets
+  // very long with many polygons.
   if (layerType == "POLYGON" || layerType == "MULTIPOLYGON") {
     var wktText = "MULTIPOLYGON (";
     layersKeys.forEach( k => {
