@@ -16,6 +16,7 @@
                 <th scope="col">Fonte</th>
                 <th scope="col">Origem da Norma</th>
                 <th scope="col">Detalhar</th>
+                <th scope="col">Link oficial</th>
               </tr>
             </thead>
             <tbody>
@@ -30,7 +31,8 @@
                 <td><%= rule.long_title.truncate_words(10) %></td>
                 <td><%= rule.source %></td>
                 <td><%= rule.user.first_name %></td>
-                <td><%= link_to "Detalhar", rule_path(rule), class: "font-weight-bold" %></td>
+                <td> <a href="https://cella-gis.herokuapp.com/rules/<%= rule.id %>" class = "font-weight-bold">Detalhar</a>
+                <td> <a href="<%= rule.hyperlink %>" class = "font-weight-bold">Link oficial</a>
               </tr>
             <% end %>
             <% else %>
@@ -41,7 +43,7 @@
       </div>
     <div class="item-a">
       <button class="br-button primary" onclick="exportDataToExcel('data')">Baixar arquivo</button>
-      <%= link_to 'Voltar para pesquisa', spatial_search_path, class: "br-button secondary ml-1" %>
+      <%= link_to 'Voltar', :back, class: "br-button secondary ml-1" %>
     </div>
   </div>
 </div>
