@@ -73,10 +73,10 @@ polygon10.save!
 puts "...polygons saved to database."
 
 puts "Creating 2 Users..."
-user1 = User.new(email:'admin@admin.com', first_name: 'admin', last_name: 'istrator', company: 'Economy Ministry')
+user1 = User.new(email:'admin@admin.com', first_name: 'Administrador', last_name: 'SPPI', company: 'Economy Ministry')
 user1.password = '123456'
 
-user2 = User.new(email:'ze@ze.com', first_name: 'Zé', last_name: 'das Bananas', company: 'Bananal do Seu Zé')
+user2 = User.new(email:'ze@ze.com', first_name: 'José', last_name: 'da Silva', company: 'Silva Advogados Associados')
 user2.password = '123456'
 
 puts "...saving Users to database..."
@@ -86,11 +86,11 @@ user2.save!
 puts "...Users saved to database."
 
 puts "Creating 5 Industries..."
-industry1 = Industry.new(name: 'ferrovia')
-industry2 = Industry.new(name: 'rodovia')
-industry3 = Industry.new(name: 'mineração')
-industry4 = Industry.new(name: 'linha de transmissão')
-industry5 = Industry.new(name: 'geração de energia hidrelétrica')
+industry1 = Industry.new(name: 'Ferrovia')
+industry2 = Industry.new(name: 'Rodovia')
+industry3 = Industry.new(name: 'Mineração')
+industry4 = Industry.new(name: 'Linha de transmissão')
+industry5 = Industry.new(name: 'Geração de energia hidrelétrica')
 
 puts "...saving Industries to database..."
 industry1.save!
