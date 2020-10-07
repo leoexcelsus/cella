@@ -62,6 +62,7 @@
 
 
 
+
 <div>
 
 </div>
@@ -78,9 +79,20 @@
       <div id="data">
         <table class="table">
           <thead class="thead-dark">
-          <% comments = @ratings.order("created_at DESC").first(20) %>
+          <% comments = @ratings.order("created_at DESC") %>
+          <% comments2 = [] %>
+          <% comments.each { |rating| comments2 << rating if !rating.comment.nil? && rating.comment != "" } %>
+          <% comments2 = comments2.first(2) %>
+          
 
-            <% if comments.size.positive? %>
+
+
+
+
+
+
+
+            <% if comments2.size.positive? %>
               <tr>
                 <th scope="col">Comentário</th>
                 <th scope="col">Usuário</th>
@@ -88,13 +100,11 @@
               </tr>
             </thead>
             <tbody>
-            <% comments.each do |rating| %>
-              <% if !rating.comment.nil? && rating.comment != "" %>
+            <% comments2.each do |rating| %>
                 <tr>
                   <td><%= rating.comment %></td>
                   <td><%= "#{rating.user.first_name} #{rating.user.last_name}" %></td>
                 </tr>
-              <% end %>  
             <% end %>
             <% else %>
               <p class="title">Não foram encontrados comentários para essa norma</p>
