@@ -344,9 +344,6 @@ function convertToLayer(buffer){
   var layersKeys = Object.keys(layer._layers);
   var layerType = layer._layers[layersKeys[0]].feature.geometry.type.toUpperCase();
   console.log(layerType);
-  // to do: test this code against various multipolygon and multilinestring.
-  // Currently, the correct generation of 'wktText' works only when the
-  // multifeature is last in the queue.
   // to do: test this code against a shapefile containing many features. I
   // suspect the GET action of the form is somehow limited, for the GET url gets
   // very long with many polygons.
@@ -376,23 +373,33 @@ function convertToLayer(buffer){
   } else if (layerType == "LINESTRING" || layerType == "MULTILINESTRING") {
     var wktText = "MULTILINESTRING (";
     layersKeys.forEach( k => {
-          wktText += " (";
+          //starts representation of a feature within the wktText
+          wktText += "(";
       layer._layers[k].feature.geometry.coordinates.forEach( coordPair => {
+        // checks if feature is simple
         if (typeof coordPair[0] == "number") {
+          // arrange simple feature's coordinate pairs
           wktText += coordPair[0] + " " + coordPair[1] + ", ";
         } else {
+          // iteration over multipart feature's coordinate pairs to make simplepart features
           coordPair.forEach( deepCoordPair => {
+            // arrange feature part's coordinate pairs
             wktText += deepCoordPair[0] + " " + deepCoordPair[1] + ", ";
           });
-      wktText = wktText.slice(0, -2);
-      wktText += "), (";
+          wktText = wktText.slice(0, -2);
+          // closes representation of one feture part and starts another feature part
+          wktText += "), (";
         };
       });
-      wktText = wktText.slice(0, -3);
-      // wktText = wktText.slice(0, -2);
+      // clears all part's ending and starting tags
+      wktText = wktText.slice(0, -4);
+      // finishes feature
       wktText += "), ";
     });
     wktText = wktText.slice(0, -2);
+    // wktText = wktText.slice(0, -2);
+    // closes wktText
+    wktText += ")";
   } else {
     window.alert("Este arquivo não contém linhas ou polígonos.");
     return;
