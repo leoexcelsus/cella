@@ -77,14 +77,14 @@
 
   </div>
 
-  <div class="col-sm-8">
+  <div class="form-container col-sm-8 mb-5">
     <div>
       <h3>Associar Polígono</h3>
     </div>
     <div class="d-flex mb-3">
       <div>
         <label for="geom-input-option">Escolha uma forma de apresentar a área</label>
-        <select id="geom-input-option" class="mb-2" name="geom-input-option" required>
+        <select id="geom-input-option" name="geom-input-option" required>
           <option default></option>
           <option value="load">Selecionar polígono cadastrado</option>
           <option value="upload">Carregar arquivo shapefile compactado</option>
@@ -118,15 +118,15 @@
     document.getElementById('form-4th-row').hidden = true;
     document.getElementById('form-5th-row').hidden = true;
   });
-  const formGeoInputOption = document.getElementById('geom-input-option');
-  formGeoInputOption.addEventListener('input', (event) => {
+  const formGeoInputOptionTwo = document.getElementById('geom-input-option');
+  formGeoInputOptionTwo.addEventListener('input', (event) => {
     console.log("Geometry input option is set");
     const form4thRow = document.getElementById('form-4th-row');
     const form5thRow = document.getElementById('form-5th-row');
-    if (formGeoInputOption.value == "load") {
+    if (formGeoInputOptionTwo.value == "load") {
       form4thRow.hidden = true;
       form5thRow.hidden = false;
-    } else if (formGeoInputOption.value == "upload") {
+    } else if (formGeoInputOptionTwo.value == "upload") {
       form4thRow.hidden = false;
       form5thRow.hidden = true;
       drawControl.remove(map);
@@ -143,9 +143,9 @@
   const mapElement = document.getElementById('map');
 
   if (mapElement) {
-    var map = L.map(mapElement).setView([-15.5, -48], 5);
+    const map = L.map(mapElement).setView([-15.5, -48], 5);
 
-    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGVvZXhjZWxzdXMiLCJhIjoiY2tleWNxcnB2MGFzejJwcXQwdGIwMmR2byJ9.CbC1R_EI0AICNAxaZSvyeg', {
       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
       maxZoom: 18,
       id: 'mapbox/streets-v11',
@@ -163,21 +163,24 @@
     // const multipleSelection.push(selectPolygon.value);
     // Fetch para buscar os polígonos pelos seus IDs;
     fetch(`/polygons/${selectPolygon.value}`)
-    .then(response => response.json())
-    .then((data) => {
-      console.log(data);
-      // data é um JSON com uma chave coordinates;
-      // dentro dessa chave coordinates, temos um array de arrays com as coordenadas;
-      // precisamos enviar esses dados para o mapa e atualizá-lo;
-      L.polygon(data).addTo(map);
+      .then(response => response.json())
+      .then((data) => {
+        console.log(data.coordinates);
+        // data é um JSON com uma chave coordinates;
+        // dentro dessa chave coordinates, temos um array de arrays com as coordenadas;
+        // precisamos enviar esses dados para o mapa e atualizá-lo;
+        L.polygon(data.coordinates,
+          {
+            color: '#000',
+            weight: 1,
+            fillColor: '#6E8B3D',
+            fillOpacity: 0.5,
+          }).addTo(map);
       });
     // Recebe um hash ou um array de coordenadas (armazenadas em uma enumerable);
     // // Iterar sobre esse resultado para criar camadas do leaflet para visualização no mapa;
     // data.forEach((result) => {
-    // });
-    // });
     // função/módulo do leaflet => L.Polygon(array de pares de coordenadas).addTo(nome da variável que contém o mapa);
-    // const polygonSearched = L.geoJSON(data).addTo(map);
   });
 }
 </script>

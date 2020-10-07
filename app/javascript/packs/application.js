@@ -35,7 +35,6 @@ require("leaflet-draw/dist/leaflet.draw.css");
 
 import { map_draw_init } from '../plugins/map_draw_init';
 
-
 require( 'datatables.net-dt' )();
 
 require ("../../../vendor/assets/dist/js/dsgov")
