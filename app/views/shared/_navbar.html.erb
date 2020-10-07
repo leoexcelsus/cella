@@ -13,9 +13,12 @@
           </button>
           <ul>
             <li class="title">Acesso Rápido</li>
-            <li><a href="javascript:void(0);">Legislação</a></li>
-            <li><a href="javascript:void(0);">Conheça</a></li>
+
+            <li><%= link_to "Homepage", root_path %></li>
+            <li><%= link_to "Legilação", rules_path %></li>
+            <li><%= link_to 'Saiba Mais', about_path %></li>
             <% if user_signed_in? %>
+              <li><%= link_to "Inclua uma norma", new_rule_path %></li>
               <li><%= link_to "Minhas normas", myrules_path(current_user) %></li>
             <% else %>
               <li><%= link_to "Cadastre-se", new_user_registration_path %></li>
@@ -26,7 +29,7 @@
           <% if user_signed_in? %>
             <button class="br-button" type="button" mini><i class="fas fa-user"></i><span class="ml-1"><%= current_user.first_name %></span>
             </button>
-            <%= link_to signout_path do %>
+            <%= link_to destroy_user_session_path do %>
             <button class="br-button" type="button" mini><i class="fas fa-sign-out-alt"></i><span class="ml-1">Sair</span>
             </button>
             <% end %>
@@ -37,6 +40,7 @@
             <% end %>
           <% end %>
         </div>
+
       </div>
       <div class="menu">
         <button class="br-button" type="button" circle mini><i class="fas fa-bars"></i></button>

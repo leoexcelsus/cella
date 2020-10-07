@@ -37,7 +37,7 @@
             </p>
 
             <div class="br-divider"></div>
-    
+
             <h4 class="text-right">
               <%= link_to @rule.hyperlink, :target => "_blank" do %>
                 <i class="fas fa-external-link-alt mr-3"></i>
@@ -56,6 +56,7 @@
       <%= link_to 'Voltar para lista', :back, class: "br-button secondary" %>
     </div>
     <div class="col-4">
-    </div> 
+    </div>
+    <%= link_to 'Voltar', root_path, class: "btn-ghost" %>
   </div>
 </div>

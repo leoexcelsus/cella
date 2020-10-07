@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root to: 'pages#home'
 
+  get "pages/about", to: "pages#about", as: :about
+
   get "rules/spatial_search/", to: "rules#spatial_search", as: :spatial_search
 
   # Leandro comments: the route below is now commented and seems to make no sense due to difficulties
@@ -8,14 +10,15 @@ Rails.application.routes.draw do
   # a GET route. 'search_mine', therefore, is now changed to a POST route.
   # post "rules/spatial_search", to: "rules#spatial_query", as: :spatial_query
 
-  devise_for :users, :path => "accounts", :controllers => { registrations: "registrations" }
-  devise_scope :user do
-    get '/signout', to: 'devise/sessions#destroy', as: :signout
-  end
+
+
+ 
+  devise_for :users
+
 
   get "rules/users/:user_id", to: "rules#myrules", as: :myrules
 
-  resources :rules, only: [ :show, :edit ]
+  resources :rules, only: [ :show, :index, :edit, :new, :create ]
 
   get "rules/:id/delete", to: "rules#destroy", as: :delete_rules
 

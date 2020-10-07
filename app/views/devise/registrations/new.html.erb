@@ -14,6 +14,7 @@
                   input_html: { autocomplete: "email" }%>
       <%= f.input :first_name,
                   required: true,
+
                   label: "Primeiro nome" %>
       <%= f.input :last_name,
                   required: true,
@@ -21,6 +22,7 @@
       <%= f.input :company,
                   required: true,
                   label: "Onde você trabalha" %>         
+
       <%= f.input :password,
                   required: true,
                   label: "Senha",
@@ -35,7 +37,11 @@
     </div>
 
     <div class="form-actions mb-2">
-      <%= f.button :submit, "Cadastrar", class: "br-button primary" %>
+
+      <div class="d-flex justify-content-center">
+        <%= f.button :submit, "Cadastrar", class: "br-button primary" %>
+      </div>
+
     </div>
   <% end %>
 

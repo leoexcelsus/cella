@@ -14,9 +14,14 @@
     </div>
 
     <div class="form-actions mb-2">
-      <%= f.button :submit, "Entrar", class: "br-button primary" %>
+
+      <div class="d-flex justify-content-center">
+     <%= f.button :submit, "Entrar", class: "br-button primary" %>
+      </div>
+
     </div>
+    <%= render "devise/shared/links" %>
   <% end %>
 
-  <%= render "devise/shared/links" %>
+  
 </div>

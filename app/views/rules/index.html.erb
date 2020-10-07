@@ -1,10 +1,10 @@
 <div class="container">
   <div class="table-container">
-    <div class="results"><%= @rules.size %> normas encontradas</div>
+    <div class="results"><%= @rule.size %> normas registradas no sistema</div>
       <div id="data">
         <table class="table">
-          <thead class="thead-dark">
-            <% if @rules.size.positive? %>
+          <thead class="thead-light">
+            <% if @rule.size.positive? %>
               <tr>
                 <th scope="col">Jurisdição</th>
                 <th scope="col">Emissor</th>
@@ -14,26 +14,25 @@
                 <th scope="col">Data de Edição</th>
                 <th scope="col">Ementa</th>
                 <th scope="col">Fonte</th>
+                <th scope="col">Origem da Norma</th>
                 <th scope="col">Detalhar</th>
-                <th scope="col">Ação</th>
+                <th scope="col">Link oficial</th>
               </tr>
             </thead>
             <tbody>
-            <% @rules.each do |rule| %>
+            <% @rule.each do |rule| %>
               <tr>
                 <td><%= rule.jurisdiction %></td>
                 <td><%= rule.issuer %></td>
                 <td><%= rule.category %></td>
                 <td><%= rule.number %></td>
-                <td><%= rule.pub_date %></td>
-                <td><%= rule.ed_date %></td>
+                <td><%= format_date(rule.pub_date) %></td>
+                <td><%= format_date(rule.ed_date) %></td>
                 <td><%= rule.long_title.truncate_words(10) %></td>
                 <td><%= rule.source %></td>
-                <td><%= link_to "Detalhar", rule_path(rule) %></td>
-                <td class="button-myrules">
-                  <%= link_to "", edit_rule_path(rule), class: "fas fa-edit" %>
-                  <%= link_to "", delete_rules_path(rule), class: "far fa-trash-alt", method: :delete, data: {confirm: "Você realmente deseja remover a norma?"} %>
-                </td>
+                <td><%= rule.user.first_name %></td>
+                <td> <a href="https://cella-gis.herokuapp.com/rules/<%= rule.id %>" class = "font-weight-bold">Detalhar</a>
+                <td> <a href="<%= rule.hyperlink %>" class = "font-weight-bold">Link oficial</a>
               </tr>
             <% end %>
             <% else %>
@@ -43,8 +42,8 @@
         </table>
       </div>
     <div class="item-a">
-      <button class="btn-ghost" onclick="exportDataToExcel('data')">Baixar arquivo</button>
-      <button class="btn-ghost">Cadastrar nova norma</button>
+      <button class="br-button primary" onclick="exportDataToExcel('data')">Baixar arquivo</button>
+      <%= link_to 'Voltar', :back, class: "br-button secondary ml-1" %>
     </div>
   </div>
 </div>
