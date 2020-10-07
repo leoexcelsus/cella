@@ -33,22 +33,19 @@ require("leaflet-draw/dist/leaflet.draw.css");
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 
-import { map_draw_init } from '../plugins/map_draw_init';
+// import { map_draw_init } from '../plugins/map_draw_init';
 
-require( 'datatables.net-dt' )();
+import { selectPolygon } from '../components/select_polygon';
 
-require ("../../../vendor/assets/dist/js/dsgov")
+import { drawPolygon } from '../components/draw_polygon';
+
+// require( 'datatables.net-dt' )();
+
+// require ("../../../vendor/assets/dist/js/dsgov")
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
-
+  selectPolygon();
+  drawPolygon();
 });
-
-import "controllers"
-
-import { Application } from "stimulus"
-import { definitionsFromContext } from "stimulus/webpack-helpers"
-const application = Application.start()
-const context = require.context("../controllers", true, /.js$/)
-application.load(definitionsFromContext(context))
