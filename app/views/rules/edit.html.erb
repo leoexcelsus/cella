@@ -36,7 +36,7 @@
 </head>
 
 <div class="container">
-  <h2 class="mb-0">Cadastrar uma nova norma</h2>
+  <h2 class="mb-0">Alterar dados da norma</h2>
 </div>
 <div class="container d-flex">
   <div class="form-container col-sm-5 mb-5">
@@ -65,11 +65,11 @@
       </div>
 
       <div class="form-actions mb-2">
-        <%= f.button :submit, value: "Criar nova norma", class: "btn-ghost" %>
+        <%= f.button :submit, value: "Atualizar norma", class: "btn-ghost" %>
         <%= f.button :button, "Cancelar", type: "reset", class: "btn-cancel" %>
       </div>
 
-    <%= link_to 'Voltar', root_path, class: "btn-ghost" %>
+    <%= link_to 'Voltar', rule_path, class: "btn-ghost" %>
 
   </div>
 
@@ -197,4 +197,3 @@
   });
 }
 </script>
-

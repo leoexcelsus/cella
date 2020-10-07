@@ -16,16 +16,16 @@ Rails.application.routes.draw do
 
 
 
- 
+
   devise_for :users
 
 
   get "rules/users/:user_id", to: "rules#myrules", as: :myrules
 
- 
+
   post "rules/:rule_id/rating", to: "ratings#create", as: :rule_ratings
 
-  resources :rules, only: [ :show, :index, :edit, :new, :create ]
+  resources :rules, only: [ :show, :index, :edit, :new, :create, :update ]
 
   get "rules/:id/delete", to: "rules#destroy", as: :delete_rules
 
