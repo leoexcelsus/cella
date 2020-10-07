@@ -75,24 +75,24 @@
 
   </div>
 
-  <div class="form-container col-sm-8 mb-5">
+  <div class="form-container col-sm-8 mb-5" data-controller="polygon">
     <div>
       <h4>Associar Polígono</h4>
     </div>
     <div class="mb-3">
       <div>
         <label for="geom-input-option">Escolha uma forma de apresentar a área</label>
-        <select class="form-control select mb-3" id="geom-input-option" name="geom-input-option" required>
+        <select class="form-control select mb-3" id="geom-input-option" data-target="select" data-action="click->polygon#options" name="geom-input-option" required>
           <option default></option>
           <option value="load">Selecionar polígono cadastrado</option>
           <option value="upload">Carregar arquivo shapefile compactado</option>
         </select>
 
-        <div id='form-file' class="mb-3">
+        <div id='form-file' class="mb-3" data-target="polygon.file" hidden>
           <input type="file">
         </div>
 
-        <div id='form-polygon'>
+        <div id='form-polygon' data-target="polygon.polygon" hidden>
           <%= f.association :polygons, label: "Polígonos cadastrados", collection: Polygon.order('name ASC'), input_html: { multiple: true }, include_hidden: false %>
         </div>
         <% end %>
@@ -109,30 +109,6 @@
   </div>
 
 </div>
-
-
-<script type="text/javascript">
-  window.addEventListener("load", (event) => {
-    document.getElementById('form-file').hidden = true;
-    document.getElementById('form-polygon').hidden = true;
-  });
-  const formGeoInputOptionTwo = document.getElementById('geom-input-option');
-  formGeoInputOptionTwo.addEventListener('input', (event) => {
-    console.log("Geometry input option is set");
-    const formFile = document.getElementById('form-file');
-    const formPolygon = document.getElementById('form-polygon');
-    if (formGeoInputOptionTwo.value == "load") {
-      formFile.hidden = true;
-      formPolygon.hidden = false;
-    } else if (formGeoInputOptionTwo.value == "upload") {
-      formFile.hidden = false;
-      formPolygon.hidden = true;
-    } else {
-      formFile.hidden = true;
-      formPolygon.hidden = true;
-    };
-  });
-</script>
 
 
 <script>
