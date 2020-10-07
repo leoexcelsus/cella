@@ -43,6 +43,8 @@ gem 'rgeo'
 # extende a capacidade da gema 'rgeo' para lidar com geojson
 gem 'rgeo-geojson'
 
+gem 'data-confirm-modal'
+
 
 group :development, :test do  gem 'pry-byebug'
   gem 'pry-rails'

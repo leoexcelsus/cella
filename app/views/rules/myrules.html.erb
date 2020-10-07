@@ -31,7 +31,7 @@
                 <td><%= rule.ed_date %></td>
                 <td><%= rule.long_title.truncate_words(10) %></td>
                 <td><%= rule.source %></td>
-
+                
                 <% grade_count = 0 %>
                 <% rule.ratings.each {|rating| grade_count = grade_count + rating.grade if !rating.grade.nil?} %>
                 <td><%= grade_count %><%= grade_count >= 0 ? " 👍" : " 👎"  %></td>
@@ -55,7 +55,7 @@
       </div>
     <div class="item-a">
       <button class="btn-ghost" onclick="exportDataToExcel('data')">Baixar arquivo</button>
-      <button class="btn-ghost">Cadastrar nova norma</button>
+      <%= link_to "Cadastrar nova norma", new_rule_path, class: "btn-ghost" %>
     </div>
   </div>
 </div>

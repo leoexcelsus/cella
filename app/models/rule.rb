@@ -17,7 +17,6 @@ class Rule < ApplicationRecord
   validates :long_title, presence: true
   validates :hyperlink, presence: true
   validates :hyperlink, format: URI::regexp(%w[http https])
-  validates :source, presence: true
   validates_presence_of :industries
   validates_associated :industries
   validates_presence_of :polygons
