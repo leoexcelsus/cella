@@ -29,6 +29,9 @@ class RulesController < ApplicationController
   end
 
   def show
+    @rule = Rule.find(params[:id])
+    @rating = Rating.new
+    @ratings = Rating.where(rule: @rule)
   end
   # TO DO: rename to 'spatial_search_form'. Watch out for existing cross-references.
   def spatial_search
