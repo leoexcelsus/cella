@@ -86,11 +86,11 @@ user2.save!
 puts "...Users saved to database."
 
 puts "Creating 5 Industries..."
-industry1 = Industry.new(name: 'ferrovia')
-industry2 = Industry.new(name: 'rodovia')
-industry3 = Industry.new(name: 'mineração')
-industry4 = Industry.new(name: 'linha de transmissão')
-industry5 = Industry.new(name: 'geração de energia hidrelétrica')
+industry1 = Industry.new(name: 'Ferrovia')
+industry2 = Industry.new(name: 'Rodovia')
+industry3 = Industry.new(name: 'Mineração')
+industry4 = Industry.new(name: 'Linha de transmissão')
+industry5 = Industry.new(name: 'Geração de energia hidrelétrica')
 
 puts "...saving Industries to database..."
 industry1.save!
