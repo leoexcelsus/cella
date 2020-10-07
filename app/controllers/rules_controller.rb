@@ -58,6 +58,11 @@ class RulesController < ApplicationController
   def edit
   end
 
+  def index
+    @rule = Rule.all
+  end
+  
+
   def update
     if @rule.update(rule_params)
       @rule.save
