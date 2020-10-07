@@ -140,3 +140,60 @@ a:hover {
 .card-about .card-about-infos {
   padding: 16px;
 }
+
+.card-landing-page {
+  overflow: hidden;
+  height: 270px;
+  width: 300px;
+  background: white;
+  margin-bottom: 30px;
+  border-radius: 4px;
+}
+
+.card-landing-page span {
+  padding-left: 85px;
+  i {
+    font-size: 130px;
+  }
+}
+
+.card-landing-page h2 {
+  color: #0c326f;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 6px;
+  padding: 5px;
+  text-justify: center
+}
+
+.card-landing-page h2:hover {
+  text-decoration: none;
+  color: #1351b4;
+}
+
+.card-landing-page p:hover {
+  text-decoration: none;
+  color: #1351b4;
+}
+
+.card-landing-page p {
+  color: #0c326f;
+  font-weight: bold;
+  font-size: 16px;
+  margin-top: 10px;
+  padding: 5px;
+}
+
+.card-landing-page .card-landing-page-infos h2:hover {
+  color: #427597;
+}
+
+.card-landing-page .card-landing-page-infos {
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
+  margin-top: -5px;
+  text-align: center;
+}

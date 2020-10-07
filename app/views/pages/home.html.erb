@@ -11,14 +11,14 @@
         <p>Encontre o conjunto de normas atualizadas para o processo de licenciamento ambiental do seu projeto de infraestrutura</p>
         <%= link_to 'Saiba Mais', about_path, class: "br-button primary" %>
       </div>
-      <div class="carousel-item active" data-interval="10000">
-        <img class="d-block w-100" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.8))" src="https://images.unsplash.com/photo-1561533115-f893e69758e9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80" alt="Primeiro Slide">
+      <div class="carousel-item active" data-interval="4000">
+        <img class="d-block w-100" src="https://images.unsplash.com/photo-1561533115-f893e69758e9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80" alt="Primeiro Slide" style="height: 750px; object-fit : cover;">
       </div>
-      <div class="carousel-item" data-interval="2000">
-        <img class="d-block w-100" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.8))" src="https://images.unsplash.com/photo-1529529789882-da0f47b28624?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=751&q=80" alt="Segundo Slide">
+      <div class="carousel-item" data-interval="4000">
+        <img class="d-block w-100" src="https://images.unsplash.com/photo-1529529789882-da0f47b28624?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=751&q=80" alt="Segundo Slide" style="height: 570px; object-fit : cover;">
       </div>
-      <div class="carousel-item" data-interval="2000">
-        <img class="d-block w-100" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.8))" src="https://images.unsplash.com/photo-1457728940372-39f8bf47f3d7?ixlib=rb-1.2.1&auto=format&fit=crop&w=748&q=80" alt="Terceiro Slide">
+      <div class="carousel-item" data-interval="4000">
+        <img class="d-block w-100" src="https://images.unsplash.com/photo-1457728940372-39f8bf47f3d7?ixlib=rb-1.2.1&auto=format&fit=crop&w=748&q=80" alt="Terceiro Slide" style="height: 795px; object-fit : cover;">
       </div>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -33,10 +33,9 @@
 </div>
 <div class="cards">
   <%= link_to spatial_search_path do %>
-  <div class="card-trip">
-    <h2>Busque agora</h2>
-    <img src="https://images.unsplash.com/photo-1544906243-a69767cc000b?ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80" />
-    <div class="card-trip-infos">
+  <div class="card-landing-page mt-5">
+    <span><i class="fas fa-search-location"></i></span>
+    <div class="card-landing-page-infos">
       <div>
         <p>Encontre as normas aplicadas na área de seu projeto.</p>
       </div>
@@ -44,10 +43,9 @@
   </div>
   <% end %>
   <%= link_to rules_path do %>
-  <div class="card-trip">
-    <h2>Veja a lista completa das normas</h2>
-    <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" />
-    <div class="card-trip-infos">
+  <div class="card-landing-page mt-5">
+    <span><i class="fas fa-book"></i></span>
+    <div class="card-landing-page-infos">
       <div>
         <p>Acesse nosso banco de dados e conheça todas as normas cadastradas.</p>
       </div>
@@ -57,18 +55,22 @@
 
   <% if current_user.nil? %>
     <%= link_to new_user_registration_path do %>
-    <div class="card-trip">
-      <h2>Cadastre-se</h2>
-      <img src="https://images.unsplash.com/photo-1546198632-9ef6368bef12?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" />
-      <div class="card-trip-infos">
+    <div class="card-landing-page mt-5">
+      <span><i class="fas fa-user-plus"></i></span>
+      <div class="card-landing-page-infos">
         <div>
           <p>Seja parte de nossa comunidade e contribua com a atualização do banco de dados.</p>
-
         </div>
       </div>
     </div>
     <% end %>
   <% else %>
+<<<<<<< HEAD
+    <%= link_to new_rule_path do %>
+    <div class="card-landing-page mt-5">
+      <span><i class="fas fa-edit"></i></span>
+      <div class="card-landing-page-infos">
+=======
 
 
       <%= link_to new_rule_path do %>
@@ -76,9 +78,9 @@
       <h2>Cadastre novas normas</h2>
       <img src="https://images.unsplash.com/photo-1546198632-9ef6368bef12?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" />
       <div class="card-trip-infos">
+>>>>>>> master
         <div>
           <p>Contribua com a atualização do banco de dados.</p>
-
         </div>
       </div>
     </div>
