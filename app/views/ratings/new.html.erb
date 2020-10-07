@@ -1,0 +1,4 @@
+<%= simple_form_for [ @rule, @rating ] do |f| %>
+  <%= f.input :comment %>
+  <%= f.submit "Submit rating", class: "btn btn-primary" %>
+<% end %>
