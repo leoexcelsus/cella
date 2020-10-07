@@ -5,6 +5,10 @@ Rails.application.routes.draw do
 
   get "rules/spatial_search/", to: "rules#spatial_search", as: :spatial_search
 
+  get '/polygons', to: 'polygons#index'
+
+  get '/polygons/:id', to: 'polygons#show'
+
   # Leandro comments: the route below is now commented and seems to make no sense due to difficulties
   # it imposes in sending the results to route 'search_mine', which was originally
   # a GET route. 'search_mine', therefore, is now changed to a POST route.

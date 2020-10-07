@@ -36,8 +36,6 @@ class RulesController < ApplicationController
 
   def new
     @rule = Rule.new
-    @rule.polygons.build
-    @rule.industries.build
   end
 
   def create
@@ -61,7 +59,7 @@ class RulesController < ApplicationController
   def index
     @rule = Rule.all
   end
-  
+
 
   def update
     if @rule.update(rule_params)
