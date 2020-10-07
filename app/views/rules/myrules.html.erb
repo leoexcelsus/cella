@@ -42,7 +42,7 @@
       </div>
     <div class="item-a">
       <button class="btn-ghost" onclick="exportDataToExcel('data')">Baixar arquivo</button>
-      <button class="btn-ghost">Cadastrar nova norma</button>
+      <%= link_to "Cadastrar nova norma", new_rule_path, class: "btn-ghost" %>
     </div>
   </div>
 </div>
