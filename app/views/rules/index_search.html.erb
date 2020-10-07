@@ -45,7 +45,7 @@
           
                 <td> <a href="https://cella-gis.herokuapp.com/rules/<%= rule.id %>" class = "font-weight-bold">Detalhar</a>
                 <td class="text-center"> 
-                  <%= link_to rule_path(rule.id) do %>
+                  <%= link_to rule_path(rule.id), :target => "_blank" do %>
                   <i class="fas fa-search"></i>
                   <% end %>
                 <td class="text-center">
