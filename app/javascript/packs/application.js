@@ -33,7 +33,7 @@ require("leaflet-draw/dist/leaflet.draw.css");
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 
-import { map_draw_init } from '../plugins/map_draw_init';
+import { mapDrawInit } from '../plugins/map_draw_init';
 
 
 require( 'datatables.net-dt' )();
