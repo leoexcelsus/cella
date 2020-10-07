@@ -8,7 +8,7 @@ const mapElement = document.getElementById('map');
 var map;
 
 if (mapElement) {
-  map = L.map(mapElement).setView([-15.5, -48], 5);
+  map = L.map(mapElement).setView([-15.5, -48], 2.7).setMaxBounds([[-38.7, -85.8],[11.7, -21.7]]);
 
   L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
