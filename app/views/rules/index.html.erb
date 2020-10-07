@@ -15,6 +15,8 @@
                 <th scope="col">Ementa</th>
                 <th scope="col">Fonte</th>
                 <th scope="col">Origem da Norma</th>
+                <th scope="col">Avaliação</th>
+                <th scope="col">Vigência</th>
                 <th scope="col">Detalhar</th>
                 <th scope="col">Link oficial</th>
               </tr>
@@ -31,6 +33,16 @@
                 <td><%= rule.long_title.truncate_words(10) %></td>
                 <td><%= rule.source %></td>
                 <td><%= rule.user.first_name %></td>
+                
+                <% grade_count = 0 %>
+                <% rule.ratings.each {|rating| grade_count = grade_count + rating.grade if !rating.grade.nil?} %>
+                <td><%= grade_count %><%= grade_count >= 0 ? " 👍" : " 👎"  %></td>
+
+                <% validity_count = 0 %>
+                <% rule.ratings.each {|rating| validity_count = validity_count + rating.validity if !rating.validity.nil?} %>
+                <td><%= validity_count %><%= validity_count >= 0 ? " 👍" : " 👎"  %> </td>
+                
+
                 <td> <a href="https://cella-gis.herokuapp.com/rules/<%= rule.id %>" class = "font-weight-bold">Detalhar</a>
                 <td> <a href="<%= rule.hyperlink %>" class = "font-weight-bold">Link oficial</a>
               </tr>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_30_205646) do
+ActiveRecord::Schema.define(version: 2020_10_07_144622) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,18 @@ ActiveRecord::Schema.define(version: 2020_09_30_205646) do
     t.geography "geography", limit: {:srid=>4326, :type=>"multi_polygon", :geographic=>true}
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "ratings", force: :cascade do |t|
+    t.text "comment"
+    t.integer "grade"
+    t.integer "validity"
+    t.bigint "rule_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["rule_id"], name: "index_ratings_on_rule_id"
+    t.index ["user_id"], name: "index_ratings_on_user_id"
   end
 
   create_table "rules", force: :cascade do |t|
@@ -81,6 +93,8 @@ ActiveRecord::Schema.define(version: 2020_09_30_205646) do
 
   add_foreign_key "industry_rules", "industries"
   add_foreign_key "industry_rules", "rules"
+  add_foreign_key "ratings", "rules"
+  add_foreign_key "ratings", "users"
   add_foreign_key "rules", "users"
   add_foreign_key "spatial_domains", "polygons"
   add_foreign_key "spatial_domains", "rules"

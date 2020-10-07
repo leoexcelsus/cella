@@ -73,10 +73,10 @@ polygon10.save!
 puts "...polygons saved to database."
 
 puts "Creating 2 Users..."
-user1 = User.new(email:'admin@admin.com', first_name: 'admin', last_name: 'istrator', company: 'Economy Ministry')
+user1 = User.new(email:'admin@admin.com', first_name: 'Administrador', last_name: 'SPPI', company: 'Economy Ministry')
 user1.password = '123456'
 
-user2 = User.new(email:'ze@ze.com', first_name: 'Zé', last_name: 'das Bananas', company: 'Bananal do Seu Zé')
+user2 = User.new(email:'ze@ze.com', first_name: 'José', last_name: 'da Silva', company: 'Silva Advogados Associados')
 user2.password = '123456'
 
 puts "...saving Users to database..."

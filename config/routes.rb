@@ -22,6 +22,9 @@ Rails.application.routes.draw do
 
   get "rules/users/:user_id", to: "rules#myrules", as: :myrules
 
+ 
+  post "rules/:rule_id/rating", to: "ratings#create", as: :rule_ratings
+
   resources :rules, only: [ :show, :index, :edit, :new, :create ]
 
   get "rules/:id/delete", to: "rules#destroy", as: :delete_rules

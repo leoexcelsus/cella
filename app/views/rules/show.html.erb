@@ -53,10 +53,88 @@
           </div>
         </div>
       </div>
-      <%= link_to 'Voltar para lista', :back, class: "br-button secondary" %>
+    <%= simple_form_for [ @rule, @rating ] do |f| %>
+
+   <%= f.input :grade, as: :radio_buttons, label:"Norma importante para seu dia-a-dia?", collection: [[1, '👍'], [-1, '👎']], label_method: :second, value_method: :first, wrapper: :vertical_collection_inline %>
+   <%= f.input :validity, as: :radio_buttons, label:"Norma em vigência?", collection: [[1, '👍'], [-1, '👎']], label_method: :second, value_method: :first, wrapper: :vertical_collection_inline %>       
+      <%= f.submit "Enviar feedback", class: "btn btn-primary" %>
+    <% end %>
+
+
+
+
+<div>
+
+</div>
     </div>
     <div class="col-4">
+    <%= simple_form_for [ @rule, @rating ] do |f| %>
+      <%= f.input :comment, label: "Comente aqui" %>
+      <%= f.submit "Enviar comentário", class: "btn btn-primary" %>
+    <% end %>
+    <div>
+<br>
+<div class="table-container">
+    <div class="results"> Últimos Comentários</div>
+      <div id="data">
+        <table class="table">
+          <thead class="thead-dark">
+          <% comments = @ratings.order("created_at DESC") %>
+          <% comments2 = [] %>
+          <% comments.each { |rating| comments2 << rating if !rating.comment.nil? && rating.comment != "" } %>
+          <% comments2 = comments2.first(2) %>
+          
+
+
+
+
+
+
+
+
+            <% if comments2.size.positive? %>
+              <tr>
+                <th scope="col">Comentário</th>
+                <th scope="col">Usuário</th>
+
+              </tr>
+            </thead>
+            <tbody>
+            <% comments2.each do |rating| %>
+                <tr>
+                  <td><%= rating.comment %></td>
+                  <td><%= "#{rating.user.first_name} #{rating.user.last_name}" %></td>
+                </tr>
+            <% end %>
+            <% else %>
+              <p class="title">Não foram encontrados comentários para essa norma</p>
+            <% end %>
+            </tbody>
+        </table>
+      </div>
+  </div>
+      <%= link_to 'Voltar para lista', :back, class: "br-button secondary" %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     </div>
-    <%= link_to 'Voltar', root_path, class: "btn-ghost" %>
+    </div>
+
   </div>
 </div>
