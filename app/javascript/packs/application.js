@@ -35,12 +35,17 @@ require("leaflet-draw/dist/leaflet.draw.css");
 
 import { mapDrawInit } from '../plugins/map_draw_init';
 
-require( 'datatables.net-dt' )();
+import { selectPolygon } from '../components/select_polygon';
 
-require ("../../../vendor/assets/dist/js/dsgov")
+import { drawPolygon } from '../components/draw_polygon';
+
+// require( 'datatables.net-dt' )();
+
+// require ("../../../vendor/assets/dist/js/dsgov")
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
-
+  selectPolygon();
+  drawPolygon();
 });
