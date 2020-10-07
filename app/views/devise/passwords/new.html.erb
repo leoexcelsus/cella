@@ -1,4 +1,8 @@
+
+<div class="container col-sm-4">
+
 <h2>Esqueceu sua senha?</h2>
+
 
 <div class="container">
 <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
@@ -18,3 +22,5 @@
 </div>
 
 <%= render "devise/shared/links" %>
+
+</div>

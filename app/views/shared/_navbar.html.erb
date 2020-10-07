@@ -1,8 +1,8 @@
 <div class="br-header" compact no-search>
   <div class="container-lg">
     <div class="flex-container">
-      <%= link_to root_path do %>
       <div class="logo">
+        <%= link_to root_path do %>
         <%= image_tag "https://www.gov.br/++theme++padrao_govbr/img/govbr-colorido-b.png", width: 100 %>
         <div class="sign">Consulta Espacializada à Legislação Ambiental (CELLA)</div>
         <% end %>
@@ -13,45 +13,38 @@
           </button>
           <ul>
             <li class="title">Acesso Rápido</li>
+
             <li><%= link_to "Homepage", root_path %></li>
             <li><%= link_to "Legilação", rules_path %></li>
             <li><%= link_to 'Saiba Mais', about_path %></li>
-            <% if @user =! current_user %>
-            <li><%= link_to "Cadastre-se", new_user_registration_path %></li>
+            <% if user_signed_in? %>
+              <li><%= link_to "Inclua uma norma", new_rule_path %></li>
+              <li><%= link_to "Minhas normas", myrules_path(current_user) %></li>
             <% else %>
-            <li><%= link_to "Inclua uma norma", new_rule_path %></li>
-            <li><%= link_to "Minhas normas", myrules_path(current_user) if !current_user.nil? %></li>          
+              <li><%= link_to "Cadastre-se", new_user_registration_path %></li>
             <% end %>
           </ul>
         </div>
-        <div class="search-btn">
-          <button class="br-button" type="button" circle mini><i class="fas fa-search"></i>
-          </button>
+        <div class="login d-flex">
+          <% if user_signed_in? %>
+            <button class="br-button" type="button" mini><i class="fas fa-user"></i><span class="ml-1"><%= current_user.first_name %></span>
+            </button>
+            <%= link_to destroy_user_session_path do %>
+            <button class="br-button" type="button" mini><i class="fas fa-sign-out-alt"></i><span class="ml-1">Sair</span>
+            </button>
+            <% end %>
+          <% else %>
+            <%= link_to new_user_session_path do %>
+            <button class="br-button" type="button" mini><i class="fas fa-user"></i><span class="ml-1">Entrar</span>
+            </button>
+            <% end %>
+          <% end %>
         </div>
-
-        <% if @user =! current_user%>
-        <div class="login">
-          <%= link_to new_user_session_path do %>
-          <button class="br-button" type="button" mini><i class="fas fa-user"></i><span class="ml-1">Entrar</span>
-          </button>
-        </div>
-        <% end %>
-        <% else %>
-
-        <div class="login">
-          <%= link_to destroy_user_session_path do %>
-          <button class="br-button" type="button" mini><i class="fas fa-user"></i><span class="ml-1">Sair</span>
-          </button>
-        </div>
-        <% end %>
-
-        <% end %>
 
       </div>
       <div class="menu">
-        <button class="br-button" type="button" circle mini><i class="fas fa-bars"></i>
-        </button>
-        <p>Consulta Espacializada à Legislação Ambiental (CELLA)<p/>
+        <button class="br-button" type="button" circle mini><i class="fas fa-bars"></i></button>
+        <p class="mb-0">Consulta Espacializada à Legislação Ambiental (CELLA)</p>
       </div>
       <div class="search">
         <div class="br-input has-icon">

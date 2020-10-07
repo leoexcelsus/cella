@@ -54,6 +54,7 @@
     </div>
   </div>
   <% end %>
+
   <% if current_user.nil? %>
     <%= link_to new_user_registration_path do %>
     <div class="card-trip">
@@ -62,11 +63,13 @@
       <div class="card-trip-infos">
         <div>
           <p>Seja parte de nossa comunidade e contribua com a atualização do banco de dados.</p>
+
         </div>
       </div>
     </div>
     <% end %>
   <% else %>
+
       <%= link_to new_rule_path do %>
     <div class="card-trip">
       <h2>Cadastre novas normas</h2>
@@ -74,6 +77,7 @@
       <div class="card-trip-infos">
         <div>
           <p>Contribua com a atualização do banco de dados.</p>
+
         </div>
       </div>
     </div>

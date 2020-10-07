@@ -11,8 +11,10 @@ Rails.application.routes.draw do
   # post "rules/spatial_search", to: "rules#spatial_query", as: :spatial_query
 
 
+
  
   devise_for :users
+
 
   get "rules/users/:user_id", to: "rules#myrules", as: :myrules
 
