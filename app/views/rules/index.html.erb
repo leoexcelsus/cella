@@ -1,6 +1,6 @@
 <div class="container">
   <div class="table-container">
-    <div class="results"><%= @rule.size %> normas registradas no sistema</div>
+    <div class="results mt-3 mb-5"><%= @rule.size %> normas registradas no sistema</div>
       <div id="data">
         <table class="table">
           <thead class="thead-light">
@@ -22,7 +22,7 @@
             <tbody>
             <% @rule.each do |rule| %>
               <tr>
-                <td><%= rule.jurisdiction %></td>
+                <td class="text-center"><%= rule.jurisdiction %></td>
                 <td><%= rule.issuer %></td>
                 <td><%= rule.category %></td>
                 <td><%= rule.number %></td>
@@ -30,9 +30,15 @@
                 <td><%= format_date(rule.ed_date) %></td>
                 <td><%= rule.long_title.truncate_words(10) %></td>
                 <td><%= rule.source %></td>
-                <td><%= rule.user.first_name %></td>
-                <td> <a href="https://cella-gis.herokuapp.com/rules/<%= rule.id %>" class = "font-weight-bold">Detalhar</a>
-                <td> <a href="<%= rule.hyperlink %>" class = "font-weight-bold">Link oficial</a>
+                <td class="text-center"><%= rule.user.first_name %></td>
+                <td class="text-center"> 
+                  <%= link_to rule_path(rule.id) do %>
+                  <i class="fas fa-search"></i>
+                  <% end %>
+                <td class="text-center">
+                  <%= link_to rule.hyperlink, :target => "_blank" do %>
+                  <i class="fas fa-external-link-alt mr-3"></i>
+                  <% end %>
               </tr>
             <% end %>
             <% else %>
