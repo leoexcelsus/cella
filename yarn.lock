@@ -2658,11 +2658,6 @@ dot-prop@^5.2.0:
   dependencies:
     is-obj "^2.0.0"
 
-dsgov-assests@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/dsgov-assests/-/dsgov-assests-1.0.3.tgz#2e906bb353bd6fd28ca924fadd820dd1c6e24bfa"
-  integrity sha512-kz561Qqce2hgkjSOhqj2KUIW2C2WhnitOXbPps5xkI8hNbWXyZ30oSqZEIzkIs0gLrU0IJkjCFO3N80jmvW9xQ==
-
 duplexify@^3.4.2, duplexify@^3.6.0:
   version "3.7.1"
   resolved "https://registry.yarnpkg.com/duplexify/-/duplexify-3.7.1.tgz#2a4df5317f6ccfd91f86d6fd25d8d8a103b88309"
