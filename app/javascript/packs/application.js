@@ -30,6 +30,8 @@ require("leaflet/dist/leaflet.css");
 import "leaflet-draw";
 require("leaflet-draw/dist/leaflet.draw.css");
 
+import "wicket";
+
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 
@@ -38,6 +40,8 @@ import { mapDrawInit } from '../plugins/map_draw_init';
 import { selectPolygon } from '../components/select_polygon';
 
 import { drawPolygon } from '../components/draw_polygon';
+
+import { showPolygon } from '../components/show_polygon';
 
 import { leafletShpFile } from '../plugins/leaflet.shpfile';
 
@@ -53,4 +57,5 @@ document.addEventListener('turbolinks:load', () => {
   mapDrawInit();
   selectPolygon();
   drawPolygon();
+  showPolygon();
 });
