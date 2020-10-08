@@ -1,21 +1,21 @@
-<div class="br-header" compact no-search>
-  <div class="container-lg">
+<div class="br-header" no-search>
+  <div class="container-lg pl-0 pr-0">
     <div class="flex-container">
       <div class="logo">
         <%= link_to root_path do %>
         <%= image_tag "https://www.gov.br/++theme++padrao_govbr/img/govbr-colorido-b.png", width: 100 %>
-        <div class="sign">Consulta Espacializada à Legislação Ambiental (CELLA)</div>
+        <div class="sign"></div>
         <% end %>
       </div>
       <div class="actions">
         <div class="links">
           <button class="br-button" type="button" circle mini><i class="fas fa-ellipsis-v"></i>
           </button>
-          <ul>
-            <li class="title">Acesso Rápido</li>
+          <ul class="navbar-items">
+            <!-- <li class="title">Acesso Rápido</li> -->
 
-            <li><%= link_to "Homepage", root_path %></li>
-            <li><%= link_to "Legilação", rules_path %></li>
+            <li><%= link_to "Busca", spatial_search_path %></li>
+            <li><%= link_to "Legislação", rules_path %></li>
             <li><%= link_to 'Saiba Mais', about_path %></li>
             <% if user_signed_in? %>
               <li><%= link_to "Inclua uma norma", new_rule_path %></li>
@@ -42,8 +42,10 @@
         </div>
 
       </div>
+        <%= link_to root_path do %>
       <div class="menu">
-        <p class="mb-0 ml-1">Consulta Espacializada à Legislação Ambiental (CELLA)</p>
+        <div class="sigla col-sm-8 pl-0 mb-0 ml-0">Sistema de Informação Geográfica para Legislação do Licenciamento Ambiental</div>
+        <% end %>
       </div>
       <div class="search">
         <div class="br-input has-icon">
