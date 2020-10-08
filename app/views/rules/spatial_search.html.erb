@@ -1,49 +1,50 @@
 <div class="container d-flex">
-  <div id="map" class="rounded col-sm-9 mr-3" style="width: 100vw; height: 70vh; margin: 0 auto;">
+  <div id="map" class="rounded col-sm-9 mr-3" style="width: 100%; height: 70vh; margin: 0 auto;">
   </div>
 
-  <div class="form-div-over col-sm-3 mr-2" id="search-form" style="float: right; position: absolute, margin: 20px;">
+  <div class="form-div-over col-sm-3 mr-2" >
+    <div id="search-form" style="float: right; position: absolute, margin: 20px;">
 
-    <%= simple_form_for :search, url: index_search_path do |f| %>
-      <%= f.error_notification %>
+      <%= simple_form_for :search, url: index_search_path do |f| %>
+        <%= f.error_notification %>
 
-      <% ind_select = [] %>
-      <% Industry.select(:name).distinct.each do |ind| ind_select << ind.name end %>
-      <%= f.input :industry, label: "Escolha um setor:", collection: ind_select %>
+        <% ind_select = [] %>
+        <% Industry.select(:name).distinct.each do |ind| ind_select << ind.name end %>
+        <%= f.input :industry, label: "Escolha um setor:", collection: ind_select %>
 
-      <%= f.input :geom_input_option,
-        label: "Escolha uma forma de apresentar a área:",
-        collection: [["Desenhar sobre o mapa", "draw"],
-          ["Carregar arquivo shapefile compactado", "upload"]]
-      %>
+        <%= f.input :geom_input_option,
+          label: "Escolha uma forma de apresentar a área:",
+          collection: [["Desenhar sobre o mapa", "draw"],
+            ["Carregar arquivo shapefile compactado", "upload"]]
+        %>
 
-      <div id='form-3th-row' hidden>
-      <%= f.input :shape_option,
-        label: "Tipo de geometria para o desenho:",
-        collection: [["Polígono", "polygon"], ["Linha", "polyline"]]
-      %>
-      </div>
+        <div id='form-3th-row' hidden>
+        <%= f.input :shape_option,
+          label: "Tipo de geometria para o desenho:",
+          collection: [["Polígono", "polygon"], ["Linha", "polyline"]]
+        %>
+        </div>
 
-      <div id='form-4th-row' hidden>
-      <%= f.input :shapefile, label: "Shapefile compactado (.zip)\nGCS Sirgas2000", as: :file%>
-      </div>
+        <div id='form-4th-row' hidden>
+        <%= f.input :shapefile, label: "Shapefile compactado (.zip)\nGCS Sirgas2000", as: :file%>
+        </div>
 
 
         <%= f.input :geography, :as => :hidden,
         :input_html => {
         :value => '',
         :id => "wkt-hidden-input"
-      } %>
+        } %>
 
+      <div>
+        <div id="spatial-search-form-button" hidden>
+          <%= f.button :submit, "Pesquisar", class: "br-button primary" %>
+        </div>
 
-      <div id="spatial-search-form-button" hidden>
-        <%= f.button :submit, "Pesquisar", class: "br-button primary" %>
+      <% end %>
+      <div class="br-divider"></div>
+      <%= link_to 'Voltar', root_path, class: "br-button secondary" %>
       </div>
-
-
-    <% end %>
-    <div class="br-divider mt-5"></div>
-    <%= link_to 'Voltar', root_path, class: "br-button secondary" %>
-
+    </div>
   </div>
 </div>

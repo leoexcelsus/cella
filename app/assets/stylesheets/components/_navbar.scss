@@ -1,21 +1,18 @@
-.navbar-lewagon {
-  justify-content: space-between;
-  background: white;
-}
-
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
-}
-
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
-}
-
-.menu p {
-  font-size: 22px;
+.sigla {
+  font-size: 20px;
   color: black;
 }
 
-.menu p:hover {
+.sigla:hover {
   color: #0c326f;
+}
+
+.navbar-items li {
+  font-size: 15px;
+}
+
+.br-header .actions .functions ul li a, .br-header .actions .links ul li a {
+  text-decoration: none;
+  display: inline;
+  font-size: 14px;
 }
