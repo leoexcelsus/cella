@@ -13,7 +13,7 @@
                 <th scope="col">Data de Publicação</th>
                 <th scope="col">Data de Edição</th>
                 <th scope="col">Ementa</th>
-                <th scope="col">Fonte</th>
+
                 <th scope="col">Origem da Norma</th>
                 <th scope="col">Avaliação</th>
                 <th scope="col">Vigência</th>
@@ -31,7 +31,7 @@
                 <td><%= format_date(rule.pub_date) %></td>
                 <td><%= format_date(rule.ed_date) %></td>
                 <td><%= rule.long_title.truncate_words(10) %></td>
-                <td><%= rule.source %></td>
+
 
                 <td class="text-center"><%= rule.user.first_name %></td>
 
