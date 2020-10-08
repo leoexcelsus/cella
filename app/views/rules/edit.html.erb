@@ -85,6 +85,7 @@
         <select class="form-control select mb-3" id="geom-input-option" data-target="select" data-action="click->polygon#options" name="geom-input-option" required>
           <option default></option>
           <option value="load">Selecionar polígono cadastrado</option>
+          <% # TODO polygono não atualiza quando usuário vem do link em minhas normas pois o polygon id fica no valor de nil ,mas ao voltar a página para novamente o edit é possivel atullizar o polygono %>
           <option value="upload">Carregar arquivo shapefile compactado</option>
         </select>
 
