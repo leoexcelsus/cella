@@ -32,7 +32,9 @@ class RulesController < ApplicationController
     @rule = Rule.find(params[:id])
     @rating = Rating.new
     @ratings = Rating.where(rule: @rule)
-    @my_ratings = @rule.ratings.select { |r| r.user_id == current_user.id }
+    if user_signed_in?
+      @my_ratings = @rule.ratings.select { |r| r.user_id == current_user.id }
+    end
     @polygons = {}
     @rule.polygons.each do |polygon|
       @polygons[polygon.id] = RGeo::GeoJSON.encode(polygon.geography)["coordinates"][0][0]
