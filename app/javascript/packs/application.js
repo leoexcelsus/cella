@@ -39,6 +39,10 @@ import { selectPolygon } from '../components/select_polygon';
 
 import { drawPolygon } from '../components/draw_polygon';
 
+import { leafletShpFile } from '../plugins/leaflet.shpfile';
+
+import { shpJS } from '../plugins/shp';
+
 // require( 'datatables.net-dt' )();
 
 // require ("../../../vendor/assets/dist/js/dsgov")
