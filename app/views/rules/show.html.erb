@@ -56,7 +56,7 @@
     <%= simple_form_for [ @rule, @rating ] do |f| %>
 
    <%= f.input :grade, as: :radio_buttons, label:"Norma importante para seu dia-a-dia?", collection: [[1, '👍'], [-1, '👎']], label_method: :second, value_method: :first, wrapper: :vertical_collection_inline %>
-   <%= f.input :validity, as: :radio_buttons, label:"Norma em vigência?", collection: [[1, '👍'], [-1, '👎']], label_method: :second, value_method: :first, wrapper: :vertical_collection_inline %>       
+   <%= f.input :validity, as: :radio_buttons, label:"Norma em vigência?", collection: [[1, '👍'], [-1, '👎']], label_method: :second, value_method: :first, wrapper: :vertical_collection_inline %>
       <%= f.submit "Enviar feedback", class: "btn btn-primary" %>
     <% end %>
 
@@ -83,7 +83,7 @@
           <% comments2 = [] %>
           <% comments.each { |rating| comments2 << rating if !rating.comment.nil? && rating.comment != "" } %>
           <% comments2 = comments2.first(2) %>
-          
+
 
 
 
