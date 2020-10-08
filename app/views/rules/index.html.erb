@@ -35,7 +35,7 @@
                 <td><%= rule.source %></td>
 
                 <td class="text-center"><%= rule.user.first_name %></td>
-                
+
                 <% grade_count = 0 %>
                 <% rule.ratings.each {|rating| grade_count = grade_count + rating.grade if !rating.grade.nil?} %>
                 <td><%= grade_count %><%= grade_count >= 0 ? " 👍" : " 👎"  %></td>
@@ -43,10 +43,10 @@
                 <% validity_count = 0 %>
                 <% rule.ratings.each {|rating| validity_count = validity_count + rating.validity if !rating.validity.nil?} %>
                 <td><%= validity_count %><%= validity_count >= 0 ? " 👍" : " 👎"  %> </td>
-                
 
-                <td> <a href="https://cella-gis.herokuapp.com/rules/<%= rule.id %>" class = "font-weight-bold">Detalhar</a>
-                <td class="text-center"> 
+
+                <td><%= link_to "Detalhar", rule_path(rule), class: "font-weight-bold" %>
+                <td class="text-center">
                   <%= link_to rule_path(rule.id) do %>
                   <i class="fas fa-search"></i>
                   <% end %>

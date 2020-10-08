@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   get '/polygons/:id', to: 'polygons#show'
 
+  get '/rules/:id/polygons', to: 'rules#polygons', as: :rule_polygons
+
   # Leandro comments: the route below is now commented and seems to make no sense due to difficulties
   # it imposes in sending the results to route 'search_mine', which was originally
   # a GET route. 'search_mine', therefore, is now changed to a POST route.
