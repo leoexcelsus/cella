@@ -36,7 +36,7 @@
 </head>
 
 <div class="container">
-  <h2 class="mb-0">Cadastrar uma nova norma</h2>
+  <h2 class="mb-0">Editar norma</h2>
 </div>
 <div class="container d-flex">
   <div class="form-container col-sm-5 mb-5">
@@ -67,7 +67,7 @@
       </div>
 
       <div class="form-actions mb-2">
-        <%= f.button :submit, value: "Criar nova norma", class: "btn-ghost" %>
+        <%= f.button :submit, value: "Atualizar norma", class: "btn-ghost" %>
         <%= f.button :button, "Cancelar", type: "reset", class: "btn-cancel" %>
       </div>
 
@@ -85,6 +85,7 @@
         <select class="form-control select mb-3" id="geom-input-option" data-target="select" data-action="click->polygon#options" name="geom-input-option" required>
           <option default></option>
           <option value="load">Selecionar polígono cadastrado</option>
+          <% # TODO polygono não atualiza quando usuário vem do link em minhas normas pois o polygon id fica no valor de nil ,mas ao voltar a página para novamente o edit é possivel atullizar o polygono %>
           <option value="upload">Carregar arquivo shapefile compactado</option>
         </select>
 
@@ -109,7 +110,6 @@
   </div>
 
 </div>
-
 <script type='text/javascript'>
 
 (function()
@@ -127,4 +127,3 @@
 })();
 
 </script>
-

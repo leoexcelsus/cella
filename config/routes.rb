@@ -25,7 +25,7 @@ Rails.application.routes.draw do
  
   post "rules/:rule_id/rating", to: "ratings#create", as: :rule_ratings
 
-  resources :rules, only: [ :show, :index, :edit, :new, :create ]
+  resources :rules, only: [ :show, :index, :edit, :update, :new, :create ]
 
   get "rules/:id/delete", to: "rules#destroy", as: :delete_rules
 
