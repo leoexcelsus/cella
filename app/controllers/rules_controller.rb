@@ -69,6 +69,10 @@ class RulesController < ApplicationController
 
   def update
     if @rule.update(rule_params)
+      @polygons = Polygon.find(params[:rule][:polygon_ids]) 
+      @rule.polygons = @polygons 
+      @industries = Industry.find(params[:rule][:industry_ids])
+      @rule.industries = @industries
       @rule.save
       redirect_to @rule, notice: 'As informações foram atualizadas.'
     else

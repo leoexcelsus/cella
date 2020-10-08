@@ -54,6 +54,7 @@ import { shpJS } from '../plugins/shp';
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
+  mapDrawInit();
   selectPolygon();
   drawPolygon();
   showPolygon();

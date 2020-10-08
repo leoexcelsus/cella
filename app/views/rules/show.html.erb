@@ -121,7 +121,8 @@
           <% comments = @ratings.order("created_at DESC") %>
           <% comments2 = [] %>
           <% comments.each { |rating| comments2 << rating if !rating.comment.nil? && rating.comment != "" } %>
-          <% comments2 = comments2.first(2) %>
+
+          <% comments2 = comments2.first(20) %>
 
 
 

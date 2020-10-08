@@ -43,7 +43,7 @@
                 <td><%= link_to "Detalhar", rule_path(rule), class: "font-weight-bold" %></td class="text-center">
                 <td class="button-myrules">
                   <%= link_to "", edit_rule_path(rule), class: "fas fa-edit" %>
-                  <%= link_to "", delete_rules_path(rule), class: "far fa-trash-alt", method: :delete, data: {confirm: "Você realmente deseja remover a norma?"} %>
+                  <%= link_to "", delete_rules_path(rule), class: "far fa-trash-alt", data: {confirm: "Você realmente deseja remover a norma?"} %>
                 </td>
               </tr>
             <% end %>

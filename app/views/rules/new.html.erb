@@ -50,7 +50,7 @@
         <%= f.input :issuer, label: "Emissor" %>
         <div class="d-flex">
           <div class="mr-3">
-            <%= f.input :category, label: "Tipo de Norma", collection: ['Decreto', 'Decreto Legislativo', 'Emenda Constitucional', 'Instrução Normativa', 'Instrução Operacional', 'Lei', 'Lei Complementar', 'Medida Provisória', 'Portaria', 'Resolução'] %>
+            <%= f.input :category, label: "Tipo de Norma", collection: ['Acordo internacional', 'Constituição', 'Decreto', 'Decreto Legislativo', 'Emenda Constitucional', 'Instrução Normativa', 'Instrução Operacional', 'Lei', 'Lei Complementar', 'Medida Provisória', 'Portaria', 'Resolução'] %>
           </div>
           <div>
             <%= f.input :number, label: "Número" %>
@@ -107,3 +107,22 @@
   </div>
 
 </div>
+
+<script type='text/javascript'>
+
+(function()
+{
+  if( window.localStorage )
+  {
+    if( !localStorage.getItem('firstLoad') )
+    {
+      localStorage['firstLoad'] = true;
+      window.location.reload();
+    }  
+    else
+      localStorage.removeItem('firstLoad');
+  }
+})();
+
+</script>
+

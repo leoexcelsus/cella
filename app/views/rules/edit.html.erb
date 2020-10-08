@@ -36,7 +36,9 @@
 </head>
 
 <div class="container">
+
   <h2 class="mb-0">Alterar dados da norma</h2>
+
 </div>
 <div class="container d-flex">
   <div class="form-container col-sm-5 mb-5">
@@ -50,14 +52,20 @@
         <%= f.input :issuer, label: "Emissor" %>
         <div class="d-flex">
           <div class="mr-3">
-            <%= f.input :category, label: "Tipo de Norma", collection: ['Decreto', 'Decreto Legislativo', 'Emenda Constitucional', 'Instrução Normativa', 'Instrução Operacional', 'Lei', 'Lei Complementar', 'Medida Provisória', 'Portaria', 'Resolução'] %>
+
+            <%= f.input :category, label: "Tipo de Norma", collection: ['Acordo internacional', 'Constituição', 'Decreto', 'Decreto Legislativo', 'Emenda Constitucional', 'Instrução Normativa', 'Instrução Operacional', 'Lei', 'Lei Complementar', 'Medida Provisória', 'Portaria', 'Resolução'] %>
+
           </div>
           <div>
             <%= f.input :number, label: "Número" %>
           </div>
         </div>
-        <%= f.input :ed_date, label: "Data de Edição", as: :date, html5: true %>
-        <%= f.input :pub_date, label: "Data de Publicação", as: :date, html5: true %>
+
+        <div class="d-flex">
+          <%= f.input :ed_date, label: "Data de Edição", as: :date, html5: true %>
+          <%= f.input :pub_date, label: "Data de Publicação", as: :date, html5: true %>
+        </div>
+
         <%= f.input :long_title, label: "Ementa" %>
         <%= f.input :source, label: "Fonte" %>
         <%= f.input :hyperlink, label: "Link da Norma" %>
@@ -69,17 +77,20 @@
         <%= f.button :button, "Cancelar", type: "reset", class: "btn-cancel" %>
       </div>
 
+
     <%= link_to 'Voltar', rule_path, class: "btn-ghost" %>
 
   </div>
 
   <div class="form-container col-sm-8 mb-5">
+
     <div>
       <h4>Associar Polígono</h4>
     </div>
     <div class="mb-3">
       <div>
         <label for="geom-input-option">Escolha uma forma de apresentar a área</label>
+
         <select class="form-control select mb-3" id="geom-input-option" name="geom-input-option" required>
           <option default></option>
           <option value="load">Selecionar polígono cadastrado</option>
@@ -91,6 +102,7 @@
         </div>
 
         <div id='form-polygon'>
+
           <%= f.association :polygons, label: "Polígonos cadastrados", collection: Polygon.order('name ASC'), input_html: { multiple: true }, include_hidden: false %>
         </div>
         <% end %>
@@ -101,12 +113,15 @@
       <input type="hidden" name="geography" id='wkt-hidden-input'>
     </div>
 
+
     <div id="map" class= "col-sm-12" style="width: 100vw; height: 100vh; margin: 0 auto;">
+
     </div>
 
   </div>
 
 </div>
+
 
 
 <script type="text/javascript">
@@ -197,3 +212,22 @@
   });
 }
 </script>
+
+<script type='text/javascript'>
+
+(function()
+{
+  if( window.localStorage )
+  {
+    if( !localStorage.getItem('firstLoad') )
+    {
+      localStorage['firstLoad'] = true;
+      window.location.reload();
+    }  
+    else
+      localStorage.removeItem('firstLoad');
+  }
+})();
+
+</script>
+
