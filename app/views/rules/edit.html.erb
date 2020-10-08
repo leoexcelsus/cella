@@ -36,7 +36,9 @@
 </head>
 
 <div class="container">
-  <h2 class="mb-0">Cadastrar uma nova norma</h2>
+
+  <h2 class="mb-0">Alterar dados da norma</h2>
+
 </div>
 <div class="container d-flex">
   <div class="form-container col-sm-5 mb-5">
@@ -50,14 +52,20 @@
         <%= f.input :issuer, label: "Emissor" %>
         <div class="d-flex">
           <div class="mr-3">
+
             <%= f.input :category, label: "Tipo de Norma", collection: ['Acordo internacional', 'Constituição', 'Decreto', 'Decreto Legislativo', 'Emenda Constitucional', 'Instrução Normativa', 'Instrução Operacional', 'Lei', 'Lei Complementar', 'Medida Provisória', 'Portaria', 'Resolução'] %>
+
           </div>
           <div>
             <%= f.input :number, label: "Número" %>
           </div>
         </div>
-        <%= f.input :ed_date, label: "Data de Edição", as: :date, html5: true %>
-        <%= f.input :pub_date, label: "Data de Publicação", as: :date, html5: true %>
+
+        <div class="d-flex">
+          <%= f.input :ed_date, label: "Data de Edição", as: :date, html5: true %>
+          <%= f.input :pub_date, label: "Data de Publicação", as: :date, html5: true %>
+        </div>
+
         <%= f.input :long_title, label: "Ementa" %>
         <%= f.input :source, label: "Fonte" %>
         <%= f.input :hyperlink, label: "Link da Norma" %>
@@ -65,32 +73,36 @@
       </div>
 
       <div class="form-actions mb-2">
-        <%= f.button :submit, value: "Criar nova norma", class: "btn-ghost" %>
+        <%= f.button :submit, value: "Atualizar norma", class: "btn-ghost" %>
         <%= f.button :button, "Cancelar", type: "reset", class: "btn-cancel" %>
       </div>
 
-    <%= link_to 'Voltar', root_path, class: "btn-ghost" %>
+
+    <%= link_to 'Voltar', rule_path, class: "btn-ghost" %>
 
   </div>
 
-  <div class="form-container col-sm-8 mb-5" data-controller="polygon">
+  <div class="form-container col-sm-8 mb-5">
+
     <div>
       <h4>Associar Polígono</h4>
     </div>
     <div class="mb-3">
       <div>
         <label for="geom-input-option">Escolha uma forma de apresentar a área</label>
-        <select class="form-control select mb-3" id="geom-input-option" data-target="select" data-action="click->polygon#options" name="geom-input-option" required>
+
+        <select class="form-control select mb-3" id="geom-input-option" name="geom-input-option" required>
           <option default></option>
           <option value="load">Selecionar polígono cadastrado</option>
           <option value="upload">Carregar arquivo shapefile compactado</option>
         </select>
 
-        <div id='form-file' class="mb-3" data-target="polygon.file" hidden>
+        <div id='form-file' class="mb-3">
           <input type="file">
         </div>
 
-        <div id='form-polygon' data-target="polygon.polygon" hidden>
+        <div id='form-polygon'>
+
           <%= f.association :polygons, label: "Polígonos cadastrados", collection: Polygon.order('name ASC'), input_html: { multiple: true }, include_hidden: false %>
         </div>
         <% end %>
@@ -101,12 +113,105 @@
       <input type="hidden" name="geography" id='wkt-hidden-input'>
     </div>
 
-    <div id="map-index" class= "col-sm-12" style="width: 100vw; height: 100vh; margin: 0 auto;">
+
+    <div id="map" class= "col-sm-12" style="width: 100vw; height: 100vh; margin: 0 auto;">
+
     </div>
 
   </div>
 
 </div>
+
+
+
+<script type="text/javascript">
+  window.addEventListener("load", (event) => {
+    document.getElementById('form-file').hidden = true;
+    document.getElementById('form-polygon').hidden = true;
+  });
+  const formGeoInputOptionTwo = document.getElementById('geom-input-option');
+  formGeoInputOptionTwo.addEventListener('input', (event) => {
+    console.log("Geometry input option is set");
+    const formFile = document.getElementById('form-file');
+    const formPolygon = document.getElementById('form-polygon');
+    if (formGeoInputOptionTwo.value == "load") {
+      formFile.hidden = true;
+      formPolygon.hidden = false;
+    } else if (formGeoInputOptionTwo.value == "upload") {
+      formFile.hidden = false;
+      formPolygon.hidden = true;
+    } else {
+      formFile.hidden = true;
+      formPolygon.hidden = true;
+    };
+  });
+</script>
+
+
+<script>
+  const mapElement = document.getElementById('map');
+
+  if (mapElement) {
+    const map = L.map(mapElement).setView([-15.5, -48], 5);
+
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGVvZXhjZWxzdXMiLCJhIjoiY2tleWNxcnB2MGFzejJwcXQwdGIwMmR2byJ9.CbC1R_EI0AICNAxaZSvyeg', {
+      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+      maxZoom: 18,
+      id: 'mapbox/streets-v11',
+      tileSize: 512,
+      zoomOffset: -1,
+      accessToken: 'pk.eyJ1IjoibGVvZXhjZWxzdXMiLCJhIjoiY2tleWNxcnB2MGFzejJwcXQwdGIwMmR2byJ9.CbC1R_EI0AICNAxaZSvyeg'
+    }).addTo(map);
+
+  const selectPolygon = document.getElementById('rule_polygon_ids');
+  selectPolygon.addEventListener('change', (event) => {
+    console.log('Value changed');
+    // Apagar/remover layers do leaflet;
+    map.eachLayer(function(layer) {
+      if (!!layer.toGeoJSON) {
+        map.removeLayer(layer);
+      }
+    });
+    const drawnItems = new L.FeatureGroup();
+    // Fetch para buscar os polígonos pelos seus IDs;
+    fetch(`/polygons/${selectPolygon.value}`)
+      .then(response => response.json())
+      .then((data) => {
+        // console.log(data.coordinates);
+        let array = data.coordinates;
+        let newArray = [];
+        let i = 0;
+        let buffer = 0;
+        while (i < array.length) {
+          buffer = array[i][0];
+          array[i][0] = array[i][1];
+          array[i][1] = buffer;
+          // console.log(array[i]);
+          newArray.push(array[i]);
+          i = i + 1;
+        };
+        // console.log(newArray)
+        // data é um JSON com uma chave coordinates;
+        // dentro dessa chave coordinates, temos um array de arrays com as coordenadas;
+        // precisamos enviar esses dados para o mapa e atualizá-lo;
+        L.polygon(data.coordinates,
+          {
+            color: '#000',
+            weight: 1,
+            fillColor: '#6E8B3D',
+            fillOpacity: 0.5,
+          }).addTo(map);
+        // TO DO: data.coordinates has many coordinate pairs;
+        // Is this the right way?
+        map.fitBounds(data.coordinates);
+      });
+    // Recebe um hash ou um array de coordenadas (armazenadas em uma enumerable);
+    // // Iterar sobre esse resultado para criar camadas do leaflet para visualização no mapa;
+    // data.forEach((result) => {
+    // função/módulo do leaflet => L.Polygon(array de pares de coordenadas).addTo(nome da variável que contém o mapa);
+  });
+}
+</script>
 
 <script type='text/javascript'>
 

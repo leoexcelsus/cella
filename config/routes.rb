@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   get '/polygons/:id', to: 'polygons#show'
 
+  get '/rules/:id/polygons', to: 'rules#polygons', as: :rule_polygons
+
   # Leandro comments: the route below is now commented and seems to make no sense due to difficulties
   # it imposes in sending the results to route 'search_mine', which was originally
   # a GET route. 'search_mine', therefore, is now changed to a POST route.
@@ -16,16 +18,18 @@ Rails.application.routes.draw do
 
 
 
- 
+
   devise_for :users
 
 
   get "rules/users/:user_id", to: "rules#myrules", as: :myrules
 
- 
+
   post "rules/:rule_id/rating", to: "ratings#create", as: :rule_ratings
 
-  resources :rules, only: [ :show, :index, :edit, :new, :create ]
+
+  resources :rules, only: [ :show, :index, :edit, :update, :new, :create ]
+
 
   get "rules/:id/delete", to: "rules#destroy", as: :delete_rules
 

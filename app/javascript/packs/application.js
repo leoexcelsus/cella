@@ -30,6 +30,8 @@ require("leaflet/dist/leaflet.css");
 import "leaflet-draw";
 require("leaflet-draw/dist/leaflet.draw.css");
 
+import "wicket";
+
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 
@@ -39,17 +41,21 @@ import { selectPolygon } from '../components/select_polygon';
 
 import { drawPolygon } from '../components/draw_polygon';
 
+import { showPolygon } from '../components/show_polygon';
+
 import { leafletShpFile } from '../plugins/leaflet.shpfile';
 
 import { shpJS } from '../plugins/shp';
 
 // require( 'datatables.net-dt' )();
 
-// require ("../../../vendor/assets/dist/js/dsgov")
-
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
+  mapDrawInit();
   selectPolygon();
   drawPolygon();
+  showPolygon();
 });
+
+require ("../../../vendor/assets/dist/js/dsgov");

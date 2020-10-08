@@ -33,6 +33,10 @@ class RulesController < ApplicationController
     @rating = Rating.new
     @ratings = Rating.where(rule: @rule)
     @my_ratings = @rule.ratings.select { |r| r.user_id == current_user.id }
+    @polygons = {}
+    @rule.polygons.each do |polygon|
+      @polygons[polygon.id] = RGeo::GeoJSON.encode(polygon.geography)["coordinates"][0][0]
+    end
   end
   # TO DO: rename to 'spatial_search_form'. Watch out for existing cross-references.
   def spatial_search
@@ -64,9 +68,12 @@ class RulesController < ApplicationController
     @rule = Rule.all
   end
 
-
   def update
     if @rule.update(rule_params)
+      @polygons = Polygon.find(params[:rule][:polygon_ids]) 
+      @rule.polygons = @polygons 
+      @industries = Industry.find(params[:rule][:industry_ids])
+      @rule.industries = @industries
       @rule.save
       redirect_to @rule, notice: 'As informações foram atualizadas.'
     else
