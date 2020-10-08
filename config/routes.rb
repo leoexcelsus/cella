@@ -34,7 +34,7 @@ Rails.application.routes.draw do
   # get "rules_mine/", to: "rules#show_rules", as: :rules_user
 
   # As noted above, this route was changed from a GET to a POST route.
-  get "search_mine/", to: "rules#index_search", as: :index_search
+  post "search_mine/", to: "rules#index_search", as: :index_search
 
 
 
