@@ -76,12 +76,28 @@ puts "Creating 2 Users..."
 user1 = User.new(email:'admin@admin.com', first_name: 'Administrador', last_name: 'SPPI', company: 'Economy Ministry')
 user1.password = '123456'
 
-user2 = User.new(email:'ze@ze.com', first_name: 'José', last_name: 'da Silva', company: 'Silva Advogados Associados')
+user2 = User.new(email:'Lorena@gmail.com', first_name: 'Lorena', last_name: 'Escovedo', company: 'MRS Relações Públicas')
 user2.password = '123456'
+
+user3 = User.new(email:'Abrao@mrs.com.br', first_name: 'Abrão', last_name: 'Albuquerque', company: 'MRS construções')
+user3.password = '123456'
+
+user4 = User.new(email:'Kaio@mattos.com', first_name: 'Kaio', last_name: 'Mattos', company: 'Advogado Profissional Liberal')
+user4.password = '123456'
+
+user5 = User.new(email:'Adriele@lima.com', first_name: 'Adriele', last_name: 'Paiva', company: 'Lima Projetos Ambientais')
+user5.password = '123456'
+
+user6 = User.new(email:'Lyandra@gmail.com', first_name: 'Lyandra', last_name: 'Silva', company: 'nenhuma')
+user6.password = '123456'
 
 puts "...saving Users to database..."
 user1.save!
 user2.save!
+user3.save!
+user4.save!
+user5.save!
+user6.save!
 
 puts "...Users saved to database."
 
@@ -257,8 +273,184 @@ rule10.save!
 
 puts "...rules saved to database."
 
+puts "Creating 20 Ratings..."
+
+rating1 = Rating.new(
+  comment: 'Carta Magna Federal, primeiro documento a ser lido, mesmo por quem não for da área jurídica',
+  grade: 1,
+  validity: 1,
+  )
+rating1.rule = rule1
+rating1.user = user4
+
+rating2 = Rating.new(
+  comment: 'Lei importante para meus estudos',
+  grade: 1,
+  )
+rating2.rule = rule2
+rating2.user = user4
+
+rating3 = Rating.new(
+  comment: 'Acho que foi revogada',
+  validity: -1,
+  )
+rating3.rule = rule10
+rating3.user = user5
+
+rating4 = Rating.new(
+  comment: 'Legislação Estadual difícil de achar',
+  grade: 1,
+  validity: 1,
+  )
+rating4.rule = rule6
+rating4.user = user4
+
+rating5 = Rating.new(
+  comment: 'Fala muito vagamente de tudo e não diz nada',
+  grade: -1,
+  validity: 1,
+  )
+rating5.rule = rule1
+rating5.user = user3
+
+rating6 = Rating.new(
+  comment: 'Não sabia que minha região aqui era mata atlantica',
+  grade: 1,
+  )
+rating6.rule = rule3
+rating6.user = user6
+
+rating7 = Rating.new(
+  comment: 'Aqui descobri o que significa patrimônio espeleológico',
+  grade: -1,
+  validity: 1,
+  )
+rating7.rule = rule8
+rating7.user = user4
+
+rating8 = Rating.new(
+  comment: 'Importante para meu projeto, mas a lei ficou restritiva demais, assim fica díficil trabalhar',
+  validity: 1,
+  )
+rating8.rule = rule9
+rating8.user = user3
+
+rating9 = Rating.new(
+  validity: -1,
+  )
+rating9.rule = rule8
+rating9.user = user6
+
+rating10 = Rating.new(
+  comment: 'Impossível de não aparecer na minha pesquisa, rsrsrsrrs',
+  grade: 1,
+  validity: 1,
+  )
+rating10.rule = rule1
+rating10.user = user6
+
+rating11 = Rating.new(
+  grade: 1,
+  validity: 1,
+  )
+rating11.rule = rule1
+rating11.user = user5
+
+rating12 = Rating.new(
+  grade: 1,
+  )
+rating12.rule = rule1
+rating12.user = user4
+
+rating13 = Rating.new(
+  validity: -1,
+  )
+rating13.rule = rule10
+rating13.user = user2
+
+rating14 = Rating.new(
+  comment: 'Existe uma nova Portaria sobre isso',
+  validity: -1,
+  )
+rating14.rule = rule10
+rating14.user = user2
+
+rating15 = Rating.new(
+  comment: 'Isso não se aplica a nenhum caso prático',
+  grade: -1,
+  )
+rating15.rule = rule4
+rating15.user = user4
+
+rating16 = Rating.new(
+  comment: 'mais burocracia',
+  grade: 1,
+  validity: 1,
+  )
+rating16.rule = rule5
+rating16.user = user3
+
+rating17 = Rating.new(
+  comment: 'Mais confudiu os processo no IBAMA do que me trouxe segurnança jurídica',
+  grade: -1,
+  )
+rating17.rule = rule5
+rating17.user = user6
+
+rating18 = Rating.new(
+  comment: 'Algém tem algum modelo de projeto aprovado nesses termos? poderiam me encaminhar para mim, adriele@lima.com? Grata, adriele ',
+  grade: 1,
+  validity: 1,
+  )
+rating18.rule = rule9
+rating18.user = user5
+
+rating19 = Rating.new(
+  grade: 1,
+  validity: 1,
+  )
+rating19.rule = rule1
+rating19.user = user3
+
+rating20 = Rating.new(
+  comment: 'A demarcação de reservas indigenas foi um grande avanço',
+  grade: 1,
+  validity: 1,
+  )
+rating20.rule = rule1
+rating20.user = user2
+
+puts "...saving ratings to database..."
+rating1.save!
+rating2.save!
+rating3.save!
+rating4.save!
+rating5.save!
+rating6.save!
+rating7.save!
+rating8.save!
+rating9.save!
+rating10.save!
+rating11.save!
+rating12.save!
+rating13.save!
+rating14.save!
+rating15.save!
+rating16.save!
+rating17.save!
+rating18.save!
+rating19.save!
+rating20.save!
+
+puts "...ratings saved to database."
+
+
 puts "..."
 puts "..."
 puts "..."
 puts "..."
 puts "Seeding is finished! Good Luck!"
+
+
+
+
