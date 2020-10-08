@@ -40,10 +40,12 @@
                 <% rule.ratings.each {|rating| validity_count = validity_count + rating.validity if !rating.validity.nil?} %>
                 <td class="text-center"><%= validity_count %><%= validity_count >= 0 ? " 👍" : " 👎"  %></td>
 
-                <td class="text-center">
-                  <%= link_to rule_path(rule.id) do %>
+
+                <td class="text-center"> 
+                  <%= link_to "https://cella-gis.herokuapp.com/rules/#{rule.id}", :target => "_blank" do %>
                   <i class="fas fa-search"></i>
-                  <% end %></td>
+                  <% end %>
+
                 <td class="button-myrules">
                   <%= link_to "", edit_rule_path(rule), class: "fas fa-edit" %>
                   <%= link_to "", delete_rules_path(rule), class: "far fa-trash-alt", data: {confirm: "Você realmente deseja remover a norma?"} %>

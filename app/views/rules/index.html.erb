@@ -13,12 +13,11 @@
                 <th scope="col">Data de Publicação</th>
                 <th scope="col">Data de Edição</th>
                 <th scope="col">Ementa</th>
-                <th scope="col">Fonte</th>
+
                 <th scope="col">Origem da Norma</th>
                 <th scope="col">Avaliação</th>
                 <th scope="col">Vigência</th>
                 <th scope="col">Detalhar</th>
-                 <th scope="col">Detalhar2</th>
                 <th scope="col">Link oficial</th>
               </tr>
             </thead>
@@ -32,7 +31,7 @@
                 <td><%= format_date(rule.pub_date) %></td>
                 <td><%= format_date(rule.ed_date) %></td>
                 <td><%= rule.long_title.truncate_words(10) %></td>
-                <td><%= rule.source %></td>
+
 
                 <td class="text-center"><%= rule.user.first_name %></td>
 
@@ -45,9 +44,8 @@
                 <td class="text-center"><%= validity_count %><%= validity_count >= 0 ? " 👍" : " 👎"  %> </td>
 
 
-                <td><%= link_to "Detalhar", rule_path(rule), class: "font-weight-bold" %>
                 <td class="text-center">
-                  <%= link_to rule_path(rule.id) do %>
+                  <%= link_to "https://cella-gis.herokuapp.com/rules/#{rule.id}" do %>
                   <i class="fas fa-search"></i>
                   <% end %>
                 <td class="text-center">
