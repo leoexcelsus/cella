@@ -37,11 +37,11 @@
 
                 <% grade_count = 0 %>
                 <% rule.ratings.each {|rating| grade_count = grade_count + rating.grade if !rating.grade.nil?} %>
-                <td><%= grade_count %><%= grade_count >= 0 ? " 👍" : " 👎"  %></td>
+                <td class="text-center"><%= grade_count %><%= grade_count >= 0 ? " 👍" : " 👎"  %></td>
 
                 <% validity_count = 0 %>
                 <% rule.ratings.each {|rating| validity_count = validity_count + rating.validity if !rating.validity.nil?} %>
-                <td><%= validity_count %><%= validity_count >= 0 ? " 👍" : " 👎"  %> </td>
+                <td class="text-center"><%= validity_count %><%= validity_count >= 0 ? " 👍" : " 👎"  %> </td>
 
 
                 <td class="text-center">
