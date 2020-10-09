@@ -32,10 +32,9 @@ class RulesController < ApplicationController
     @rule = Rule.find(params[:id])
     @rating = Rating.new
     @ratings = Rating.where(rule: @rule)
-    @polygons = {}
-    @rule.polygons.each do |polygon|
-      @polygons[polygon.id] = RGeo::GeoJSON.encode(polygon.geography)["coordinates"][0][0]
-    end
+    # to do: prevent sql injection here. SQLite gem? http://ruby.bastardsbook.com/chapters/sql/#placeholders-sqlite-gem
+    sql = "SELECT ST_AsText(geography) From polygons Where id = #{params[:id]};"
+    @polygonsWkt = ActiveRecord::Base.connection.execute(sql)[0]["st_astext"]
   end
   # TO DO: rename to 'spatial_search_form'. Watch out for existing cross-references.
   def spatial_search
@@ -69,8 +68,8 @@ class RulesController < ApplicationController
 
   def update
     if @rule.update(rule_params)
-      @polygons = Polygon.find(params[:rule][:polygon_ids]) 
-      @rule.polygons = @polygons 
+      @polygons = Polygon.find(params[:rule][:polygon_ids])
+      @rule.polygons = @polygons
       @industries = Industry.find(params[:rule][:industry_ids])
       @rule.industries = @industries
       @rule.save
