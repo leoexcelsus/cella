@@ -96,7 +96,7 @@
 
    <%= f.input :grade, as: :radio_buttons, label:"Norma importante para seu dia-a-dia?", collection: [[1, '👍'], [-1, '👎']], label_method: :second, value_method: :first, wrapper: :vertical_collection_inline %>
    <%= f.input :validity, as: :radio_buttons, label:"Norma em vigência?", collection: [[1, '👍'], [-1, '👎']], label_method: :second, value_method: :first, wrapper: :vertical_collection_inline %>
-      <%= f.submit "Enviar feedback", class: "btn btn-primary" %>
+      <%= f.submit "Enviar feedback", class: "br-button primary" %>
     <% end %>
 
 
@@ -109,7 +109,7 @@
     <div class="col-4">
     <%= simple_form_for [ @rule, @rating ] do |f| %>
       <%= f.input :comment, label: "Comente aqui" %>
-      <%= f.submit "Enviar comentário", class: "btn btn-primary" %>
+      <%= f.submit "Enviar comentário", class: "br-button primary" %>
     <% end %>
     <div>
 <br>
