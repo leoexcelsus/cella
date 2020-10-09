@@ -13,12 +13,11 @@
                 <th scope="col">Data de Publicação</th>
                 <th scope="col">Data de Edição</th>
                 <th scope="col">Ementa</th>
-                <th scope="col">Fonte</th>
+
                 <th scope="col">Origem da Norma</th>
                 <th scope="col">Avaliação</th>
                 <th scope="col">Vigência</th>
                 <th scope="col">Detalhar</th>
-                 <th scope="col">Detalhar2</th>
                 <th scope="col">Link oficial</th>
               </tr>
             </thead>
@@ -32,21 +31,30 @@
                 <td><%= format_date(rule.pub_date) %></td>
                 <td><%= format_date(rule.ed_date) %></td>
                 <td><%= rule.long_title.truncate_words(10) %></td>
-                <td><%= rule.source %></td>
+
 
                 <td class="text-center"><%= rule.user.first_name %></td>
 
                 <% grade_count = 0 %>
                 <% rule.ratings.each {|rating| grade_count = grade_count + rating.grade if !rating.grade.nil?} %>
-                <td><%= grade_count %><%= grade_count >= 0 ? " 👍" : " 👎"  %></td>
+                <td class="text-center"><%= grade_count %><%= grade_count >= 0 ? " 👍" : " 👎"  %></td>
 
                 <% validity_count = 0 %>
                 <% rule.ratings.each {|rating| validity_count = validity_count + rating.validity if !rating.validity.nil?} %>
+<<<<<<< HEAD
                 <td><%= validity_count %><%= validity_count >= 0 ? " 👍" : " 👎"  %> </td>
                 
                 <td class="text-center"> 
                   <%= link_to "https://cella-gis.herokuapp.com/rules/#{rule.id}", :target => "_blank" do %>
                     <i class="fas fa-search"></i>
+=======
+                <td class="text-center"><%= validity_count %><%= validity_count >= 0 ? " 👍" : " 👎"  %> </td>
+
+
+                <td class="text-center">
+                  <%= link_to "https://cella-gis.herokuapp.com/rules/#{rule.id}" do %>
+                  <i class="fas fa-search"></i>
+>>>>>>> e8b301e51b007f2c7fbb9a2531a8691cffd9c3f0
                   <% end %>
                 </td>
                 <td class="text-center"> 

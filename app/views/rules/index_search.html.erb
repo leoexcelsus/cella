@@ -18,7 +18,6 @@
                 <th scope="col">Avaliação</th>
                 <th scope="col">Vigência</th>
                 <th scope="col">Detalhar</th>
-                <th scope="col">Detalhar2</th>
                 <th scope="col">Link oficial</th>
               </tr>
             </thead>
@@ -43,6 +42,7 @@
                 <% rule.ratings.each {|rating| validity_count = validity_count + rating.validity if !rating.validity.nil?} %>
                 <td><%= validity_count %><%= validity_count >= 0 ? " 👍" : " 👎"  %></td>
           
+<<<<<<< HEAD
                 <td class="text-center"> 
                   <%= link_to "https://cella-gis.herokuapp.com/rules/#{rule.id}", :target => "_blank" do %>
                     <i class="fas fa-search"></i>
@@ -51,6 +51,11 @@
                 <td class="text-center"> 
                   <%= link_to rule_path(rule.id), :target => "_blank" do %>
                     <i class="fas fa-search"></i>
+=======
+                <td class="text-center"> 
+                  <%= link_to "https://cella-gis.herokuapp.com/rules/#{rule.id}", :target => "_blank" do %>
+                  <i class="fas fa-search"></i>
+>>>>>>> e8b301e51b007f2c7fbb9a2531a8691cffd9c3f0
                   <% end %>
                 </td>
                 <td class="text-center">
