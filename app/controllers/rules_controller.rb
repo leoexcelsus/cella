@@ -32,9 +32,13 @@ class RulesController < ApplicationController
     @rule = Rule.find(params[:id])
     @rating = Rating.new
     @ratings = Rating.where(rule: @rule)
+    rule_polygons = @rule.polygon_ids
     # to do: prevent sql injection here. SQLite gem? http://ruby.bastardsbook.com/chapters/sql/#placeholders-sqlite-gem
-    sql = "SELECT ST_AsText(geography) From polygons Where id = #{params[:id]};"
-    @polygonsWkt = ActiveRecord::Base.connection.execute(sql)[0]["st_astext"]
+    sql = "SELECT ST_AsText(geography) From polygons Where id = any (array#{rule_polygons});"
+    wkts_arrays = ActiveRecord::Base.connection.execute(sql).values
+    wkts_hash = {}
+    wkts_arrays.each_with_index { |array, index| wkts_hash[index] = array[0] }
+    @wkts_json = wkts_hash.to_json
   end
   # TO DO: rename to 'spatial_search_form'. Watch out for existing cross-references.
   def spatial_search
