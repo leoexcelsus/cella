@@ -30,7 +30,6 @@ require("leaflet/dist/leaflet.css");
 import "leaflet-draw";
 require("leaflet-draw/dist/leaflet.draw.css");
 
-import "wicket";
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
