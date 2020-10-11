@@ -30,9 +30,13 @@ require("leaflet/dist/leaflet.css");
 import "leaflet-draw";
 require("leaflet-draw/dist/leaflet.draw.css");
 
-
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
+
+
+import { leafletShpFile } from '../plugins/leaflet.shpfile';
+
+import { shpJS } from '../plugins/shp';
 
 import { mapDrawInit } from '../plugins/map_draw_init';
 
@@ -42,9 +46,6 @@ import { drawPolygon } from '../components/draw_polygon';
 
 import { showPolygon } from '../components/show_polygon';
 
-import { leafletShpFile } from '../plugins/leaflet.shpfile';
-
-import { shpJS } from '../plugins/shp';
 
 // require( 'datatables.net-dt' )();
 
@@ -57,4 +58,4 @@ document.addEventListener('turbolinks:load', () => {
   showPolygon();
 });
 
-require ("../../../vendor/assets/dist/js/dsgov");
+// require ("../../../vendor/assets/dist/js/dsgov");

@@ -1,3 +1,4 @@
+
 const drawPolygon = () => {
   const mapElement = document.getElementById('map-index');
 
@@ -24,6 +25,8 @@ const drawPolygon = () => {
       });
       const drawnItems = new L.FeatureGroup();
       // Fetch para buscar os polígonos pelos seus IDs;
+      // to do: change the respective Polygons Controller action so as to pass a WKT (stringfied polygon)
+      // this way is too slow for big complex polygons.
       fetch(`/polygons/${selectPolygon.value}`)
         .then(response => response.json())
         .then((data) => {
