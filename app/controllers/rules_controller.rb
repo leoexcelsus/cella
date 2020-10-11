@@ -4,9 +4,6 @@ class RulesController < ApplicationController
 
   skip_before_action :authenticate_user!, only: [:index, :show, :index_search, :spatial_search]
 
-  def index
-  end
-
   def index_search
     if (s_query_params_i && s_query_params_g)
       @searched_polygon = s_query_params_g[:geography]
@@ -32,6 +29,9 @@ class RulesController < ApplicationController
     @rule = Rule.find(params[:id])
     @rating = Rating.new
     @ratings = Rating.where(rule: @rule)
+    if user_signed_in?
+      @my_ratings = @rule.ratings.select { |r| r.user_id == current_user.id }
+    end
     @polygons = {}
     @rule.polygons.each do |polygon|
       @polygons[polygon.id] = RGeo::GeoJSON.encode(polygon.geography)["coordinates"][0][0]
@@ -64,7 +64,7 @@ class RulesController < ApplicationController
   end
 
   def index
-    @rule = Rule.all
+    @rules = Rule.all
   end
 
   def update
