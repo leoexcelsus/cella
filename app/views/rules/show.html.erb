@@ -65,11 +65,41 @@
           </div>
         </div>
       </div>
-    <%= simple_form_for [ @rule, @rating ] do |f| %>
 
-   <%= f.input :grade, as: :radio_buttons, label:"Norma importante para seu dia-a-dia?", collection: [[1, '👍'], [-1, '👎']], label_method: :second, value_method: :first, wrapper: :vertical_collection_inline %>
-   <%= f.input :validity, as: :radio_buttons, label:"Norma em vigência?", collection: [[1, '👍'], [-1, '👎']], label_method: :second, value_method: :first, wrapper: :vertical_collection_inline %>
-      <%= f.submit "Enviar feedback", class: "btn btn-primary" %>
+    <% if user_signed_in? %>
+      <%= simple_form_for [ @rule, @rating ], remote: true do |f| %>
+        <% if @my_ratings.last && @my_ratings.last.grade.positive? %>
+          <% checked = 1 %>
+        <% elsif  @my_ratings.last && @my_ratings.last.grade.negative?%>
+          <% checked = -1 %>
+        <% else %>
+          <% checked = 0 %>
+        <% end %>
+      <%= f.input :grade,
+                  as: :radio_buttons,
+                  label:"Norma importante para seu dia-a-dia?",
+                  collection: [[1, '👍'], [-1, '👎']],
+                  label_method: :second,
+                  value_method: :first,
+                  wrapper: :vertical_collection_inline,
+                  checked: [checked,true] %>
+        <% if @my_ratings.last && @my_ratings.last.validity.positive? %>
+          <% checked = 1 %>
+        <% elsif  @my_ratings.last && @my_ratings.last.validity.negative?%>
+          <% checked = -1 %>
+        <% else %>
+          <% checked = 0 %>
+        <% end %>
+      <%= f.input :validity,
+                  as: :radio_buttons,
+                  label:"Norma em vigência?",
+                  collection: [[1, '👍'], [-1, '👎']],
+                  label_method: :second,
+                  value_method: :first,
+                  wrapper: :vertical_collection_inline,
+                  checked: [checked,true] %>
+        <%= f.submit "Enviar feedback", class: "btn btn-primary" %>
+      <% end %>
     <% end %>
 
 
@@ -82,7 +112,7 @@
     <div class="col-4">
     <%= simple_form_for [ @rule, @rating ] do |f| %>
       <%= f.input :comment, label: "Comente aqui" %>
-      <%= f.submit "Enviar comentário", class: "btn btn-primary" %>
+      <%= f.submit "Enviar comentário", class: "br-button primary" %>
     <% end %>
     <div>
 <br>
@@ -129,24 +159,6 @@
       <%= link_to 'Voltar para lista', :back, class: "br-button secondary" %>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     </div>
-
   </div>
 </div>

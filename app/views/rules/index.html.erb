@@ -1,10 +1,10 @@
 <div class="container">
   <div class="table-container">
-    <div class="results mt-3 mb-5"><%= @rule.size %> normas registradas no sistema</div>
+    <div class="results mt-3 mb-5"><%= @rules.size %> normas registradas no sistema</div>
       <div id="data">
         <table class="table">
           <thead class="thead-light">
-            <% if @rule.size.positive? %>
+            <% if @rules.size.positive? %>
               <tr>
                 <th scope="col">Jurisdição</th>
                 <th scope="col">Emissor</th>
@@ -22,7 +22,7 @@
               </tr>
             </thead>
             <tbody>
-            <% @rule.each do |rule| %>
+              <% @rules.each do |rule| %>
               <tr>
                 <td class="text-center"><%= rule.jurisdiction %></td>
                 <td><%= rule.issuer %></td>
@@ -31,8 +31,6 @@
                 <td><%= format_date(rule.pub_date) %></td>
                 <td><%= format_date(rule.ed_date) %></td>
                 <td><%= rule.long_title.truncate_words(10) %></td>
-
-
                 <td class="text-center"><%= rule.user.first_name %></td>
 
                 <% grade_count = 0 %>
@@ -41,20 +39,22 @@
 
                 <% validity_count = 0 %>
                 <% rule.ratings.each {|rating| validity_count = validity_count + rating.validity if !rating.validity.nil?} %>
-                <td class="text-center"><%= validity_count %><%= validity_count >= 0 ? " 👍" : " 👎"  %> </td>
-
-
-                <td class="text-center">
-                  <%= link_to "https://cella-gis.herokuapp.com/rules/#{rule.id}" do %>
-                  <i class="fas fa-search"></i>
+                <td><%= validity_count %><%= validity_count >= 0 ? " 👍" : " 👎"  %> </td>
+                
+                <td class="text-center"> 
+                  <%= link_to rule_path(rule.id), :target => "_blank" do %>
+                    <i class="fas fa-search"></i>
                   <% end %>
+                </td>
+                
                 <td class="text-center">
                   <%= link_to rule.hyperlink, :target => "_blank" do %>
-                  <i class="fas fa-external-link-alt mr-3"></i>
+                    <i class="fas fa-external-link-alt mr-3"></i>
                   <% end %>
-
+                </td>
+                
               </tr>
-            <% end %>
+              <% end %>
             <% else %>
               <p class="title">Não foram encontrados resultados para essa busca</p>
             <% end %>

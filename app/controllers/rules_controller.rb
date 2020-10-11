@@ -4,9 +4,6 @@ class RulesController < ApplicationController
 
   skip_before_action :authenticate_user!, only: [:index, :show, :index_search, :spatial_search]
 
-  def index
-  end
-
   def index_search
     if (s_query_params_i && s_query_params_g)
       @searched_polygon = s_query_params_g[:geography]
@@ -32,6 +29,9 @@ class RulesController < ApplicationController
     @rule = Rule.find(params[:id])
     @rating = Rating.new
     @ratings = Rating.where(rule: @rule)
+    if user_signed_in?
+      @my_ratings = @rule.ratings.select { |r| r.user_id == current_user.id }
+    end
     rule_polygons = @rule.polygon_ids
     # to do: prevent sql injection here. SQLite gem? http://ruby.bastardsbook.com/chapters/sql/#placeholders-sqlite-gem
     sql = "SELECT ST_AsText(geography) From polygons Where id = any (array#{rule_polygons});"
@@ -67,7 +67,7 @@ class RulesController < ApplicationController
   end
 
   def index
-    @rule = Rule.all
+    @rules = Rule.all
   end
 
   def update
