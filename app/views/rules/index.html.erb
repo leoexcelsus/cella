@@ -1,10 +1,10 @@
 <div class="container">
   <div class="table-container">
-    <div class="results mt-3 mb-5"><%= @rule.size %> normas registradas no sistema</div>
+    <div class="results mt-3 mb-5"><%= @rules.size %> normas registradas no sistema</div>
       <div id="data">
         <table class="table">
           <thead class="thead-light">
-            <% if @rule.size.positive? %>
+            <% if @rules.size.positive? %>
               <tr>
                 <th scope="col">Jurisdição</th>
                 <th scope="col">Emissor</th>
@@ -22,7 +22,7 @@
               </tr>
             </thead>
             <tbody>
-              <% @rule.each do |rule| %>
+              <% @rules.each do |rule| %>
               <tr>
                 <td class="text-center"><%= rule.jurisdiction %></td>
                 <td><%= rule.issuer %></td>
