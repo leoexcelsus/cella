@@ -4,9 +4,6 @@ class RulesController < ApplicationController
 
   skip_before_action :authenticate_user!, only: [:index, :show, :index_search, :spatial_search]
 
-  def index
-  end
-
   def index_search
     if (s_query_params_i && s_query_params_g)
       @searched_polygon = s_query_params_g[:geography]
@@ -67,7 +64,7 @@ class RulesController < ApplicationController
   end
 
   def index
-    @rule = Rule.all
+    @rules = Rule.all
   end
 
   def update
