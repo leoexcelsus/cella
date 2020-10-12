@@ -1,38 +1,10 @@
 <head>
-  <link rel="stylesheet" href="https://leaflet.github.io/Leaflet.draw/docs/examples/libs/leaflet.css">
-  <link rel="stylesheet" href="https://leaflet.github.io/Leaflet.draw/src/leaflet.draw.css">
-
-  <script src="https://leaflet.github.io/Leaflet.draw/docs/examples/libs/leaflet-src.js"></script>
-  <script src="https://leaflet.github.io/Leaflet.draw/src/Leaflet.draw.js"></script>
-  <script src="https://leaflet.github.io/Leaflet.draw/src/Leaflet.Draw.Event.js"></script>
-
-  <script src="https://leaflet.github.io/Leaflet.draw/src/Toolbar.js"></script>
-  <script src="https://leaflet.github.io/Leaflet.draw/src/Tooltip.js"></script>
-  <script src="https://leaflet.github.io/Leaflet.draw/src/ext/GeometryUtil.js"></script>
-  <script src="https://leaflet.github.io/Leaflet.draw/src/ext/LatLngUtil.js"></script>
-  <script src="https://leaflet.github.io/Leaflet.draw/src/ext/LineUtil.Intersect.js"></script>
-  <script src="https://leaflet.github.io/Leaflet.draw/src/ext/Polygon.Intersect.js"></script>
-  <script src="https://leaflet.github.io/Leaflet.draw/src/ext/Polyline.Intersect.js"></script>
-  <script src="https://leaflet.github.io/Leaflet.draw/src/ext/TouchEvents.js"></script>
-  <script src="https://leaflet.github.io/Leaflet.draw/src/draw/DrawToolbar.js"></script>
-  <script src="https://leaflet.github.io/Leaflet.draw/src/draw/handler/Draw.Feature.js"></script>
-  <script src="https://leaflet.github.io/Leaflet.draw/src/draw/handler/Draw.SimpleShape.js"></script>
-  <script src="https://leaflet.github.io/Leaflet.draw/src/draw/handler/Draw.Polyline.js"></script>
-  <script src="https://leaflet.github.io/Leaflet.draw/src/draw/handler/Draw.Marker.js"></script>
-  <script src="https://leaflet.github.io/Leaflet.draw/src/draw/handler/Draw.Circle.js"></script>
-  <script src="https://leaflet.github.io/Leaflet.draw/src/draw/handler/Draw.CircleMarker.js"></script>
-  <script src="https://leaflet.github.io/Leaflet.draw/src/draw/handler/Draw.Polygon.js"></script>
-  <script src="https://leaflet.github.io/Leaflet.draw/src/draw/handler/Draw.Rectangle.js"></script>
-  <script src="https://leaflet.github.io/Leaflet.draw/src/edit/EditToolbar.js"></script>
-  <script src="https://leaflet.github.io/Leaflet.draw/src/edit/handler/EditToolbar.Edit.js"></script>
-  <script src="https://leaflet.github.io/Leaflet.draw/src/edit/handler/EditToolbar.Delete.js"></script>
-  <script src="https://leaflet.github.io/Leaflet.draw/src/Control.Draw.js"></script>
-  <script src="https://leaflet.github.io/Leaflet.draw/src/edit/handler/Edit.Poly.js"></script>
-  <script src="https://leaflet.github.io/Leaflet.draw/src/edit/handler/Edit.SimpleShape.js"></script>
-  <script src="https://leaflet.github.io/Leaflet.draw/src/edit/handler/Edit.Rectangle.js"></script>
-  <script src="https://leaflet.github.io/Leaflet.draw/src/edit/handler/Edit.Marker.js"></script>
-  <script src="https://leaflet.github.io/Leaflet.draw/src/edit/handler/Edit.CircleMarker.js"></script>
-  <script src="https://leaflet.github.io/Leaflet.draw/src/edit/handler/Edit.Circle.js"></script>
+  <!-- To do: wicket is not properly setup in application.js This head is a workaround. For this workaround to work, note that the core Leaflet js is loaded on top of the one already loaded in application.js -->
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+   crossorigin=""></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/wicket/1.3.6/wicket.js" integrity="sha512-jUln1L5hm3qsRXyeWUMa5ol6DccVUrj7zQItoSmiqOcp0q7T99J4/aiEWI6mgWf0duCXpcNCvnQqZlF99bigLg==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/wicket/1.3.6/wicket-leaflet.js" integrity="sha512-04uJVgbsMWYhsHCz3TRMnW9gwvkbGFkgLT6f08tuG6O83ujM5uyTc6YGP9PO5AeL5r5GX9f3sbGt5mqOw8Ow4A==" crossorigin="anonymous"></script>
 </head>
 
 <div class="container">
@@ -87,20 +59,7 @@
     </div>
     <div class="mb-3">
       <div>
-        <label for="geom-input-option">Escolha uma forma de apresentar a área</label>
-
-        <select class="form-control select mb-3" id="geom-input-option" name="geom-input-option" required>
-          <option default></option>
-          <option value="load">Selecionar polígono cadastrado</option>
-          <option value="upload">Carregar arquivo shapefile compactado</option>
-        </select>
-
-        <div id='form-file' class="mb-3">
-          <input type="file">
-        </div>
-
         <div id='form-polygon'>
-
           <%= f.association :polygons, label: "Polígonos cadastrados", collection: Polygon.order('name ASC'), input_html: { multiple: true }, include_hidden: false %>
         </div>
         <% end %>
@@ -111,106 +70,12 @@
       <input type="hidden" name="geography" id='wkt-hidden-input'>
     </div>
 
-
-    <div id="map" class= "col-sm-12" style="width: 100%; height: 100vh; margin: 0 auto;">
-
+    <div id="map-index" class= "col-sm-12" style="width: 100%; height: 100vh; margin: 0 auto;">
     </div>
-
   </div>
-
 </div>
 
-
-
-<script type="text/javascript">
-  window.addEventListener("load", (event) => {
-    document.getElementById('form-file').hidden = true;
-    document.getElementById('form-polygon').hidden = true;
-  });
-  const formGeoInputOptionTwo = document.getElementById('geom-input-option');
-  formGeoInputOptionTwo.addEventListener('input', (event) => {
-    console.log("Geometry input option is set");
-    const formFile = document.getElementById('form-file');
-    const formPolygon = document.getElementById('form-polygon');
-    if (formGeoInputOptionTwo.value == "load") {
-      formFile.hidden = true;
-      formPolygon.hidden = false;
-    } else if (formGeoInputOptionTwo.value == "upload") {
-      formFile.hidden = false;
-      formPolygon.hidden = true;
-    } else {
-      formFile.hidden = true;
-      formPolygon.hidden = true;
-    };
-  });
-</script>
-
-
-<script>
-  const mapElement = document.getElementById('map');
-
-  if (mapElement) {
-    const map = L.map(mapElement).setView([-15.5, -48], 5);
-
-    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGVvZXhjZWxzdXMiLCJhIjoiY2tleWNxcnB2MGFzejJwcXQwdGIwMmR2byJ9.CbC1R_EI0AICNAxaZSvyeg', {
-      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-      maxZoom: 18,
-      id: 'mapbox/streets-v11',
-      tileSize: 512,
-      zoomOffset: -1,
-      accessToken: 'pk.eyJ1IjoibGVvZXhjZWxzdXMiLCJhIjoiY2tleWNxcnB2MGFzejJwcXQwdGIwMmR2byJ9.CbC1R_EI0AICNAxaZSvyeg'
-    }).addTo(map);
-
-  const selectPolygon = document.getElementById('rule_polygon_ids');
-  selectPolygon.addEventListener('change', (event) => {
-    console.log('Value changed');
-    // Apagar/remover layers do leaflet;
-    map.eachLayer(function(layer) {
-      if (!!layer.toGeoJSON) {
-        map.removeLayer(layer);
-      }
-    });
-    const drawnItems = new L.FeatureGroup();
-    // Fetch para buscar os polígonos pelos seus IDs;
-    fetch(`/polygons/${selectPolygon.value}`)
-      .then(response => response.json())
-      .then((data) => {
-        // console.log(data.coordinates);
-        let array = data.coordinates;
-        let newArray = [];
-        let i = 0;
-        let buffer = 0;
-        while (i < array.length) {
-          buffer = array[i][0];
-          array[i][0] = array[i][1];
-          array[i][1] = buffer;
-          // console.log(array[i]);
-          newArray.push(array[i]);
-          i = i + 1;
-        };
-        // console.log(newArray)
-        // data é um JSON com uma chave coordinates;
-        // dentro dessa chave coordinates, temos um array de arrays com as coordenadas;
-        // precisamos enviar esses dados para o mapa e atualizá-lo;
-        L.polygon(data.coordinates,
-          {
-            color: '#000',
-            weight: 1,
-            fillColor: '#6E8B3D',
-            fillOpacity: 0.5,
-          }).addTo(map);
-        // TO DO: data.coordinates has many coordinate pairs;
-        // Is this the right way?
-        map.fitBounds(data.coordinates);
-      });
-    // Recebe um hash ou um array de coordenadas (armazenadas em uma enumerable);
-    // // Iterar sobre esse resultado para criar camadas do leaflet para visualização no mapa;
-    // data.forEach((result) => {
-    // função/módulo do leaflet => L.Polygon(array de pares de coordenadas).addTo(nome da variável que contém o mapa);
-  });
-}
-</script>
-
+<!-- to do: find out what this script is meant for and if it is really needed-->
 <script type='text/javascript'>
 
 (function()
