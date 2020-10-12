@@ -36,7 +36,9 @@ require("leaflet-draw/dist/leaflet.draw.css");
 
 import { mapDrawInit } from '../plugins/map_draw_init';
 
-import { selectPolygon } from '../components/select_polygon';
+// to do: the function below is disabled because the user is not going to be able
+// to upload a polygon file, so the form control it implements no longer makes sense.
+// import { selectPolygon } from '../components/select_polygon';
 
 import { drawPolygon } from '../components/draw_polygon';
 
@@ -52,7 +54,7 @@ document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
   mapDrawInit();
-  selectPolygon();
+  // selectPolygon();
   drawPolygon();
   showPolygon();
 });
