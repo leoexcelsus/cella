@@ -1,3 +1,5 @@
+// to do: this function no longer is called in application.js and the reason why
+// is therein explained.
 const selectPolygon = () => {
   const formGeoInputOptionTwo = document.getElementById('geom-input-option');
   if (formGeoInputOptionTwo) {
