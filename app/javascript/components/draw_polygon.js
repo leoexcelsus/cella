@@ -34,10 +34,19 @@ const drawPolygon = () => {
         }
       });
       const polygonsGroup = new L.FeatureGroup();
+      // Capturing all current selected options
+      let ids = [];
+      let len = selectPolygon.options.length;
+      for (var i = 0; i < len; i++) {
+        let opt = selectPolygon.options[i];
+        if (opt.selected) {
+          ids.push(opt.value);
+        }
+      };
       // Fetch para buscar os polígonos pelos seus IDs;
       // to do: change the respective Polygons Controller action so as to pass a WKT (stringfied polygon)
       // this way is too slow for big complex polygons.
-      fetch(`/polygons/${selectPolygon.value}`)
+      fetch(`/polygons/[${ids}]`)
         .then(response => response.json())
         .then(json => JSON.parse(json.polygons))
         .then((data) => {

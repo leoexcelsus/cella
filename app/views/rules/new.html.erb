@@ -33,6 +33,7 @@
         <%= f.input :long_title, label: "Ementa" %>
         <%= f.input :source, label: "Fonte" %>
         <%= f.input :hyperlink, label: "Link da Norma" %>
+        <!-- To do: experimentar a biblioteca JS 'yarn add select-pure' para substituir esse campo -->
         <%= f.association :industries, label: "Setor", input_html: { multiple: true }, collection: Industry.order('name ASC'), include_hidden: false %>
       </div>
 
