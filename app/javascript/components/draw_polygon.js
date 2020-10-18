@@ -24,6 +24,24 @@ const drawPolygon = () => {
       accessToken: 'pk.eyJ1IjoibGVvZXhjZWxzdXMiLCJhIjoiY2tleWNxcnB2MGFzejJwcXQwdGIwMmR2byJ9.CbC1R_EI0AICNAxaZSvyeg'
     }).addTo(mapContainer);
 
+    let polygonsGroup = new L.FeatureGroup();
+
+    // selecting polygon's wkt from within html element so as to load it as a
+    // layer in the map on the Edit page.
+    if (document.querySelector("#all-polygons")) {
+      const stringfiedWkts = document.querySelector("#all-polygons").dataset["wkt"];
+      const jsonWkts = JSON.parse(stringfiedWkts);
+      Object.keys(jsonWkts).forEach( key => {
+        // instantiate a Wicket object. Wicket is a JS library that translates
+        // Well Known Text into Leaflet layers.
+        let wkt = new Wkt.Wkt();
+        wkt.read(jsonWkts[key]);
+        let wktToLeafletObejct = wkt.toObject();
+        polygonsGroup.addLayer(wktToLeafletObejct);
+      });
+      polygonsGroup.addTo(mapContainer);
+      mapContainer.fitBounds(polygonsGroup.getBounds());
+    }
     const selectPolygon = document.getElementById('rule_polygon_ids');
     selectPolygon.addEventListener('change', (event) => {
       console.log('Value changed');
@@ -33,11 +51,20 @@ const drawPolygon = () => {
           mapContainer.removeLayer(layer);
         }
       });
-      const polygonsGroup = new L.FeatureGroup();
+      polygonsGroup = new L.FeatureGroup();
+      // Capturing all current selected options
+      let ids = [];
+      let len = selectPolygon.options.length;
+      for (var i = 0; i < len; i++) {
+        let opt = selectPolygon.options[i];
+        if (opt.selected) {
+          ids.push(opt.value);
+        }
+      };
       // Fetch para buscar os polígonos pelos seus IDs;
       // to do: change the respective Polygons Controller action so as to pass a WKT (stringfied polygon)
       // this way is too slow for big complex polygons.
-      fetch(`/polygons/${selectPolygon.value}`)
+      fetch(`/polygons/[${ids}]`)
         .then(response => response.json())
         .then(json => JSON.parse(json.polygons))
         .then((data) => {

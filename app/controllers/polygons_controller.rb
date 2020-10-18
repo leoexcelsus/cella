@@ -11,7 +11,7 @@ class PolygonsController < ApplicationController
   def show
     # to do: this method should allow the user to show more than only 1 polygon.
     # to do: prevent sql injection here. SQLite gem? http://ruby.bastardsbook.com/chapters/sql/#placeholders-sqlite-gem
-    sql = "SELECT ST_AsText(geography) From polygons Where id = #{params[:id]};"
+    sql = "SELECT ST_AsText(geography) From polygons Where id = any (array#{params[:id]});"
     wkts_arrays = ActiveRecord::Base.connection.execute(sql).values
     wkts_hash = {}
     wkts_arrays.each_with_index { |array, index| wkts_hash[index + 1] = array[0] }
