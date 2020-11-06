@@ -44,9 +44,9 @@ class RulesController < ApplicationController
 
   def create
     @rule = Rule.new(rule_params)
-    @polygons = Polygon.find(params[:rule][:polygon_ids])
+    @polygons = Polygon.find(rule_params[:polygon_ids])
     @rule.polygons = @polygons
-    @industries = Industry.find(params[:rule][:industry_ids])
+    @industries = Industry.find(rule_params[:industry_ids])
     @rule.industries = @industries
     @rule.user = current_user
 
@@ -67,9 +67,9 @@ class RulesController < ApplicationController
 
   def update
     if @rule.update(rule_params)
-      @polygons = Polygon.find(params[:rule][:polygon_ids])
+      @polygons = Polygon.find(rule_params[:polygon_ids])
       @rule.polygons = @polygons
-      @industries = Industry.find(params[:rule][:industry_ids])
+      @industries = Industry.find(rule_params[:industry_ids])
       @rule.industries = @industries
       @rule.save
       redirect_to @rule, notice: 'As informações foram atualizadas.'
@@ -96,7 +96,7 @@ class RulesController < ApplicationController
   def rule_params
     params.require(:rule).permit(:jurisdiction, :issuer,
       :category, :number, :pub_date, :ed_date,
-      :long_title, :hyperlink, :polygon_ids, :industry_ids)
+      :long_title, :source, :hyperlink, :polygon_ids =>[], :industry_ids =>[])
   end
 
   def s_query_params_i
