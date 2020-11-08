@@ -26,5 +26,5 @@ end
 # https://github.com/rgeo/activerecord-postgis-adapter/issues/187#issuecomment-286278821
 RGeo::ActiveRecord::SpatialFactoryStore.instance.tap do |config|
   # Fetching large MULTIPOLYGON types from the db is very slow without this
-  config.default = RGeo::Geos.factory_generator(uses_lenient_assertions : true)
+  config.default = RGeo::Geos.factory_generator(uses_lenient_assertions:true)
 end

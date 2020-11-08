@@ -45,6 +45,8 @@ class RulesController < ApplicationController
   def create
     @rule = Rule.new(rule_params)
     @polygons = Polygon.find(params[:rule][:polygon_ids])
+    # loading big polygons through RGeo significantly slows down the response (5 - 10 min).
+    # For this reason /config/application.rb has been edited to include a RGeo bypass setting.
     @rule.polygons = @polygons
     @industries = Industry.find(params[:rule][:industry_ids])
     @rule.industries = @industries
@@ -67,6 +69,8 @@ class RulesController < ApplicationController
 
   def update
     if @rule.update(rule_params)
+      # loading big polygons through RGeo significantly slows down the response (5 - 10 min).
+      # For this reason /config/application.rb has been edited to include a RGeo bypass setting.
       @polygons = Polygon.find(params[:rule][:polygon_ids])
       @rule.polygons = @polygons
       @industries = Industry.find(params[:rule][:industry_ids])
