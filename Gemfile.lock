@@ -96,6 +96,8 @@ GEM
     erubi (1.9.0)
     execjs (2.7.0)
     ffi (1.13.1)
+    ffi-geos (2.1.0)
+      ffi (>= 1.0.0)
     font-awesome-sass (5.13.0)
       sassc (>= 1.11)
     globalid (0.4.2)
@@ -252,6 +254,7 @@ DEPENDENCIES
   data-confirm-modal
   devise
   dotenv-rails
+  ffi-geos
   font-awesome-sass
   jbuilder (~> 2.7)
   listen (~> 3.2)
