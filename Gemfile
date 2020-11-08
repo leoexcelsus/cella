@@ -40,13 +40,17 @@ gem 'activerecord-postgis-adapter'
 # permite ao Rails entender e manipular dados GIS
 gem 'rgeo'
 
+# This gem was made necessary for the configuration of RGeo on startup ('application.rb')
+gem 'ffi-geos'
+
 # extende a capacidade da gema 'rgeo' para lidar com geojson
 gem 'rgeo-geojson'
 
 gem 'data-confirm-modal'
 
 
-group :development, :test do  gem 'pry-byebug'
+group :development, :test do
+  gem 'pry-byebug'
   gem 'pry-rails'
   gem 'dotenv-rails'
 
