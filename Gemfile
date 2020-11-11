@@ -40,8 +40,6 @@ gem 'activerecord-postgis-adapter'
 # permite ao Rails entender e manipular dados GIS
 gem 'rgeo'
 
-# This gem was made necessary for the configuration of RGeo on startup ('application.rb')
-gem 'ffi-geos'
 
 # extende a capacidade da gema 'rgeo' para lidar com geojson
 gem 'rgeo-geojson'
@@ -53,6 +51,11 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'dotenv-rails'
+
+  # This gem was made necessary for the configuration of RGeo on startup ('application.rb')
+  # It has been moved to development and test only because deploying to Heroku otherwise generates error 'LoadError: Couldn't load the GEOS CAPI library.'
+  # It seems Heroku has its own 'Geos build' (https://elements.heroku.com/buildpacks/heroku/heroku-geo-buildpack)
+  gem 'ffi-geos'
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
