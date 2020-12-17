@@ -4,4 +4,4 @@ This application is designed to provide an environmental licensing legislation s
 
 This application requires Ruby 2.6.6, Rails 6.0.3.3 and a Postgresql 12.5 database extended with PostGIS 3.0.
 
-The development of this application was made possible thanks to the efforts of the Escola Nacional de Administração Pública in providing a Coding Bootcamp course to federal civil servants in Brazil.
+The development of this application was made possible thanks to the efforts of the Escola Nacional de Administração Pública - ENAP in providing a Coding Bootcamp course to federal civil servants in Brazil.
